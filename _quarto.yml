@@ -7,14 +7,10 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
-      - outline.qmd
+        text: Course Outline
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
-
-
-
