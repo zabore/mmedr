@@ -4,26 +4,35 @@ title: "Outline"
 
 The topics we will cover include:
 
-1. What is R?
-2. What is RStudio?
-3. What is Posit Workbench?
-4. Installing and loading R packages
+## Tools 
+
+1. Introduction to the tools
+
+    - R
+    - RStudio
+    - Posit Workbench
+    
+1. Things to know about R
+
+    - Case sensitive
+    - Variable names (janitor)
+    - Executing code
+    - Getting help
+    - The pipe operator
+
+1. Installing and loading R packages
 
     - CRAN
     - Github
     - Bioconductor
 
-5. Loading data
+1. Loading data
 
     - .xlsx
     - .csv
     - Other formats
-    
-6. Things to know about R
 
-    - Case sensitive
-    
-7. Basic programming
+1. Basic programming
 
     - Assigning objects
     - Functions
@@ -31,8 +40,7 @@ The topics we will cover include:
     - Strings
     - Testing for equality
     
-    
-8. Manipulate dataframes
+1. Manipulate dataframes
 
     - Indexing operators - extract rows/columns
     - Accessing variables in datasets
@@ -42,21 +50,16 @@ The topics we will cover include:
     - Group a continuous variable
     - Recategorize a categorical variable
     - Sort by row
+    - Reshape (wide to long, long to wide)
     
-    
-9. Advanced programming
-
-    - Writing custom functions
-    - For loops/apply/map
-    
-10. Descriptive statistics
+1. Descriptive statistics
 
     - One-way frequency table
     - Two-way contingency table
     - Summary statistics
     - Summary statistics by group
     
-11. Visualization
+1. Visualization
 
     - Scatterplot
     - Bar chart
@@ -64,8 +67,17 @@ The topics we will cover include:
     - Line chart
     - Boxplot
     - Customization
+    - Faceting
+    - Saving plots
     
-12. Statistical tests
+# Biostatistics and Epidemiology
+    
+1. Advanced programming
+
+    - Writing custom functions
+    - For loops/apply/map
+    
+1. Statistical tests
 
     - Fisher's exact test
     - Chi-squared test
@@ -74,3 +86,17 @@ The topics we will cover include:
     - ANOVA
     - Wilcoxon signed rank test 
     - Paired t-test
+    
+1. Adjustment for multiple comparisons
+
+1. Staying organized (not sure about this??)
+
+    - R projects
+    - here package
+    
+1. Reporting
+
+    - Quarto
+    - Summarizing many variables (i.e. Table 1)
+    - Tabular results
+    - Graphical results

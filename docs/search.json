@@ -11,6 +11,13 @@
     "href": "outline.html",
     "title": "Outline",
     "section": "",
-    "text": "The topics we will cover include:\n\nWhat is R?\nWhat is RStudio?\nWhat is Posit Workbench?\nInstalling and loading R packages\n\nCRAN\nGithub\nBioconductor\n\nLoading data\n\n.xlsx\n.csv\nOther formats\n\nThings to know about R\n\nCase sensitive\n\nBasic programming\n\nAssigning objects\nFunctions\nVectors and sequences\nStrings\nTesting for equality\n\nManipulate dataframes\n\nIndexing operators - extract rows/columns\nAccessing variables in datasets\nSubsetting data\nRename columns\nAdd columns\nGroup a continuous variable\nRecategorize a categorical variable\nSort by row\n\nAdvanced programming\n\nWriting custom functions\nFor loops/apply/map\n\nDescriptive statistics\n\nOne-way frequency table\nTwo-way contingency table\nSummary statistics\nSummary statistics by group\n\nVisualization\n\nScatterplot\nBar chart\nHistogram\nLine chart\nBoxplot\nCustomization\n\nStatistical tests\n\nFisher’s exact test\nChi-squared test\nWilcoxon rank sum test/Kruskal-Wallis test\nT-test\nANOVA\nWilcoxon signed rank test\nPaired t-test"
+    "text": "The topics we will cover include:"
+  },
+  {
+    "objectID": "outline.html#tools",
+    "href": "outline.html#tools",
+    "title": "Outline",
+    "section": "Tools",
+    "text": "Tools\n\nIntroduction to the tools\n\nR\nRStudio\nPosit Workbench\n\nThings to know about R\n\nCase sensitive\nVariable names (janitor)\nExecuting code\nGetting help\nThe pipe operator\n\nInstalling and loading R packages\n\nCRAN\nGithub\nBioconductor\n\nLoading data\n\n.xlsx\n.csv\nOther formats\n\nStaying organized (??)\n\nR projects\nhere package\n\nBasic programming\n\nAssigning objects\nFunctions\nVectors and sequences\nStrings\nTesting for equality\n\nManipulate dataframes\n\nIndexing operators - extract rows/columns\nAccessing variables in datasets\nSubsetting data\nRename columns\nAdd columns\nGroup a continuous variable\nRecategorize a categorical variable\nSort by row\n\nDescriptive statistics\n\nOne-way frequency table\nTwo-way contingency table\nSummary statistics\nSummary statistics by group\n\nVisualization\n\nScatterplot\nBar chart\nHistogram\nLine chart\nBoxplot\nCustomization\nFaceting\nSaving plots"
   }
 ]

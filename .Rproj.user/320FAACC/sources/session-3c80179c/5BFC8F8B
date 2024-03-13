@@ -3,7 +3,7 @@
     "path": "D:/mmedr/outline.qmd",
     "project_path": "outline.qmd",
     "type": "quarto_markdown",
-    "hash": "914694345",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1710351656791.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "64,13",
-        "scrollLine": "0"
+        "cursorPosition": "44,21",
+        "scrollLine": "23"
     },
     "folds": "",
-    "lastKnownWriteTime": 1710352754,
+    "lastKnownWriteTime": 1710354901,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1710352754380,
+    "last_content_update": 1710354901719,
     "read_only": false,
     "read_only_alternatives": []
 }
