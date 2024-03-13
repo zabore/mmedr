@@ -1,3 +1,3 @@
-# mmedr
+# R for Molecular Medicine
 
-A repository of materials related to development of an R curriculum for the Cleveland Clinic Molecular Medicine PhD students.
+A repository of teaching materials for the Cleveland Clinic Molecular Medicine PhD program R curriculum.
