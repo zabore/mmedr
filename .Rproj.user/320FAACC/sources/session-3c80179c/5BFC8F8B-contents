@@ -1,0 +1,76 @@
+---
+title: "Outline"
+---
+
+The topics we will cover include:
+
+1. What is R?
+2. What is RStudio?
+3. What is Posit Workbench?
+4. Installing and loading R packages
+
+    - CRAN
+    - Github
+    - Bioconductor
+
+5. Loading data
+
+    - .xlsx
+    - .csv
+    - Other formats
+    
+6. Things to know about R
+
+    - Case sensitive
+    
+7. Basic programming
+
+    - Assigning objects
+    - Functions
+    - Vectors and sequences
+    - Strings
+    - Testing for equality
+    
+    
+8. Manipulate dataframes
+
+    - Indexing operators - extract rows/columns
+    - Accessing variables in datasets
+    - Subsetting data
+    - Rename columns
+    - Add columns
+    - Group a continuous variable
+    - Recategorize a categorical variable
+    - Sort by row
+    
+    
+9. Advanced programming
+
+    - Writing custom functions
+    - For loops/apply/map
+    
+10. Descriptive statistics
+
+    - One-way frequency table
+    - Two-way contingency table
+    - Summary statistics
+    - Summary statistics by group
+    
+11. Visualization
+
+    - Scatterplot
+    - Bar chart
+    - Histogram
+    - Line chart
+    - Boxplot
+    - Customization
+    
+12. Statistical tests
+
+    - Fisher's exact test
+    - Chi-squared test
+    - Wilcoxon rank sum test/Kruskal-Wallis test
+    - T-test 
+    - ANOVA
+    - Wilcoxon signed rank test 
+    - Paired t-test

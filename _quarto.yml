@@ -1,0 +1,20 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "R For Molecular Medicine"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - outline.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+

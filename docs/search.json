@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "R For Molecular Medicine",
+    "section": "",
+    "text": "This is the new website to host R teaching materials for the Cleveland Clinic Molecular Medicine PhD students."
+  },
+  {
+    "objectID": "outline.html",
+    "href": "outline.html",
+    "title": "Outline",
+    "section": "",
+    "text": "The topics we will cover include:\n\nWhat is R?\nWhat is RStudio?\nWhat is Posit Workbench?\nInstalling and loading R packages\n\nCRAN\nGithub\nBioconductor\n\nLoading data\n\n.xlsx\n.csv\nOther formats\n\nThings to know about R\n\nCase sensitive\n\nBasic programming\n\nAssigning objects\nFunctions\nVectors and sequences\nStrings\nTesting for equality\n\nManipulate dataframes\n\nIndexing operators - extract rows/columns\nAccessing variables in datasets\nSubsetting data\nRename columns\nAdd columns\nGroup a continuous variable\nRecategorize a categorical variable\nSort by row\n\nAdvanced programming\n\nWriting custom functions\nFor loops/apply/map\n\nDescriptive statistics\n\nOne-way frequency table\nTwo-way contingency table\nSummary statistics\nSummary statistics by group\n\nVisualization\n\nScatterplot\nBar chart\nHistogram\nLine chart\nBoxplot\nCustomization\n\nStatistical tests\n\nFisher’s exact test\nChi-squared test\nWilcoxon rank sum test/Kruskal-Wallis test\nT-test\nANOVA\nWilcoxon signed rank test\nPaired t-test"
+  }
+]
