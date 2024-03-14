@@ -10,19 +10,21 @@ The material will be split across 5 1-hour sessions as part of the Tools course,
 
 ### Session 1
 
-- Introduction to the tools
+- [Introduction to the tools](intro.qmd)
 
     - R
     - RStudio
     - Posit Workbench
     
-- Things to know about R
+- Things to know about R (?)
 
     - Case sensitive
     - Variable names (janitor)
     - Executing code
     - Getting help
     - The pipe operator
+    - R projects
+    - here package/reproducibility more generally?
 
 - Installing and loading R packages
 
@@ -35,7 +37,9 @@ The material will be split across 5 1-hour sessions as part of the Tools course,
     - .xlsx
     - .csv
     - Other formats
-    
+
+### Session 2
+
 - Basic programming
 
     - Assigning objects
@@ -43,9 +47,9 @@ The material will be split across 5 1-hour sessions as part of the Tools course,
     - Vectors and sequences
     - Strings
     - Testing for equality
-    
-### Session 2
-    
+
+### Session 3
+
 - Manipulate dataframes
 
     - Indexing operators - extract rows/columns
@@ -58,8 +62,8 @@ The material will be split across 5 1-hour sessions as part of the Tools course,
     - Sort by row
     - Reshape (wide to long, long to wide)
     
-### Session 3
-    
+### Session 4
+
 - Descriptive statistics
 
     - One-way frequency table
@@ -67,9 +71,20 @@ The material will be split across 5 1-hour sessions as part of the Tools course,
     - Summary statistics
     - Summary statistics by group
     
-### Session 4
+### Session 5
+
+- Put it all together 
     
-- Visualization
+## Biostatistics and Epidemiology
+
+### Session 1
+
+- Refresher of Tools course material
+
+    - R basics
+    - Descriptive statistics
+    
+- Visualization 
 
     - Scatterplot
     - Bar chart
@@ -80,21 +95,15 @@ The material will be split across 5 1-hour sessions as part of the Tools course,
     - Faceting
     - Saving plots
     
-### Session 5
-
-- Put it all together
+### Session 2
     
-## Biostatistics and Epidemiology
+- Adjustment for multiple comparisons
 
-### Session 1
-
-- Review R basics
-    
 - Advanced programming
 
     - Writing custom functions
     - For loops/apply/map
-    
+
 - Statistical tests
 
     - Fisher's exact test
@@ -104,20 +113,4 @@ The material will be split across 5 1-hour sessions as part of the Tools course,
     - ANOVA
     - Wilcoxon signed rank test 
     - Paired t-test
-    
-### Session 2
-    
-- Adjustment for multiple comparisons
-
-- Staying organized (not sure about this??)
-
-    - R projects
-    - here package
-    
-- Reporting and putting it all together
-
-    - Quarto
-    - Summarizing many variables (i.e. Table 1)
-    - Tabular results
-    - Graphical results
 

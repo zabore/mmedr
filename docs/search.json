@@ -11,13 +11,20 @@
     "href": "index.html#tools-course",
     "title": "R For Molecular Medicine",
     "section": "Tools course",
-    "text": "Tools course\n\nSession 1\n\nIntroduction to the tools\n\nR\nRStudio\nPosit Workbench\n\nThings to know about R\n\nCase sensitive\nVariable names (janitor)\nExecuting code\nGetting help\nThe pipe operator\n\nInstalling and loading R packages\n\nCRAN\nGithub\nBioconductor\n\nLoading data\n\n.xlsx\n.csv\nOther formats\n\nBasic programming\n\nAssigning objects\nFunctions\nVectors and sequences\nStrings\nTesting for equality\n\n\n\n\nSession 2\n\nManipulate dataframes\n\nIndexing operators - extract rows/columns\nAccessing variables in datasets\nSubsetting data\nRename columns\nAdd columns\nGroup a continuous variable\nRecategorize a categorical variable\nSort by row\nReshape (wide to long, long to wide)\n\n\n\n\nSession 3\n\nDescriptive statistics\n\nOne-way frequency table\nTwo-way contingency table\nSummary statistics\nSummary statistics by group\n\n\n\n\nSession 4\n\nVisualization\n\nScatterplot\nBar chart\nHistogram\nLine chart\nBoxplot\nCustomization\nFaceting\nSaving plots\n\n\n\n\nSession 5\n\nPut it all together"
+    "text": "Tools course\n\nSession 1\n\nIntroduction to the tools\n\nR\nRStudio\nPosit Workbench\n\nThings to know about R (?)\n\nCase sensitive\nVariable names (janitor)\nExecuting code\nGetting help\nThe pipe operator\nR projects\nhere package/reproducibility more generally?\n\nInstalling and loading R packages\n\nCRAN\nGithub\nBioconductor\n\nLoading data\n\n.xlsx\n.csv\nOther formats\n\n\n\n\nSession 2\n\nBasic programming\n\nAssigning objects\nFunctions\nVectors and sequences\nStrings\nTesting for equality\n\n\n\n\nSession 3\n\nManipulate dataframes\n\nIndexing operators - extract rows/columns\nAccessing variables in datasets\nSubsetting data\nRename columns\nAdd columns\nGroup a continuous variable\nRecategorize a categorical variable\nSort by row\nReshape (wide to long, long to wide)\n\n\n\n\nSession 4\n\nDescriptive statistics\n\nOne-way frequency table\nTwo-way contingency table\nSummary statistics\nSummary statistics by group\n\n\n\n\nSession 5\n\nPut it all together"
   },
   {
     "objectID": "index.html#biostatistics-and-epidemiology",
     "href": "index.html#biostatistics-and-epidemiology",
     "title": "R For Molecular Medicine",
     "section": "Biostatistics and Epidemiology",
-    "text": "Biostatistics and Epidemiology\n\nSession 1\n\nReview R basics\nAdvanced programming\n\nWriting custom functions\nFor loops/apply/map\n\nStatistical tests\n\nFisher’s exact test\nChi-squared test\nWilcoxon rank sum test/Kruskal-Wallis test\nT-test\nANOVA\nWilcoxon signed rank test\nPaired t-test\n\n\n\n\nSession 2\n\nAdjustment for multiple comparisons\nStaying organized (not sure about this??)\n\nR projects\nhere package\n\nReporting and putting it all together\n\nQuarto\nSummarizing many variables (i.e. Table 1)\nTabular results\nGraphical results"
+    "text": "Biostatistics and Epidemiology\n\nSession 1\n\nRefresher of Tools course material\n\nR basics\nDescriptive statistics\n\nVisualization\n\nScatterplot\nBar chart\nHistogram\nLine chart\nBoxplot\nCustomization\nFaceting\nSaving plots\n\n\n\n\nSession 2\n\nAdjustment for multiple comparisons\nAdvanced programming\n\nWriting custom functions\nFor loops/apply/map\n\nStatistical tests\n\nFisher’s exact test\nChi-squared test\nWilcoxon rank sum test/Kruskal-Wallis test\nT-test\nANOVA\nWilcoxon signed rank test\nPaired t-test"
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "R For Molecular Medicine",
+    "section": "",
+    "text": "This will be the Introduction to the tools lesson."
   }
 ]

@@ -5,12 +5,20 @@ project:
 website:
   title: "R For Molecular Medicine"
   navbar:
+    background: "#0078bf"
+    foreground: "#ffffff"
     left:
       - href: index.qmd
-        text: Course Outline
+        text: Outline
+      - text: Lessons
+        menu:
+          - text: Introduction to the tools
+            href: intro.qmd
 
 format:
   html:
-    theme: cosmo
+    theme: sandstone
+    fontcolor: "#4b4b45"
+    linkcolor: "#f08122"
     css: styles.css
     toc: true
