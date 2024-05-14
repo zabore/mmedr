@@ -12,8 +12,10 @@ website:
         text: Outline
       - text: Lessons
         menu:
-          - text: Introduction to the tools
-            href: intro.qmd
+          - text: Biostatistics and Epidemiology - Refresher
+            href: bio-epi-refresher.qmd
+          - text: Biostatistics and Epidemiology - Visualization
+            href: bio-epi-visualization.qmd
 
 format:
   html:

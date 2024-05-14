@@ -1,0 +1,600 @@
+---
+title: ""
+---
+
+# Biostatistics and Epidemiology - Session 1
+
+In this session, we will review the basics of R and generating descriptive statistics in R, which were introduced in the Tools course. Then we will learn about data visualization, including creating scatterplots, bar charts, histograms, line charts, and boxplots. We'll discuss plot customization, faceting, and saving plots. Both univariate and bivariable plotting will be covered.
+
+## Refresher of the Tools course material
+
+### R basics
+
+First, we'll review the basics of R and R programming.
+
+#### About R
+
+<p align="left"><img src="img/Rlogo.png" width=25%></p>
+
+- R is a free, open-source software environment for statistical computing and graphics
+- Many of the functions you may wish to use will be contributed by other users as packages and available through repositories such as CRAN, GitHub, or Bioconductor, among others 
+- It is your responsibility to vet the quality and accuracy of any user-contributed packages
+- The functions available with the initial installation of R, known as base R, can be considered trustworthy
+
+#### Installing R
+
+1. Go to the website for [The Comprehensive R Archive Network](https://cran.r-project.org/). 
+2. The top of the web page provides three links for downloading R. Follow the link that describes your operating system: Windows, Mac, or Linux.
+
+#### About RStudio
+
+<p align="left"><img src="img/RStudio-Logo-Flat.png" width=45%></p>
+
+- RStudio is an Integrated Development Environment (IDE).
+- It runs R and allows users to develop and edit programs and offers higher quality graphics and a more user-friendly interface.
+- ***Note that RStudio is not a standalone program, you must have a separate installation of R***
+
+#### Installing RStudio
+
+1. Go to the website for [RStudio](https://posit.co/products/open-source/rstudio/)
+2. Select "Download RStudio Desktop" under "Open Source Edition"
+3. Click the button for "Download RStudio"
+4. Scroll down and select the appropriate version for your operating system
+5. An installer will download and provide simple instructions to follow
+
+#### Posit Workbench
+
+<p align="left"><img src="img/prod-logo-workbench-dk.jpg" width=45%></p>
+
+- We will primarily use Posit Workbench on the servers, where the R version and many R packages are updated regularly
+- See the wiki for details: [http://jjnb-wiki-v-00.bio.ri.ccf.org/index.php/Running_R](http://jjnb-wiki-v-00.bio.ri.ccf.org/index.php/Running_R)
+- Login in using your Linux credentials at one of the links, for example lri-r07: [https://lri-r07.lerner.ccf.org/auth-sign-in](https://lri-r07.lerner.ccf.org/auth-sign-in)
+
+#### Using RStudio
+
+When you first open RStudio you will see a number of panes:
+
+<p align="center"><img src="img/rstudio-panes-screenshot.png" width=100%></p>
+
+The layout of the panes can be customized by going to Tools > Global Options > Pane Layout.
+
+Panes:
+
+1. Text editor - this is where you will type your code, and you will save this file to a project folder for reproducibility
+2. Console - this is where the code will be executed
+3. Other panes will contain a variety of tabs. Some to note include:
+
+    - Environment: where you can see objects and data files that are available in your current session
+    - Files: here you should be able to access all folders and files on your home drive
+    - Plots: this is where plots will disply
+    - Help: this is where you will get help files for R functions
+    - Viewer: this is where you would preview any html output like a gt table or Quarto document
+    
+#### Using the text editor in RStudio
+
+Always use a text editor to type code so that it can be saved for reproducibility purposes.
+
+How to open a text editor window:
+
+1. To open a new text editor window go to: File > New File > R script 
+2. To save the file go to: File > Save 
+
+#### Interactive RStudio demo
+
+Navigate to [https://lri-r07.lerner.ccf.org/auth-sign-in](https://lri-r07.lerner.ccf.org/auth-sign-in), log in, and run some example code.
+
+Demonstrate how to:
+
+- Create a new R script
+- Add some code to it
+- Run the code
+- View help files
+- Save the R script
+
+```{r eval = FALSE}
+x <- c(1, 2, 3, 4)
+mean(x)
+hist(rnorm(100))
+?rnorm
+```
+
+#### Sending code to the console
+
+To send this to the console to be executed, you can do one of the following:
+
+1. Place your cursor next to the line you want to run and hit Ctrl+Enter on your keyboard
+2. Place your cursor next to the line you want to run and hit the "Run" button
+3. Highlight all three lines of code and use one of the previous options
+
+#### Getting help
+
+Get help by typing `?fnname` where `fnname` is the name of the function of interest.
+
+- e.g. to see the help file for the mean function, type `?mean` in the console
+- `??fnname` can be used if you aren't sure of the exact function name - it will return any keyword matches
+
+
+#### View the output
+
+After we have run all three lines of code, we see the results of our mean computation in the Console pane. 
+
+And we see the resulting histogram in the Plots pane.
+
+#### Interactive RStudio demo results
+
+<p align="center"><img src="img/insteractive-rstudio-demo-results.png" width=100%></p>
+
+
+#### Installing R packages 
+
+CRAN is the primary repository for user-contributed R packages. 
+
+Packages that are on CRAN can be installed using the `install.packages()` function.
+
+For example, we can install the {survival} package from CRAN using:
+
+```{r eval = FALSE}
+install.packages("survival")
+```
+
+
+GitHub is a common repository for packages that are in development. 
+
+To install packages from GitHub, first install the {remotes} package from CRAN:
+    
+```{r eval = FALSE}
+install.packages("remotes")
+```
+
+Then, install the GitHub package of interest using `install_github("username/repository")`. For example, to install the `emo` repository from the GitHub username `hadley`, use:
+
+```{r eval = FALSE}
+library(remotes)
+install_github("hadley/emo")
+```
+
+Or, avoid a call to the `library()` function by using the syntax `library::function()`:
+
+```{r eval = FALSE}
+remotes::install_github("hadley/emo")
+```
+
+Bioconductor is a repository for open source code related to biological data. To install packages from Bioconductor, first install the {BiocManager} package from CRAN:
+
+```{r eval = FALSE}
+install.packages("BiocManager")
+```
+
+Then install, for example, the {GenomicFeatures} package using the `install` function:
+
+```{r eval = FALSE}
+BiocManager::install("GenomicFeatures")
+```
+
+Installation is the first step. Only needs to **be done once**.
+
+Loading is the next step. Must be done **every time you open a new R session** in which you need to use the package. 
+
+There are two methods for loading R packages:
+
+1. A call to `library()` loads the package for your entire R session.
+
+```{r eval = FALSE}
+library(survival)
+survfit(formula, ...)
+```
+
+2. Using `::` accesses the package only for a single function. 
+
+```{r eval = FALSE}
+survival::survfit(formula, ...)
+```
+
+#### Example trial dataset
+
+The most common data format we work with are data from Excel. The example trial dataset is available in the {gtsummary} package in R.
+
+1. Install and load the "gtsummary" package
+2. Preview the `trial` data by simply typing the name of the dataset:
+
+```{r eval = FALSE}
+install.packages("gtsummary")
+```
+
+```{r warning = FALSE}
+library(gtsummary)
+trial
+```
+
+The help page for the trial data can be accessed by running:
+
+```{r eval = FALSE}
+?trial
+```
+
+And we see the variables and their definitions:
+
+<p align="center"><img src="img/trial-help.png" width=100%></p>
+
+I have saved this data file out to Excel so that we can practice loading it in R. Go to the [course website](https://mylearning.ccf.org/course/view.php?id=18794) to download the file named "trial-Excel.xlsx". Save it somewhere you can find it again.
+
+#### Loading data
+
+The most common data format we work with are data from **Excel**. 
+
+Data should be:
+
+- One dataset per file
+- A single row of column headers across the top
+- Simple column names are better - they will get transformed into variable names by R
+- Typically one row per patient/sample is ideal
+
+We will look at options to:
+
+- Read in Excel files with {readxl}
+- Read in Excel files by converting to .csv first
+- Read in other file formats
+
+First, install the {readxl} package from CRAN, then load the newly installed package:
+
+```{r eval = FALSE}
+install.packages("readxl")
+library(readxl)
+```
+
+Then use the `read_excel()` function with the appropriate filepath to read in the data and create an object called "mydf":
+
+```{r eval = FALSE}
+mydf <- read_excel(
+  "H:/MMED/MMED501/data/trial-Excel.xlsx"
+  )
+```
+
+Note that R treats the \\ as a special character so you either need to use / or $\backslash \backslash$ in file paths
+
+Alternatively, we can convert the file from .xlsx format to .csv format first, and then read it in.
+
+Advantages: removes some of the possible formatting pitfalls associated with Excel files, and you don't need any special packages to read this format.
+
+1. Open the Excel file.
+2. Go to File > Save As and select "CSV (Comma delimited)" from the "Save as type" drop down and save the file to the same location as "trial-csv.csv"
+3. Use the `read.csv()` function with the appropriate file path to read in the data and create an object called "mycsv"
+
+```{r}
+mycsv <- 
+  read.csv(
+    "H:/MMED/MMED501/data/trial-csv.csv"
+    ) 
+```
+
+*Note that this is the approach I always use myself and will form the basis of all of my examples*
+
+Many other file formats exist, and here is a non-comprehensive list of functions for loading some of them:
+
+- `read.table()` is the most generic function and can read many file types
+- `read.csv()` is a special case with fixed defaults for comma-separated files
+- `read.csv2()` is a special case with fixed defaults for comma-separated files that were created in a country where commas are used in place of decimal places
+- `read.delim()` is a special case with fixed defaults for tab-delimited files
+- `read.delim2()` is a special case with fixed defaults for tab-delimited files that were created in a country where commas are used in place of decimal places
+
+#### Basic programming
+
+Use the assignment operator `<-` to assign **values** to **objects**
+
+- `<-` assigns values on the *right*, to objects on the *left*
+- Keyboard shortcut "Alt" + "-" will insert the assignment operator
+
+```{r}
+x <- 55
+x
+```
+
+Functions are pre-packaged scripts that automate more complicated procedures. They are executed by typing the name of the function followed by round brackets. Inside the round brackets we can provide one or more parameters, or arguments:
+
+```{r}
+x <- 144
+sqrt(x)
+
+y <- 123.225
+round(y)
+round(y, digits = 1)
+```
+
+Use `c()` to create a vector of values or `seq()` to create a sequence of values:
+
+```{r}
+a <- c(1, 2, 3, 4)
+b <- seq(from = 0, to = 100, by = 10)
+b <- seq(0, 100, 10)
+b <- seq(by = 10, to = 100, from = 0)
+```
+
+**Note**: when we supply the arguments to a function in the order in which they are listed in the documentation, we do not need to name them. If we name them, we can supply them in any order. The above three assignments to b yield the same results.
+
+Here are all of the possible arguments to the `seq()` function:
+
+```{r eval = FALSE}
+seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)),
+    length.out = NULL, along.with = NULL, ...)
+```
+
+R is case sensitive:
+
+* i.e. `age` is not the same as `Age`.
+* Variable names with spaces are problematic:
+    - Depending on how you read your data in, R may or may not automatically reformat variable names
+    - If you end up with a variable called, e.g. "Patient Age" you would need to reference it in backticks: `` `Patient Age` ``
+    - One option is to use the `clean_names()` function from the {janitor} package to convert all variable names to snake case (or alternatives):
+    
+```{r eval = FALSE}
+install.packages("janitor")
+janitor::clean_names(df)
+```
+
+The `==` operator tests equality between two values:
+
+```{r}
+5 == 5
+5 == 9
+```
+    
+The first returns TRUE because 5 does in fact equal 5. 
+
+The second returns FALSE because 5 is not equal to 9.
+    
+We'll need this later when we subset data.
+
+R has three main indexing operators: 
+
+1. Dollar sign: `$`
+2. Double brackets: `[[ ]]`
+3. Single brackets: `[ ]`
+
+To access specific variables, use the `$` operator in the form `dataframe$varname`, where `dataframe` is the name of the object to which we assigned our data set, and `varname` is the name of the variable of interest
+
+For example, to calculate the mean of the variable `age` in the dataframe `mycsv`:
+
+```{r}
+mean(mycsv$age, na.rm = TRUE)
+```
+
+*Note that we need to add the argument `na.rm = TRUE` to remove missing values from the calculation of the mean, otherwise NA will be returned if missing values are present*
+
+Alternatively, use double brackets in the form `dataframe[["varname"]]`
+
+```{r}
+mean(mycsv[["age"]], na.rm = TRUE)
+```
+
+Sometimes we may want to create a subset of our data, or access a value based on more than one dimension.
+
+Datasets typically have two dimensions: columns and rows
+
+For dataframe `df`, let `i` index the row and `j` index the column.
+
+Then we can access any single cell in the dataframe using the syntax:
+
+```{r eval = FALSE}
+df[i, j]
+```
+
+We can use this concept to create subsets of our data as well. 
+
+We can create a subset of our data based on the values in a row, for example limiting to patients who were treated with Drug A:
+
+```{r}
+df_sub <- mycsv[mycsv$trt == "Drug A", ]
+nrow(df_sub)
+```
+
+We see that the new data subset has `r nrow(df_sub)` rows.
+
+The `&` operator signifies "and".
+
+So for example we could subset based on patients who were treated with Drug A AND are over 45 years old:
+
+```{r}
+df_sub <- mycsv[mycsv$trt == "Drug A" & mycsv$age > 45, ]
+nrow(df_sub)
+```
+
+And we see that the new data subset has `r nrow(df_sub)` rows.
+
+The `|` operator signifies "or".
+
+So for example we could subset based on patients who were treated with Drug A OR are over 45 years old:
+
+```{r}
+df_sub <- mycsv[mycsv$trt == "Drug A" | mycsv$age > 45, ]
+nrow(df_sub)
+```
+
+And we see that our new datasubset has `r nrow(df_sub)` rows.
+
+We can also create a subset of our data based on columns, for example limiting to trt:
+
+```{r}
+df_sub <- mycsv[ , c("trt")]
+```
+
+Or we can simultaneously subset based on rows and columns, for example limiting to the trt column among patients with age greater than 45:
+
+```{r}
+df_sub <- mycsv[mycsv$age > 45, c("trt")]
+```
+
+We can also subset directly within functions. Suppose we want to calculate the mean of the variable `age` in the dataframe `mycsv`, but only among those who were treated with Drug A:
+
+```{r}
+mean(mycsv$age[mycsv$trt == "Drug A"], na.rm = TRUE)
+```
+
+This avoids creating additional datasets that may not be needed again.
+
+
+
+### Descriptive statistics
+
+Next, we'll review descriptive statistics in R. There are many ways to generate this type of descriptive statistics in R. I will demonstrate one way and if you end up using R a lot you will find what works well for you and the type of data you use.
+
+We will be using some functions from the {janitor} package, so make sure you have that installed. 
+
+```{r eval = FALSE}
+install.packages("janitor")
+```
+
+```{r message = FALSE, warning = FALSE}
+library(janitor)
+```
+
+We can also create very nice tables by also using the {gt} package.
+
+```{r eval = FALSE}
+install.packages("gt")
+```
+
+```{r message = FALSE, warning = FALSE}
+library(gt)
+```
+
+#### Introduction to the pipe operator
+
+First, we need to learn about the pipe operator, which we will use to string multiple functions together seamlessly.
+
+For example, if we want to take the log transformation of the `marker` variable and then get the mean, we could nest the two functions as follows:
+
+```{r}
+mean(log(mycsv$marker), na.rm = TRUE)
+```
+
+Or we can connect them with the pipe operator:
+
+```{r}
+mycsv$marker |> 
+  log() |> 
+  mean(na.rm = TRUE)
+```
+
+The **left hand side** is passed as the **first argument** to the function on the **right hand side**.
+
+You can use the native pipe operator through the keyboard shortcut ctrl + shift + m.
+
+This creates code that is very readable and concise, and easy to comment out various parts if needed.
+
+We'll be using this throughout the R sessions in this course.
+
+#### One-way frequency table
+
+Make sure your variable of interest is in its own column in your dataframe, then use the `tabyl()` function from {janitor}:
+
+```{r}
+mycsv |> 
+  tabyl(trt) |> 
+  adorn_pct_formatting()
+```
+
+And we get a frequency table for the trt variable, with the percentages formatted using the `adorn_pct_formatting()` function.
+
+
+#### Two-way contingency table
+
+Let's create a table with trt on the rows and response on the columns. The most basic table is created as:
+
+```{r}
+mycsv |> 
+  tabyl(trt, response)
+```
+
+Then we can use the {gt} package and it's associated features to customize our two-way contingency table. See the [{gt} package website](https://gt.rstudio.com/) for details.
+
+Let's label the row variable and column variable, and add a title:
+
+```{r}
+mycsv |> 
+  tabyl(trt, response) |> 
+  gt(
+    rowname_col = "trt" 
+  ) |> 
+  tab_spanner(          
+    columns = 2:4,
+    label = "Response?"
+  ) |> 
+  tab_stubhead(         
+    label = "Treatment" 
+  ) %>% 
+  tab_header(           
+    title = "Response according to treatment group"
+  )
+```
+
+Alternatively, we could display percentages in our table:
+
+```{r}
+mycsv |> 
+  tabyl(trt, response) |> 
+  adorn_percentages(denominator = "all") |> 
+  gt() |> 
+  fmt_percent(
+    columns = -1,
+    decimals = 1
+  ) |> 
+  tab_spanner(          
+    columns = 2:4,
+    label = "Response?"
+  ) |> 
+  tab_stubhead(         
+    label = "Treatment" 
+  ) %>% 
+  tab_header(           
+    title = "Response according to treatment group"
+  )
+```
+
+#### Summary statistics
+
+We will use the `summarize()` function from the {dplyr} package to compute summary statistics.
+
+```{r eval = FALSE}
+install.packages("dplyr")
+```
+
+```{r message = FALSE, warning = FALSE}
+library(dplyr)
+```
+
+Let's compute the mean and standard deviation of age and marker:
+
+```{r}
+mycsv |> 
+  summarize(
+    avg_age = mean(age, na.rm = TRUE),
+    sd_age = sd(age, na.rm = TRUE),
+    avg_marker = mean(marker, na.rm = TRUE),
+    sd_marker = sd(marker, na.rm = TRUE)
+  )
+```
+
+#### Summary statistics by group
+
+And we can easily extend this code to generate summary statistics by group by using the `group_by()` function from the {dplyr} package.
+
+Let's get the same summary table for age and marker, but by trt:
+
+```{r}
+mycsv |> 
+  group_by(trt) |> 
+  summarize(
+    avg_age = mean(age, na.rm = TRUE),
+    sd_age = sd(age, na.rm = TRUE),
+    avg_marker = mean(marker, na.rm = TRUE),
+    sd_marker = sd(marker, na.rm = TRUE)
+  )
+```
+
+
+
+
+
+
+
+

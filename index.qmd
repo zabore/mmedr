@@ -10,7 +10,7 @@ The material will be split across 5 1-hour sessions as part of the Tools course,
 
 ### Session 1
 
-- [Introduction to the tools](intro.qmd)
+- Introduction to the tools
 
     - R
     - RStudio
@@ -79,7 +79,7 @@ The material will be split across 5 1-hour sessions as part of the Tools course,
 
 ### Session 1
 
-- Refresher of Tools course material
+- [Refresher of the Tools course material](bio-epi-refresher.qmd)
 
     - R basics
     - Descriptive statistics

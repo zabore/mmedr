@@ -1,6 +1,0 @@
----
-title: ""
----
-
-This will be the Introduction to the tools lesson.
-

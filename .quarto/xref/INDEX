@@ -10,5 +10,11 @@
   },
   "intro.qmd": {
     "intro.html": "4a5f0dd8"
+  },
+  "bio-epi-refresher.qmd": {
+    "bio-epi-refresher.html": "48be58f8"
+  },
+  "bio-epi-visualization.qmd": {
+    "bio-epi-visualization.html": "79758d65"
   }
 }
