@@ -24,3 +24,4 @@ format:
     linkcolor: "#f08122"
     css: styles.css
     toc: true
+    toc_depth: 4

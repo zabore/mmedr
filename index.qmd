@@ -84,7 +84,7 @@ The material will be split across 5 1-hour sessions as part of the Tools course,
     - R basics
     - Descriptive statistics
     
-- Visualization 
+- [Visualization](bio-epi-visualization.qmd) 
 
     - Scatterplot
     - Bar chart
