@@ -246,11 +246,13 @@ Then use the `read_excel()` function with the appropriate filepath to read in th
 
 ```{r eval = FALSE}
 mydf <- read_excel(
-  "H:/MMED/MMED501/data/trial-Excel.xlsx"
+  "~/MMED/MMED501/data/trial-Excel.xlsx"
   )
 ```
 
-Note that R treats the \\ as a special character so you either need to use / or $\backslash \backslash$ in file paths
+Note that R treats the \\ as a special character so you either need to use / or $\backslash \backslash$ in file paths.
+
+Also note that on the Linux server (i.e. on Rstudio Pro via Posit Workbench), the path starts at /home/username, so filepaths relative to your directory can start "~/" followed by the folder where the file is located. 
 
 Alternatively, we can convert the file from .xlsx format to .csv format first, and then read it in.
 
@@ -260,10 +262,18 @@ Advantages: removes some of the possible formatting pitfalls associated with Exc
 2. Go to File > Save As and select "CSV (Comma delimited)" from the "Save as type" drop down and save the file to the same location as "trial-csv.csv"
 3. Use the `read.csv()` function with the appropriate file path to read in the data and create an object called "mycsv"
 
-```{r}
+```{r echo = FALSE}
+# I'm executing this code with the local filepath, but showing the code with the appropriate Linux filepath for use on Posit Workbench
 mycsv <- 
   read.csv(
     "H:/MMED/MMED501/data/trial-csv.csv"
+    ) 
+```
+
+```{r eval = FALSE}
+mycsv <- 
+  read.csv(
+    "~/MMED/MMED501/data/trial-csv.csv"
     ) 
 ```
 
@@ -521,7 +531,7 @@ mycsv |>
   ) |> 
   tab_stubhead(         
     label = "Treatment" 
-  ) %>% 
+  ) |> 
   tab_header(           
     title = "Response according to treatment group"
   )
@@ -544,7 +554,7 @@ mycsv |>
   ) |> 
   tab_stubhead(         
     label = "Treatment" 
-  ) %>% 
+  ) |> 
   tab_header(           
     title = "Response according to treatment group"
   )
