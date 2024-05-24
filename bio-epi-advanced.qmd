@@ -1,0 +1,113 @@
+---
+title: ""
+---
+
+# Biostatistics and Epidemiology - Session 2
+
+In this session, we will introduce methods to adjust p-values to account for multiple testing, learn advanced programming techniques including for loops and writing custom functions, and cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.
+
+## Advanced programming
+
+### Custom functions
+
+We have previously discussed the role of functions in R, and have seen examples of built-in R functions, such as `mean()` and `p.adjust()`.
+
+But sometimes we'll want to do something that isn't included in a built-in R function, or that simplifies use of existing functions.
+
+User-defined functions are created using the `function()` function.
+
+Basic usage is:
+
+```{r eval = FALSE}
+function(arguments) expression
+```
+
+Where `arguments` are arguments you supply to the function and `expression` is the expression you want to evaluate.
+
+For more complicated procedures, you can wrap multiple expressions in curly brackets, and can also specify what value to return using the `return()` function:
+
+```{r eval = FALSE}
+function(arguments) {
+  expression1
+  expression2
+  return(value)
+  }
+```
+
+For example, I always want to show NA values when I look at a contingency table, which means I have to type in the `useNA = "ifany"` arguement every time I use the `table()` function, since the default in that function is to exclude missing values.
+
+To streamline things, I can create a custom function that includes this option:
+
+```{r}
+tabna <- function(x) table(x, useNA = 'ifany')
+```
+
+Now instead of typing:
+
+```{r}
+library(gtsummary)
+
+table(trial$response, useNA = 'ifany')
+```
+
+I can type:
+
+```{r}
+tabna(trial$response)
+```
+
+This gets particularly useful for long or complex procedures, but is also really useful for short procedures that will be repeated many times - I often use this function 10+ times in a day.
+
+Try writing a custom function based on the `mean()` function but including the option to remove NAs from the calculation.
+
+
+### Loops
+
+Often we will want to repeat a set of operations several times, and we can do so using a loop. 
+
+There are three main types of loops in R:
+
+- for loop
+- while loop
+- repeat loop
+
+We will focus on the for loop today.
+
+Here is a basic example using the `print()` function to repeatedly print a value:
+
+```{r}
+for (i in 1:5) {
+  print(i)
+}
+```
+
+Here are the steps of the execution:
+
+1. The value of `i` is set to 1
+2. The value of `i` is printed to the console (first iteration complete)
+3. The value of `i` is set to 2 (the for loop loops back to the beginning)
+4. The value of `i` is printed to the console
+
+And so on until we reach the last value of `i`, and the process is complete.
+
+Say you have a biomarker in your dataset but you know the machine that generated the data has a lower limit of detection of 0.2. You could choose to impute half the detection limit for any values that fall below 0.2 as follows:
+
+```{r}
+trial$marker_corrected <- trial$marker
+
+for(i in 1:nrow(trial)) {
+  if (is.na(trial$marker[i])) {
+    trial$marker_corrected[i] <- NA
+  } else if (trial$marker[i] < 0.2) {
+    trial$marker_corrected[i] <- 0.1
+  }
+}
+```
+
+And we can see that our new variable has the value 0.1 for all cases where `marker` was <0.2:
+
+```{r}
+trial[trial$marker < 0.2, c("marker", "marker_corrected")]
+```
+
+

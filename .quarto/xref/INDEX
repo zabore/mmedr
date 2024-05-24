@@ -16,5 +16,17 @@
   },
   "bio-epi-visualization.qmd": {
     "bio-epi-visualization.html": "79758d65"
+  },
+  "bio-epi-multiple testing.qmd": {
+    "bio-epi-multiple testing.html": "7cca56cf"
+  },
+  "bio-epi-advanced.qmd": {
+    "bio-epi-advanced.html": "fcb1f4a7"
+  },
+  "bio-epi-statistical-tests.qmd": {
+    "bio-epi-statistical-tests.html": "c1da0b60"
+  },
+  "bio-epi-multiple-testing.qmd": {
+    "bio-epi-multiple-testing.html": "ad4b1579"
   }
 }

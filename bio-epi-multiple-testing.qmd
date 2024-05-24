@@ -1,0 +1,82 @@
+---
+title: ""
+---
+
+# Biostatistics and Epidemiology - Session 2
+
+In this session, we will introduce methods to adjust p-values to account for multiple testing, learn advanced programming techniques including for loops and writing custom functions, and cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.
+
+## Adjustment for multiple comparisons
+
+The problem is referred to as multiple comparisons, multiple testing, or multiplicity, but they all mean the same thing.
+
+What do we mean by multiple comparisons, and what is the issue?
+
+When multiple statistical tests are conducted simultaneously, type I errors become more likely. Therefore, our standard type I error rate of 0.05 that is used to determine whether p-values are significant or not is no longer correct, because the **type I error has been inflated due to the multiple testing**.
+
+Multiple comparisons affects both p-values and confidence intervals.
+
+Prior to significance testing we need to identify a **more strict p-value threshold** or, alternatively,  **directly adjust our p-values**.
+
+A number of corrections for multiple comparisons can be implemented with the R function `p.adjust()`. 
+
+Consider the setting where we have p-values for the association between 10 different gene mutations and treatment response:
+
+```{r}
+library(tibble)
+library(gt)
+
+ptab <-
+  tibble(
+  Gene = paste0("gene", seq(1:10)),
+  `p-value` = c(0.001, 0.245, 0.784, 0.034, 0.004, 0.123, 0.089, 0.063, 0.228, 
+                0.802)
+  ) 
+
+ptab |> 
+  gt() |> 
+  tab_header("Table of p-values for association with treatment response")
+```
+
+First, adjust these for multiple testing using the false-discovery rate approach. Pass the vector of p-values to `p.adjust()` and specify `method = "fdr"`:
+
+```{r}
+p.adjust(
+  p = c(0.001, 0.245, 0.784, 0.034, 0.004, 0.123, 0.089, 0.063, 0.228, 0.802),
+  method = "fdr"
+)
+```
+
+Get back a **vector of the adjusted p-values**, listed in the same order as the originally provided p-values.
+
+The false-discovery rate is the expected proportion of false positives among all significant tests, and is an appropriate method to use when a study is viewed as exploratory and significant results will be followed up in an independent study.
+
+Alternatively, we could adjust the p-values for multiple testing using the family-wise error approach. Some options include the Bonferroni correction (most conservative, i.e. most difficult to achieve significance) (`method = "bonferroni"`) and the Holm-Bonferroni correction (`method = "holm"`).
+
+```{r}
+p.adjust(
+  p = c(0.001, 0.245, 0.784, 0.034, 0.004, 0.123, 0.089, 0.063, 0.228, 0.802),
+  method = "bonferroni"
+)
+```
+
+And we see that using the Bonferroni method, the adjusted p-values are larger than when using the FDR method. The familywise error rate is the probability of making a type I error among a specified group ("family") of tests.
+
+After adjusting the p-values, we can compare them to the standard 0.05 level of significance.
+
+We can place the FDR-adjusted p-values into our table by directly applying the `p.adjust()`
+function to our column of p-values as follows:
+
+```{r message = FALSE}
+library(dplyr)
+
+ptab |> 
+  mutate(
+    `q-value` = p.adjust(`p-value`, method = "fdr")
+  ) |> 
+  gt() |> 
+  fmt_number(columns = `q-value`, decimals = 3) |> 
+  tab_header("Table of adjusted p-values for association with treatment response")
+```
+
+*Note that "q-value" is a common term for p-values that have been adjusted for multiple comparisons*.

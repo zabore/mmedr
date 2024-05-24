@@ -97,14 +97,14 @@ The material will be split across 5 1-hour sessions as part of the Tools course,
     
 ### Session 2
     
-- Adjustment for multiple comparisons
+- [Adjustment for multiple comparisons](bio-epi-multiple-testing.qmd)
 
-- Advanced programming
+- [Advanced programming](bio-epi-advanced.qmd)
 
     - Writing custom functions
     - For loops/apply/map
 
-- Statistical tests
+- [Statistical tests](bio-epi-statistical-tests.qmd)
 
     - Fisher's exact test
     - Chi-squared test
