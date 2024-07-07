@@ -1,0 +1,174 @@
+---
+title: ""
+---
+
+# Tools course - R Session 1
+
+In the next part of Session 1, we will learn how to install and load R packages.
+
+## What is an R package?
+
+::: {.callout-tip}
+## R package
+An R package is a collection of code, data, documentation, and tests.
+
+R packages are developed by the community.
+
+R packages add functionality to what comes in base R.
+
+To use R packages, there are two steps:
+
+1. Install
+2. Load
+:::
+
+## Loading R packages
+
+We will cover the second step first, because it is the same for all methods of installing packages and we will reference this in covering some of the methods of installation.
+
+Installation is the first step. Only needs to **be done once**. (Though needs to be repeated if you get a new version of R)
+
+Loading is the next step. Must be done **every time you open a new R session** in which you need to use the package. 
+
+There are two methods for loading R packages:
+
+1. A call to `library()` loads the package for your entire R session.
+
+```{r eval = FALSE}
+library(survival)
+survfit(formula, ...)
+```
+
+2. Using `::` accesses the package only for a single function. 
+
+```{r eval = FALSE}
+survival::survfit(formula, ...)
+```
+
+## Installing R packages 
+
+There are three main repositories for R packages: CRAN, GitHub, and Bioconductor
+
+### CRAN
+
+CRAN is the primary repository for user-contributed R packages. 
+
+Packages that are on CRAN can be installed using the `install.packages()` function.
+
+For example, we can install the {survival} package from CRAN using:
+
+```{r eval = FALSE}
+install.packages("survival")
+```
+
+This package has comprehensive functionality for survival analyses.
+
+### GitHub
+
+GitHub is a common repository for packages that are still in development, or have not developed thoroughly enough to be accepted onto CRAN.
+
+To install packages from GitHub, first install the {remotes} package from CRAN:
+    
+```{r eval = FALSE}
+install.packages("remotes")
+```
+
+Next load the {remotes} package using a call to `library()`:
+
+```{r eval = FALSE}
+library(remotes)
+```
+
+Then install the GitHub package of interest using `install_github("username/repository")`, where "username" is the name of the GitHub user and "repository" is the name of the repository under the user's account. For example, to install the `emo` repository from the GitHub user with username `hadley`, use:
+
+```{r eval = FALSE}
+install_github("hadley/emo")
+```
+
+Or, avoid a call to the `library()` function by using the syntax `library::function()`:
+
+```{r eval = FALSE}
+remotes::install_github("hadley/emo")
+```
+
+This package will let you put emojis in your documents `r emo::ji("smile")`
+
+### Bioconductor
+
+Bioconductor is a repository for open source code related to biological data. To install packages from Bioconductor, first install the {BiocManager} package from CRAN:
+
+```{r eval = FALSE}
+install.packages("BiocManager")
+```
+
+Then install, for example, the {ggtree} package with the `install` function, using either the `library::function()` syntax:
+
+```{r eval = FALSE}
+BiocManager::install("ggtree")
+```
+
+Or using a call to `library()` followed by a separate call to `install()`:
+
+```{r eval = FALSE}
+library(BiocManager)
+install("ggtree")
+```
+
+This package is designed for visualization and annotation of phylogentic trees.
+
+::: {.callout-tip}
+When using Posit Workbench, many commonly used packages have already been installed for the current version of R by the system administrator. 
+
+Always start by trying to load a package of interest first to see if it is available.
+:::
+
+::: {.callout-tip}
+R scripts are used for programming and saved with other project-related documents for reproducibility purposes. 
+
+It is important to include statements to **load** the packages used in any analysis in the R script. 
+
+However, I do not think it is necessary to include statements to **install** the packages in the R script. I personally type these statements directly into the console since they do not need to be run every time and therefore are not part of the reproducibility pipeline.
+:::
+
+## Exercises
+
+::: {.callout-note icon=false collapse="true"}
+## Session 1, Exercise 2
+
+1. Open the R script we created earlier named "session1-exercies.R"
+
+2. Load packages we will need in the rest of today's session, including: janitor, here, readr, readxl
+
+*Note that these packages are already available on the Posit Workbench servers. If you are using RStudio on your personal computer instead, you will need to install them if you have not done so already.*
+:::
+
+::: {.callout-warning icon=false collapse="true"}
+## Session 1, Exercise 2 Solution
+
+If using Posit Workbench where the packages are already installed:
+
+```{r eval = FALSE}
+library(janitor)
+library(here)
+library(readr)
+library(readxl)
+```
+
+If using a personal computer where you have not previousling installed these packages:
+
+```{r eval = FALSE}
+install.packages("janitor")
+install.packages("here")
+install.packages("readr")
+install.packages("readxl")
+library(janitor)
+library(here)
+library(readr)
+library(readxl)
+```
+:::
+
+
+
+
+

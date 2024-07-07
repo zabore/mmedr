@@ -12,6 +12,14 @@ website:
         text: Outline
       - text: Lessons
         menu:
+          - text: Tools - Introduction
+            href: tools-introduction.qmd
+          - text: Tools - Install packages
+            href: tools-install-packages.qmd
+          - text: Tools - Loading data
+            href: tools-loading-data.qmd
+          - text: Tools - Reproducibility
+            href: tools-reproducibility.qmd
           - text: Biostatistics and Epidemiology - Refresher
             href: bio-epi-refresher.qmd
           - text: Biostatistics and Epidemiology - Visualization

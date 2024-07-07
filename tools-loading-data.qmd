@@ -1,0 +1,100 @@
+---
+title: ""
+---
+
+# Tools course - R Session 1
+
+In this part of Session 1, we will learn how to load external data into R.
+
+Many R packages come with data bundled into them. These datasets are available for use as soon as the package is loaded. 
+
+However, we often need to load external data that we've generated in our lab or in a clinical study, a situation addressed in this lesson.
+
+::: {.callout-tip}
+## Formatting data for use in R
+
+If you are creating your own datasets for future analysis in R, or advising someone else about how best to do so, here are some tips:
+
+- One row per patient/subject
+- Column with a unique identifier for each subject (i.e. a patient ID)
+    - OR, if you have longitudinal or other repeated measures data, have another column identifying the repeat instance and then there can be multiple rows per patient for each repeat instance
+- One row of column labels (i.e. avoid a second row of headers where some cells are merged, etc)
+- One measurement with one column name in each column (i.e. avoid separating multiple pieces of data by commas, semicolons, etc within a cell)
+- Simple variable names for each column - avoid long names and special characters
+
+:::
+
+## Download the data for use in this class
+
+```{r echo = FALSE, eval = FALSE}
+# Write out the simulated breast cancer dataset in my GitHub repo cancersimdata to Excel and save it in a data folder on the course website
+library(cancersimdata)
+library(xlsx)
+write.xlsx(bc_rt_data, file = here::here("data/breastcancer.xlsx"), row.names = FALSE)
+```
+
+The dataset used in this course is stored in this folder
+
+
+## Loading data
+
+The most common data format we work with are data from **Excel**. 
+
+We will look at options to:
+
+- Read in Excel files with {readxl}
+- Read in Excel files by converting to .csv first
+- Read in other file formats
+
+First, install the {readxl} package from CRAN, then load the newly installed package:
+
+```{r eval = FALSE}
+install.packages("readxl")
+library(readxl)
+```
+
+Then use the `read_excel()` function with the appropriate filepath to read in the data and create an object called "mydf":
+
+```{r eval = FALSE}
+mydf <- read_excel(
+  "~/MMED/MMED501/data/trial-Excel.xlsx"
+  )
+```
+
+Note that R treats the \\ as a special character so you either need to use / or $\backslash \backslash$ in file paths.
+
+Also note that on the Linux server (i.e. on Rstudio Pro via Posit Workbench), the path starts at /home/username, so filepaths relative to your directory can start "~/" followed by the folder where the file is located. 
+
+Alternatively, we can convert the file from .xlsx format to .csv format first, and then read it in.
+
+Advantages: removes some of the possible formatting pitfalls associated with Excel files, and you don't need any special packages to read this format.
+
+1. Open the Excel file.
+2. Go to File > Save As and select "CSV (Comma delimited)" from the "Save as type" drop down and save the file to the same location as "trial-csv.csv"
+3. Use the `read.csv()` function with the appropriate file path to read in the data and create an object called "mycsv"
+
+```{r echo = FALSE}
+# I'm executing this code with the local filepath, but showing the code with the appropriate Linux filepath for use on Posit Workbench
+mycsv <- 
+  read.csv(
+    "H:/MMED/MMED501/data/trial-csv.csv"
+    ) 
+```
+
+```{r eval = FALSE}
+mycsv <- 
+  read.csv(
+    "~/MMED/MMED501/data/trial-csv.csv"
+    ) 
+```
+
+*Note that this is the approach I always use myself and will form the basis of all of my examples*
+
+Many other file formats exist, and here is a non-comprehensive list of functions for loading some of them:
+
+- `read.table()` is the most generic function and can read many file types
+- `read.csv()` is a special case with fixed defaults for comma-separated files
+- `read.csv2()` is a special case with fixed defaults for comma-separated files that were created in a country where commas are used in place of decimal places
+- `read.delim()` is a special case with fixed defaults for tab-delimited files
+- `read.delim2()` is a special case with fixed defaults for tab-delimited files that were created in a country where commas are used in place of decimal places
+

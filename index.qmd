@@ -10,38 +10,39 @@ The material will be split across 5 1-hour sessions as part of the Tools course,
 
 ### Session 1
 
-- Introduction to the tools
+- [Introduction to the tools](tools-introduction.qmd)
 
     - R
     - RStudio
     - Posit Workbench
     
-- Things to know about R (?)
-
-    - Case sensitive
-    - Variable names (janitor)
-    - Executing code
-    - Getting help
-    - The pipe operator
-    - R projects
-    - here package/reproducibility more generally?
-
-- Installing and loading R packages
+- [Installing and loading R packages](tools-install-packages.qmd)
 
     - CRAN
     - Github
     - Bioconductor
 
-- Loading data
+- [Loading data](tools-loading-data.qmd)
 
     - .xlsx
     - .csv
     - Other formats
+    - Variable names (janitor)
+    
+- [Reproducibility](tools-reproducibility.qmd)
+
+    - R projects
+    - here package
+    - Project workflow and organization
 
 ### Session 2
 
 - Basic programming
 
+    - Executing code
+    - Getting help
+    - The pipe operator
+    - Case sensitive
     - Assigning objects
     - Functions
     - Vectors and sequences

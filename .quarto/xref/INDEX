@@ -28,5 +28,20 @@
   },
   "bio-epi-multiple-testing.qmd": {
     "bio-epi-multiple-testing.html": "ad4b1579"
+  },
+  "tools-introduction.qmd": {
+    "tools-introduction.html": "69929181"
+  },
+  "tools-install-packages.qmd": {
+    "tools-install-packages.html": "add5a26a"
+  },
+  "tools-basics.qmd": {
+    "tools-basics.html": "83d7e816"
+  },
+  "tools-loading-data.qmd": {
+    "tools-loading-data.html": "246d6ca7"
+  },
+  "tools-reproducibility.qmd": {
+    "tools-reproducibility.html": "20a59b6d"
   }
 }
