@@ -31,9 +31,9 @@ The material will be split across 5 1-hour sessions as part of the Tools course,
     
 - [Reproducibility](tools-reproducibility.qmd)
 
-    - R projects
-    - here package
+    - RStudio projects
     - Project workflow and organization
+    - {here} package
 
 ### Session 2
 

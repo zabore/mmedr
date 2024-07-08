@@ -424,8 +424,11 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gtsummary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>trial</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#StandWithUkraine</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>trial</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 200 × 8
    trt      age marker stage grade response death ttdeath
@@ -445,7 +448,7 @@ window.Quarto = {
 </div>
 <p>The help page for the trial data can be accessed by running:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>?trial</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>?trial</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And we see the variables and their definitions:</p>
 <p align="center">
@@ -471,14 +474,14 @@ window.Quarto = {
 </ul>
 <p>First, install the {readxl} package from CRAN, then load the newly installed package:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then use the <code>read_excel()</code> function with the appropriate filepath to read in the data and create an object called “mydf”:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>mydf <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"~/MMED/MMED501/data/trial-Excel.xlsx"</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mydf <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"~/MMED/MMED501/data/trial-Excel.xlsx"</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that R treats the \ as a special character so you either need to use / or <span class="math inline">\(\backslash \backslash\)</span> in file paths.</p>
 <p>Also note that on the Linux server (i.e.&nbsp;on Rstudio Pro via Posit Workbench), the path starts at /home/username, so filepaths relative to your directory can start “~/” followed by the folder where the file is located.</p>
@@ -490,10 +493,10 @@ window.Quarto = {
 <li>Use the <code>read.csv()</code> function with the appropriate file path to read in the data and create an object called “mycsv”</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="ot">&lt;-</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read.csv</span>(</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"~/MMED/MMED501/data/trial-csv.csv"</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="ot">&lt;-</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read.csv</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"~/MMED/MMED501/data/trial-csv.csv"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>Note that this is the approach I always use myself and will form the basis of all of my examples</em></p>
 <p>Many other file formats exist, and here is a non-comprehensive list of functions for loading some of them:</p>
@@ -513,41 +516,41 @@ window.Quarto = {
 <li>Keyboard shortcut “Alt” + “-” will insert the assignment operator</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">55</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">55</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 55</code></pre>
 </div>
 </div>
 <p>Functions are pre-packaged scripts that automate more complicated procedures. They are executed by typing the name of the function followed by round brackets. Inside the round brackets we can provide one or more parameters, or arguments:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">144</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">144</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 12</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">123.225</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">123.225</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 123</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(y, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(y, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 123.2</code></pre>
 </div>
 </div>
 <p>Use <code>c()</code> to create a vector of values or <code>seq()</code> to create a sequence of values:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">10</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">by =</span> <span class="dv">10</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">from =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">10</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">by =</span> <span class="dv">10</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">from =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Note</strong>: when we supply the arguments to a function in the order in which they are listed in the documentation, we do not need to name them. If we name them, we can supply them in any order. The above three assignments to b yield the same results.</p>
 <p>Here are all of the possible arguments to the <code>seq()</code> function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> ((to <span class="sc">-</span> from)<span class="sc">/</span>(length.out <span class="sc">-</span> <span class="dv">1</span>)),</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> <span class="cn">NULL</span>, <span class="at">along.with =</span> <span class="cn">NULL</span>, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> ((to <span class="sc">-</span> from)<span class="sc">/</span>(length.out <span class="sc">-</span> <span class="dv">1</span>)),</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> <span class="cn">NULL</span>, <span class="at">along.with =</span> <span class="cn">NULL</span>, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>R is case sensitive:</p>
 <ul>
@@ -560,16 +563,16 @@ window.Quarto = {
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"janitor"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>janitor<span class="sc">::</span><span class="fu">clean_names</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"janitor"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>janitor<span class="sc">::</span><span class="fu">clean_names</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>==</code> operator tests equality between two values:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
@@ -586,7 +589,7 @@ window.Quarto = {
 <p>To access specific variables, use the <code>$</code> operator in the form <code>dataframe$varname</code>, where <code>dataframe</code> is the name of the object to which we assigned our data set, and <code>varname</code> is the name of the variable of interest</p>
 <p>For example, to calculate the mean of the variable <code>age</code> in the dataframe <code>mycsv</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mycsv<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mycsv<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 47.2381</code></pre>
 </div>
@@ -594,7 +597,7 @@ window.Quarto = {
 <p><em>Note that we need to add the argument <code>na.rm = TRUE</code> to remove missing values from the calculation of the mean, otherwise NA will be returned if missing values are present</em></p>
 <p>Alternatively, use double brackets in the form <code>dataframe[["varname"]]</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mycsv[[<span class="st">"age"</span>]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mycsv[[<span class="st">"age"</span>]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 47.2381</code></pre>
 </div>
@@ -604,13 +607,13 @@ window.Quarto = {
 <p>For dataframe <code>df</code>, let <code>i</code> index the row and <code>j</code> index the column.</p>
 <p>Then we can access any single cell in the dataframe using the syntax:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df[i, j]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df[i, j]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can use this concept to create subsets of our data as well.</p>
 <p>We can create a subset of our data based on the values in a row, for example limiting to patients who were treated with Drug A:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>trt <span class="sc">==</span> <span class="st">"Drug A"</span>, ]</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>trt <span class="sc">==</span> <span class="st">"Drug A"</span>, ]</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 98</code></pre>
 </div>
@@ -619,8 +622,8 @@ window.Quarto = {
 <p>The <code>&amp;</code> operator signifies “and”.</p>
 <p>So for example we could subset based on patients who were treated with Drug A AND are over 45 years old:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>trt <span class="sc">==</span> <span class="st">"Drug A"</span> <span class="sc">&amp;</span> mycsv<span class="sc">$</span>age <span class="sc">&gt;</span> <span class="dv">45</span>, ]</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>trt <span class="sc">==</span> <span class="st">"Drug A"</span> <span class="sc">&amp;</span> mycsv<span class="sc">$</span>age <span class="sc">&gt;</span> <span class="dv">45</span>, ]</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 55</code></pre>
 </div>
@@ -629,8 +632,8 @@ window.Quarto = {
 <p>The <code>|</code> operator signifies “or”.</p>
 <p>So for example we could subset based on patients who were treated with Drug A OR are over 45 years old:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>trt <span class="sc">==</span> <span class="st">"Drug A"</span> <span class="sc">|</span> mycsv<span class="sc">$</span>age <span class="sc">&gt;</span> <span class="dv">45</span>, ]</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>trt <span class="sc">==</span> <span class="st">"Drug A"</span> <span class="sc">|</span> mycsv<span class="sc">$</span>age <span class="sc">&gt;</span> <span class="dv">45</span>, ]</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 157</code></pre>
 </div>
@@ -638,15 +641,15 @@ window.Quarto = {
 <p>And we see that our new datasubset has 157 rows.</p>
 <p>We can also create a subset of our data based on columns, for example limiting to trt:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[ , <span class="fu">c</span>(<span class="st">"trt"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[ , <span class="fu">c</span>(<span class="st">"trt"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Or we can simultaneously subset based on rows and columns, for example limiting to the trt column among patients with age greater than 45:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>age <span class="sc">&gt;</span> <span class="dv">45</span>, <span class="fu">c</span>(<span class="st">"trt"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>age <span class="sc">&gt;</span> <span class="dv">45</span>, <span class="fu">c</span>(<span class="st">"trt"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also subset directly within functions. Suppose we want to calculate the mean of the variable <code>age</code> in the dataframe <code>mycsv</code>, but only among those who were treated with Drug A:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mycsv<span class="sc">$</span>age[mycsv<span class="sc">$</span>trt <span class="sc">==</span> <span class="st">"Drug A"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mycsv<span class="sc">$</span>age[mycsv<span class="sc">$</span>trt <span class="sc">==</span> <span class="st">"Drug A"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 47.01099</code></pre>
 </div>
@@ -659,33 +662,33 @@ window.Quarto = {
 <p>Next, we’ll review descriptive statistics in R. There are many ways to generate this type of descriptive statistics in R. I will demonstrate one way and if you end up using R a lot you will find what works well for you and the type of data you use.</p>
 <p>We will be using some functions from the {janitor} package, so make sure you have that installed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"janitor"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"janitor"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also create very nice tables by also using the {gt} package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="introduction-to-the-pipe-operator" class="level4">
 <h4 class="anchored" data-anchor-id="introduction-to-the-pipe-operator">Introduction to the pipe operator</h4>
 <p>First, we need to learn about the pipe operator, which we will use to string multiple functions together seamlessly.</p>
 <p>For example, if we want to take the log transformation of the <code>marker</code> variable and then get the mean, we could nest the two functions as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">log</span>(mycsv<span class="sc">$</span>marker), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">log</span>(mycsv<span class="sc">$</span>marker), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.707878</code></pre>
 </div>
 </div>
 <p>Or we can connect them with the pipe operator:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>mycsv<span class="sc">$</span>marker <span class="sc">|&gt;</span> </span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>mycsv<span class="sc">$</span>marker <span class="sc">|&gt;</span> </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.707878</code></pre>
 </div>
@@ -699,9 +702,9 @@ window.Quarto = {
 <h4 class="anchored" data-anchor-id="one-way-frequency-table">One-way frequency table</h4>
 <p>Make sure your variable of interest is in its own column in your dataframe, then use the <code>tabyl()</code> function from {janitor}:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="sc">|&gt;</span> </span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(trt) <span class="sc">|&gt;</span> </span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="sc">|&gt;</span> </span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(trt) <span class="sc">|&gt;</span> </span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    trt   n percent
  Drug A  98   49.0%
@@ -714,8 +717,8 @@ window.Quarto = {
 <h4 class="anchored" data-anchor-id="two-way-contingency-table">Two-way contingency table</h4>
 <p>Let’s create a table with trt on the rows and response on the columns. The most basic table is created as:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="sc">|&gt;</span> </span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(trt, response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="sc">|&gt;</span> </span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(trt, response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    trt  0  1 NA_
  Drug A 67 28   3
@@ -725,39 +728,39 @@ window.Quarto = {
 <p>Then we can use the {gt} package and it’s associated features to customize our two-way contingency table. See the <a href="https://gt.rstudio.com/">{gt} package website</a> for details.</p>
 <p>Let’s label the row variable and column variable, and add a title:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="sc">|&gt;</span> </span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(trt, response) <span class="sc">|&gt;</span> </span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(</span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">rowname_col =</span> <span class="st">"trt"</span> </span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(          </span>
-<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,</span>
-<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Response?"</span></span>
-<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_stubhead</span>(         </span>
-<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Treatment"</span> </span>
-<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(           </span>
-<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Response according to treatment group"</span></span>
-<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="sc">|&gt;</span> </span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(trt, response) <span class="sc">|&gt;</span> </span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">rowname_col =</span> <span class="st">"trt"</span> </span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(          </span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Response?"</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_stubhead</span>(         </span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Treatment"</span> </span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(           </span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Response according to treatment group"</span></span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="qmrynahkbd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qmrynahkbd table {
+<div id="ayshbywjki" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ayshbywjki table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qmrynahkbd thead, #qmrynahkbd tbody, #qmrynahkbd tfoot, #qmrynahkbd tr, #qmrynahkbd td, #qmrynahkbd th {
+#ayshbywjki thead, #ayshbywjki tbody, #ayshbywjki tfoot, #ayshbywjki tr, #ayshbywjki td, #ayshbywjki th {
   border-style: none;
 }
 
-#qmrynahkbd p {
+#ayshbywjki p {
   margin: 0;
   padding: 0;
 }
 
-#qmrynahkbd .gt_table {
+#ayshbywjki .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -783,12 +786,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#qmrynahkbd .gt_caption {
+#ayshbywjki .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qmrynahkbd .gt_title {
+#ayshbywjki .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -800,7 +803,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#qmrynahkbd .gt_subtitle {
+#ayshbywjki .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -812,7 +815,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#qmrynahkbd .gt_heading {
+#ayshbywjki .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -824,13 +827,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#qmrynahkbd .gt_bottom_border {
+#ayshbywjki .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qmrynahkbd .gt_col_headings {
+#ayshbywjki .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -845,7 +848,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#qmrynahkbd .gt_col_heading {
+#ayshbywjki .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -865,7 +868,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#qmrynahkbd .gt_column_spanner_outer {
+#ayshbywjki .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -877,15 +880,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#qmrynahkbd .gt_column_spanner_outer:first-child {
+#ayshbywjki .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qmrynahkbd .gt_column_spanner_outer:last-child {
+#ayshbywjki .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qmrynahkbd .gt_column_spanner {
+#ayshbywjki .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -897,11 +900,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#qmrynahkbd .gt_spanner_row {
+#ayshbywjki .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qmrynahkbd .gt_group_heading {
+#ayshbywjki .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -927,7 +930,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#qmrynahkbd .gt_empty_group_heading {
+#ayshbywjki .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -942,15 +945,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#qmrynahkbd .gt_from_md > :first-child {
+#ayshbywjki .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qmrynahkbd .gt_from_md > :last-child {
+#ayshbywjki .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qmrynahkbd .gt_row {
+#ayshbywjki .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -969,7 +972,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#qmrynahkbd .gt_stub {
+#ayshbywjki .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -982,7 +985,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#qmrynahkbd .gt_stub_row_group {
+#ayshbywjki .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -996,15 +999,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#qmrynahkbd .gt_row_group_first td {
+#ayshbywjki .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qmrynahkbd .gt_row_group_first th {
+#ayshbywjki .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qmrynahkbd .gt_summary_row {
+#ayshbywjki .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1014,16 +1017,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#qmrynahkbd .gt_first_summary_row {
+#ayshbywjki .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qmrynahkbd .gt_first_summary_row.thick {
+#ayshbywjki .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qmrynahkbd .gt_last_summary_row {
+#ayshbywjki .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1033,7 +1036,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#qmrynahkbd .gt_grand_summary_row {
+#ayshbywjki .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1043,7 +1046,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#qmrynahkbd .gt_first_grand_summary_row {
+#ayshbywjki .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1053,7 +1056,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#qmrynahkbd .gt_last_grand_summary_row_top {
+#ayshbywjki .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1063,11 +1066,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#qmrynahkbd .gt_striped {
+#ayshbywjki .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qmrynahkbd .gt_table_body {
+#ayshbywjki .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1076,7 +1079,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#qmrynahkbd .gt_footnotes {
+#ayshbywjki .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1090,7 +1093,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#qmrynahkbd .gt_footnote {
+#ayshbywjki .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1099,7 +1102,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#qmrynahkbd .gt_sourcenotes {
+#ayshbywjki .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1113,7 +1116,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#qmrynahkbd .gt_sourcenote {
+#ayshbywjki .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1121,63 +1124,63 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#qmrynahkbd .gt_left {
+#ayshbywjki .gt_left {
   text-align: left;
 }
 
-#qmrynahkbd .gt_center {
+#ayshbywjki .gt_center {
   text-align: center;
 }
 
-#qmrynahkbd .gt_right {
+#ayshbywjki .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qmrynahkbd .gt_font_normal {
+#ayshbywjki .gt_font_normal {
   font-weight: normal;
 }
 
-#qmrynahkbd .gt_font_bold {
+#ayshbywjki .gt_font_bold {
   font-weight: bold;
 }
 
-#qmrynahkbd .gt_font_italic {
+#ayshbywjki .gt_font_italic {
   font-style: italic;
 }
 
-#qmrynahkbd .gt_super {
+#ayshbywjki .gt_super {
   font-size: 65%;
 }
 
-#qmrynahkbd .gt_footnote_marks {
+#ayshbywjki .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qmrynahkbd .gt_asterisk {
+#ayshbywjki .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qmrynahkbd .gt_indent_1 {
+#ayshbywjki .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qmrynahkbd .gt_indent_2 {
+#ayshbywjki .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qmrynahkbd .gt_indent_3 {
+#ayshbywjki .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qmrynahkbd .gt_indent_4 {
+#ayshbywjki .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qmrynahkbd .gt_indent_5 {
+#ayshbywjki .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1218,42 +1221,42 @@ window.Quarto = {
 </div>
 <p>Alternatively, we could display percentages in our table:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="sc">|&gt;</span> </span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(trt, response) <span class="sc">|&gt;</span> </span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_percentages</span>(<span class="at">denominator =</span> <span class="st">"all"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(</span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">1</span></span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(          </span>
-<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,</span>
-<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Response?"</span></span>
-<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_stubhead</span>(         </span>
-<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Treatment"</span> </span>
-<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(           </span>
-<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Response according to treatment group"</span></span>
-<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="sc">|&gt;</span> </span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(trt, response) <span class="sc">|&gt;</span> </span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_percentages</span>(<span class="at">denominator =</span> <span class="st">"all"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">1</span></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(          </span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Response?"</span></span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_stubhead</span>(         </span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Treatment"</span> </span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(           </span>
+<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Response according to treatment group"</span></span>
+<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="opunmpfdnk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#opunmpfdnk table {
+<div id="kkjhgcyszh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kkjhgcyszh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#opunmpfdnk thead, #opunmpfdnk tbody, #opunmpfdnk tfoot, #opunmpfdnk tr, #opunmpfdnk td, #opunmpfdnk th {
+#kkjhgcyszh thead, #kkjhgcyszh tbody, #kkjhgcyszh tfoot, #kkjhgcyszh tr, #kkjhgcyszh td, #kkjhgcyszh th {
   border-style: none;
 }
 
-#opunmpfdnk p {
+#kkjhgcyszh p {
   margin: 0;
   padding: 0;
 }
 
-#opunmpfdnk .gt_table {
+#kkjhgcyszh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1279,12 +1282,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#opunmpfdnk .gt_caption {
+#kkjhgcyszh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#opunmpfdnk .gt_title {
+#kkjhgcyszh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1296,7 +1299,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#opunmpfdnk .gt_subtitle {
+#kkjhgcyszh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1308,7 +1311,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#opunmpfdnk .gt_heading {
+#kkjhgcyszh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1320,13 +1323,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#opunmpfdnk .gt_bottom_border {
+#kkjhgcyszh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#opunmpfdnk .gt_col_headings {
+#kkjhgcyszh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1341,7 +1344,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#opunmpfdnk .gt_col_heading {
+#kkjhgcyszh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1361,7 +1364,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#opunmpfdnk .gt_column_spanner_outer {
+#kkjhgcyszh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1373,15 +1376,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#opunmpfdnk .gt_column_spanner_outer:first-child {
+#kkjhgcyszh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#opunmpfdnk .gt_column_spanner_outer:last-child {
+#kkjhgcyszh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#opunmpfdnk .gt_column_spanner {
+#kkjhgcyszh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1393,11 +1396,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#opunmpfdnk .gt_spanner_row {
+#kkjhgcyszh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#opunmpfdnk .gt_group_heading {
+#kkjhgcyszh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1423,7 +1426,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#opunmpfdnk .gt_empty_group_heading {
+#kkjhgcyszh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1438,15 +1441,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#opunmpfdnk .gt_from_md > :first-child {
+#kkjhgcyszh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#opunmpfdnk .gt_from_md > :last-child {
+#kkjhgcyszh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#opunmpfdnk .gt_row {
+#kkjhgcyszh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1465,7 +1468,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#opunmpfdnk .gt_stub {
+#kkjhgcyszh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1478,7 +1481,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#opunmpfdnk .gt_stub_row_group {
+#kkjhgcyszh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1492,15 +1495,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#opunmpfdnk .gt_row_group_first td {
+#kkjhgcyszh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#opunmpfdnk .gt_row_group_first th {
+#kkjhgcyszh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#opunmpfdnk .gt_summary_row {
+#kkjhgcyszh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1510,16 +1513,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#opunmpfdnk .gt_first_summary_row {
+#kkjhgcyszh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#opunmpfdnk .gt_first_summary_row.thick {
+#kkjhgcyszh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#opunmpfdnk .gt_last_summary_row {
+#kkjhgcyszh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1529,7 +1532,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#opunmpfdnk .gt_grand_summary_row {
+#kkjhgcyszh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1539,7 +1542,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#opunmpfdnk .gt_first_grand_summary_row {
+#kkjhgcyszh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1549,7 +1552,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#opunmpfdnk .gt_last_grand_summary_row_top {
+#kkjhgcyszh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1559,11 +1562,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#opunmpfdnk .gt_striped {
+#kkjhgcyszh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#opunmpfdnk .gt_table_body {
+#kkjhgcyszh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1572,7 +1575,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#opunmpfdnk .gt_footnotes {
+#kkjhgcyszh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1586,7 +1589,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#opunmpfdnk .gt_footnote {
+#kkjhgcyszh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1595,7 +1598,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#opunmpfdnk .gt_sourcenotes {
+#kkjhgcyszh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1609,7 +1612,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#opunmpfdnk .gt_sourcenote {
+#kkjhgcyszh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1617,63 +1620,63 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#opunmpfdnk .gt_left {
+#kkjhgcyszh .gt_left {
   text-align: left;
 }
 
-#opunmpfdnk .gt_center {
+#kkjhgcyszh .gt_center {
   text-align: center;
 }
 
-#opunmpfdnk .gt_right {
+#kkjhgcyszh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#opunmpfdnk .gt_font_normal {
+#kkjhgcyszh .gt_font_normal {
   font-weight: normal;
 }
 
-#opunmpfdnk .gt_font_bold {
+#kkjhgcyszh .gt_font_bold {
   font-weight: bold;
 }
 
-#opunmpfdnk .gt_font_italic {
+#kkjhgcyszh .gt_font_italic {
   font-style: italic;
 }
 
-#opunmpfdnk .gt_super {
+#kkjhgcyszh .gt_super {
   font-size: 65%;
 }
 
-#opunmpfdnk .gt_footnote_marks {
+#kkjhgcyszh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#opunmpfdnk .gt_asterisk {
+#kkjhgcyszh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#opunmpfdnk .gt_indent_1 {
+#kkjhgcyszh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#opunmpfdnk .gt_indent_2 {
+#kkjhgcyszh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#opunmpfdnk .gt_indent_3 {
+#kkjhgcyszh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#opunmpfdnk .gt_indent_4 {
+#kkjhgcyszh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#opunmpfdnk .gt_indent_5 {
+#kkjhgcyszh .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1717,20 +1720,20 @@ window.Quarto = {
 <h4 class="anchored" data-anchor-id="summary-statistics">Summary statistics</h4>
 <p>We will use the <code>summarize()</code> function from the {dplyr} package to compute summary statistics.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s compute the mean and standard deviation of age and marker:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="sc">|&gt;</span> </span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_age =</span> <span class="fu">sd</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_marker =</span> <span class="fu">mean</span>(marker, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_marker =</span> <span class="fu">sd</span>(marker, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="sc">|&gt;</span> </span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_age =</span> <span class="fu">sd</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_marker =</span> <span class="fu">mean</span>(marker, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_marker =</span> <span class="fu">sd</span>(marker, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  avg_age   sd_age avg_marker sd_marker
 1 47.2381 14.31193  0.9159895 0.8592891</code></pre>
@@ -1742,14 +1745,14 @@ window.Quarto = {
 <p>And we can easily extend this code to generate summary statistics by group by using the <code>group_by()</code> function from the {dplyr} package.</p>
 <p>Let’s get the same summary table for age and marker, but by trt:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="sc">|&gt;</span> </span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(trt) <span class="sc">|&gt;</span> </span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_age =</span> <span class="fu">sd</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_marker =</span> <span class="fu">mean</span>(marker, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_marker =</span> <span class="fu">sd</span>(marker, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="sc">|&gt;</span> </span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(trt) <span class="sc">|&gt;</span> </span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_age =</span> <span class="fu">sd</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_marker =</span> <span class="fu">mean</span>(marker, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_marker =</span> <span class="fu">sd</span>(marker, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   trt    avg_age sd_age avg_marker sd_marker
