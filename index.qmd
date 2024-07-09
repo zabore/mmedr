@@ -46,15 +46,13 @@ This website hosts R teaching materials for the Cleveland Clinic Molecular Medic
     - The pipe operator
     - Testing for equality
     - Indexing
-    - Subsets
+    - Subsetting
 
 ### Session 3
 
-- Manipulate dataframes
+- [Manipulate dataframes](tools-manipulate-dataframes.qmd)
 
-    - Indexing operators - extract rows/columns
-    - Accessing variables in datasets
-    - Subsetting data
+    - The dplyr package
     - Rename columns
     - Add columns
     - Group a continuous variable

@@ -20,21 +20,21 @@ Next, give the folder a meaningful name. This will be unique to everone's line o
 
 Let's say I'm doing a project for this class with an investigator named Jane Doe with a fellow named Bob Clark about breast cancer outcomes, I may create a project folder named "Doe-Clark-breast-cancer-outcomes" under my "mmedr" folder on my home network drive.
 
-<p align="center"><img src="img/project-folder.png" width=100%></p>
+<p align="center"><img src="img/project-folder.png" width=90%></p>
 
 Then, create an RStudio project in this location. An RStudio project is an easy way to divide your work into multiple contexts, each with their own working directory and source documents. 
 
 To create an RStudio project in an existing directory, in RStudio go to File > New Project.
 
-<p align="center"><img src="img/rstudio-new-project.png" width=100%></p>
+<p align="center"><img src="img/rstudio-new-project.png" width=90%></p>
 
 Select "Existing directory" from the pop-up box.
 
-<p align="center"><img src="img/rstudio-new-project-existing.png" width=100%></p>
+<p align="center"><img src="img/rstudio-new-project-existing.png" width=90%></p>
 
 Then use "Browse" to navigate to the desired folder, and select "Create Project".
 
-<p align="center"><img src="img/rstudio-new-project-existing-create.png" width=100%></p>
+<p align="center"><img src="img/rstudio-new-project-existing-create.png" width=90%></p>
 
 Your RStudio session will then automatically switch to your new R project.
 
@@ -42,11 +42,11 @@ You will notice two things.
 
 1. There is a new .Rproj file in your project folder with the same name as the folder.
 
-<p align="center"><img src="img/project-folder-rproj.png" width=100%></p>
+<p align="center"><img src="img/project-folder-rproj.png" width=90%></p>
 
 2. Now you have a fresh RStudio session, with the name of the project indicated in the top right corner.
 
-<p align="center"><img src="img/rstudio-project-session.png" width=100%></p>
+<p align="center"><img src="img/rstudio-project-session.png" width=90%></p>
 
 ## Project workflow and organization
 
@@ -56,15 +56,15 @@ You can do this in one of several ways.
 
 1. On Posit Workbench or your personal computer, in RStudio go to File > Open Project
 
-<p align="center"><img src="img/rstudio-open-project-1.png" width=100%></p>
+<p align="center"><img src="img/rstudio-open-project-1.png" width=90%></p>
 
 2. On Posit Workbench or your personal computer, in RStudio click on the arrow next to the project name in the top right corner and either select "Open Project" or choose from the list of recently opened project names.
 
-<p align="center"><img src="img/rstudio-open-project-2.png" width=100%></p>
+<p align="center"><img src="img/rstudio-open-project-2.png" width=90%></p>
 
 3. On your personal computer, double click on the R project file in your project folder, which will open a new RStudio session.
 
-<p align="center"><img src="img/project-folder-rproj.png" width=100%></p>
+<p align="center"><img src="img/project-folder-rproj.png" width=90%></p>
 
 Benefits of working inside an RStudio project include:
 
@@ -76,7 +76,7 @@ Benefits of working inside an RStudio project include:
 
 It is beneficial to create a standard set of sub-folders using standard naming conventions across projects. This will depend on the type of materials you typically have, but here is an example of my persona structure:
 
-<p align="center"><img src="img/folder-structure.png" width=100%></p>
+<p align="center"><img src="img/folder-structure.png" width=90%></p>
 
 - code: contains all of my R code files
 - data: contains all of my datasets
@@ -114,7 +114,7 @@ library(here)
 
 When you run `library(here)` in your RStudio project, you will automatically see the location where "here" starts in the console:
 
-<p align="center"><img src="img/rproject-here.png" width=100%></p>
+<p align="center"><img src="img/rproject-here.png" width=90%></p>
 
 And you can now refer to the same relative filepath relative to the main project folder, separating as many levels of sub-folder names as needed by commas, as follows:
 

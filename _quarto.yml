@@ -22,6 +22,8 @@ website:
             href: tools-reproducibility.qmd
           - text: Tools - Basic programming
             href: tools-basic-programming.qmd
+          - text: Tools - Manipulate dataframes
+            href: tools-manipulate-dataframes.qmd
           - text: Biostatistics and Epidemiology - Refresher
             href: bio-epi-refresher.qmd
           - text: Biostatistics and Epidemiology - Visualization

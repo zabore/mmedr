@@ -40,7 +40,7 @@ GitHub onto our personal computers.
 
 2. For a .xlsx file like this, you won't see a preview of the data. Now **right click** on "Raw" and then select "Save link as..."
 
-<p align="center"><img src="img/github-save-data.png" width=100%></p>
+<p align="center"><img src="img/github-save-data.png" width=90%></p>
 
 3. Navigate to the "mmedr" folder we created earlier on your home directory, and save the file there as "breastcancer.xlsx".
 

@@ -181,6 +181,10 @@ window.Quarto = {
  <span class="dropdown-text">Tools - Basic programming</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./tools-manipulate-dataframes.html">
+ <span class="dropdown-text">Tools - Manipulate dataframes</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./bio-epi-refresher.html">
  <span class="dropdown-text">Biostatistics and Epidemiology - Refresher</span></a>
   </li>  
@@ -282,7 +286,7 @@ Formatting data for use in R
 <li><p>For a .xlsx file like this, you won’t see a preview of the data. Now <strong>right click</strong> on “Raw” and then select “Save link as…”</p></li>
 </ol>
 <p align="center">
-<img src="img/github-save-data.png" width="100%">
+<img src="img/github-save-data.png" width="90%">
 </p>
 <ol start="3" type="1">
 <li>Navigate to the “mmedr” folder we created earlier on your home directory, and save the file there as “breastcancer.xlsx”.</li>
@@ -471,7 +475,8 @@ Session 1, Exercise 3 Solution
 <pre><code>Rows: 3000 Columns: 13
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
-dbl (13): Time, Event, RT, Age at diagnosis (years), Tumo size (cm), Grade -...
+chr (4): tumor_size_cm, grade, er_or_pr_pos, her2_pos
+dbl (9): time, event, rt, age_dx_yrs, n_ln_pos_3_vs_1or2, nodal_ratio, lvi, ...
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -482,13 +487,13 @@ dbl (13): Time, Event, RT, Age at diagnosis (years), Tumo size (cm), Grade -...
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Time"                      "Event"                    
- [3] "RT"                        "Age at diagnosis (years)" 
- [5] "Tumo size (cm)"            "Grade - 3 vs 1 or 2"      
- [7] "N LN pos - 3 vs 1 or 2"    "Nodal ratio"              
- [9] "LVI"                       "ER or PR pos"             
-[11] "HER2 pos"                  "Quadrant - inner vs other"
-[13] "Optimal systemic therapy" </code></pre>
+<pre><code> [1] "time"                     "event"                   
+ [3] "rt"                       "age_dx_yrs"              
+ [5] "tumor_size_cm"            "grade"                   
+ [7] "n_ln_pos_3_vs_1or2"       "nodal_ratio"             
+ [9] "lvi"                      "er_or_pr_pos"            
+[11] "her2_pos"                 "quadrant_inner_vs_other" 
+[13] "optimal_systemic_therapy"</code></pre>
 </div>
 </div>
 <p>We see these names contain a mix of uppercase and lowercase, spaces, and special characters. They would be hard to work with in R code.</p>
@@ -502,9 +507,9 @@ dbl (13): Time, Event, RT, Age at diagnosis (years), Tumo size (cm), Grade -...
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "time"                     "event"                   
- [3] "rt"                       "age_at_diagnosis_years"  
- [5] "tumo_size_cm"             "grade_3_vs_1_or_2"       
- [7] "n_ln_pos_3_vs_1_or_2"     "nodal_ratio"             
+ [3] "rt"                       "age_dx_yrs"              
+ [5] "tumor_size_cm"            "grade"                   
+ [7] "n_ln_pos_3_vs_1or2"       "nodal_ratio"             
  [9] "lvi"                      "er_or_pr_pos"            
 [11] "her2_pos"                 "quadrant_inner_vs_other" 
 [13] "optimal_systemic_therapy"</code></pre>

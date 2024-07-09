@@ -163,7 +163,7 @@ They perform (almost) identically, but one is built in to base R and the other r
 
 Go to Tools > Global Options > Code > Editing and tick the box for "Use native pipe operator" to enable this in RStudio.
 
-<p align="center"><img src="img/options-native-pipe.png" width=100%></p>
+<p align="center"><img src="img/options-native-pipe.png" width=80%></p>
 
 You can insert the pipe operator through the keyboard shortcut ctrl + shift + m.
 
@@ -261,19 +261,19 @@ df <- read_csv("H:/mmedr/breastcancer.csv") |>
 For example, to calculate the mean of the variable `age_at_diagnosis_years` in the dataframe `df`:
 
 ```{r}
-mean(df$age_at_diagnosis_years)
+mean(df$age_dx_yrs)
 ```
 
 Alternatively, use double brackets in the form `dataframe[["varname"]]`
 
 ```{r}
-mean(df[["age_at_diagnosis_years"]])
+mean(df[["age_dx_yrs"]])
 ```
 
 ::: {.callout-note icon=false collapse="true"}
 ## Session 2, Exercise 3
 
-Use the `table()` function to create a table of the values in "grade_3_vs_1_or_2" in the breastcancer data.
+Use the `table()` function to create a table of the values in "grade" in the breastcancer data.
 
 :::
 
@@ -281,7 +281,7 @@ Use the `table()` function to create a table of the values in "grade_3_vs_1_or_2
 ## Session 2, Exercise 3 Solution
 
 ```{r}
-table(df$grade_3_vs_1_or_2)
+table(df$grade)
 ```
 
 :::
@@ -322,7 +322,7 @@ The `&` operator signifies "and".
 So for example we could subset based on patients who were treated with radiation therapy AND had grade 3 disease:
 
 ```{r}
-df_sub <- df[df$rt == 1 & df$grade_3_vs_1_or_2 == 1, ]
+df_sub <- df[df$rt == 1 & df$grade == "III", ]
 nrow(df_sub)
 ```
 
@@ -333,7 +333,7 @@ The `|` operator signifies "or".
 So for example we could subset based on patients who were treated with radiation therapy OR had grade 3 disease:
 
 ```{r}
-df_sub <- df[df$rt == 1 | df$grade_3_vs_1_or_2 == 1, ]
+df_sub <- df[df$rt == 1 | df$grade == "III", ]
 nrow(df_sub)
 ```
 
@@ -348,13 +348,13 @@ df_sub <- df[ , c("rt")]
 Or we can simultaneously subset based on rows and columns, for example limiting to the radiation column among patients with grade 3 disease:
 
 ```{r}
-df_sub <- df[df$grade_3_vs_1_or_2 == 1, c("rt")]
+df_sub <- df[df$grade == "III", c("rt")]
 ```
 
 We can also subset directly within functions. Suppose we want to calculate the mean of the variable `age_at_diagnosis_years` in the dataframe `df`, but only among those who were treated with radiation therapy:
 
 ```{r}
-mean(df$age_at_diagnosis_years[df$rt == 1])
+mean(df$age_dx_yrs[df$rt == 1])
 ```
 
 This avoids creating additional datasets that may not be needed again.
@@ -369,7 +369,7 @@ Say we are only interested in the affect of radiation therapy in older adults. C
 ## Session 2, Exercise 4 Solution
 
 ```{r}
-df_sub <- df[df$age_at_diagnosis_years >= 65, ]
+df_sub <- df[df$age_dx_yrs >= 65, ]
 table(df_sub$rt)
 ```
 

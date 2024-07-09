@@ -46,5 +46,8 @@
   },
   "tools-basic-programming.qmd": {
     "tools-basic-programming.html": "bb4c13f6"
+  },
+  "tools-manipulate-dataframes.qmd": {
+    "tools-manipulate-dataframes.html": "31fd6b30"
   }
 }

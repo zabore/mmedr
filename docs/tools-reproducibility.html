@@ -152,6 +152,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Tools - Basic programming</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./tools-manipulate-dataframes.html">
+ <span class="dropdown-text">Tools - Manipulate dataframes</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./bio-epi-refresher.html">
  <span class="dropdown-text">Biostatistics and Epidemiology - Refresher</span></a>
   </li>  
@@ -223,20 +227,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Next, give the folder a meaningful name. This will be unique to everone’s line of work, but you should consider devising a system that you will use for all of your projects. For example, in my collaborative work I always name my project folders with PILastName-FellowLastName-TwoToThreeWordDescription. In this way I always know what pattern to look for when I’m trying to locate a specific project folder in the future.</p>
 <p>Let’s say I’m doing a project for this class with an investigator named Jane Doe with a fellow named Bob Clark about breast cancer outcomes, I may create a project folder named “Doe-Clark-breast-cancer-outcomes” under my “mmedr” folder on my home network drive.</p>
 <p align="center">
-<img src="img/project-folder.png" width="100%">
+<img src="img/project-folder.png" width="90%">
 </p>
 <p>Then, create an RStudio project in this location. An RStudio project is an easy way to divide your work into multiple contexts, each with their own working directory and source documents.</p>
 <p>To create an RStudio project in an existing directory, in RStudio go to File &gt; New Project.</p>
 <p align="center">
-<img src="img/rstudio-new-project.png" width="100%">
+<img src="img/rstudio-new-project.png" width="90%">
 </p>
 <p>Select “Existing directory” from the pop-up box.</p>
 <p align="center">
-<img src="img/rstudio-new-project-existing.png" width="100%">
+<img src="img/rstudio-new-project-existing.png" width="90%">
 </p>
 <p>Then use “Browse” to navigate to the desired folder, and select “Create Project”.</p>
 <p align="center">
-<img src="img/rstudio-new-project-existing-create.png" width="100%">
+<img src="img/rstudio-new-project-existing-create.png" width="90%">
 </p>
 <p>Your RStudio session will then automatically switch to your new R project.</p>
 <p>You will notice two things.</p>
@@ -244,13 +248,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>There is a new .Rproj file in your project folder with the same name as the folder.</li>
 </ol>
 <p align="center">
-<img src="img/project-folder-rproj.png" width="100%">
+<img src="img/project-folder-rproj.png" width="90%">
 </p>
 <ol start="2" type="1">
 <li>Now you have a fresh RStudio session, with the name of the project indicated in the top right corner.</li>
 </ol>
 <p align="center">
-<img src="img/rstudio-project-session.png" width="100%">
+<img src="img/rstudio-project-session.png" width="90%">
 </p>
 </section>
 <section id="project-workflow-and-organization" class="level2">
@@ -261,19 +265,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>On Posit Workbench or your personal computer, in RStudio go to File &gt; Open Project</li>
 </ol>
 <p align="center">
-<img src="img/rstudio-open-project-1.png" width="100%">
+<img src="img/rstudio-open-project-1.png" width="90%">
 </p>
 <ol start="2" type="1">
 <li>On Posit Workbench or your personal computer, in RStudio click on the arrow next to the project name in the top right corner and either select “Open Project” or choose from the list of recently opened project names.</li>
 </ol>
 <p align="center">
-<img src="img/rstudio-open-project-2.png" width="100%">
+<img src="img/rstudio-open-project-2.png" width="90%">
 </p>
 <ol start="3" type="1">
 <li>On your personal computer, double click on the R project file in your project folder, which will open a new RStudio session.</li>
 </ol>
 <p align="center">
-<img src="img/project-folder-rproj.png" width="100%">
+<img src="img/project-folder-rproj.png" width="90%">
 </p>
 <p>Benefits of working inside an RStudio project include:</p>
 <ul>
@@ -285,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>It is beneficial to create a standard set of sub-folders using standard naming conventions across projects. This will depend on the type of materials you typically have, but here is an example of my persona structure:</p>
 <p align="center">
-<img src="img/folder-structure.png" width="100%">
+<img src="img/folder-structure.png" width="90%">
 </p>
 <ul>
 <li>code: contains all of my R code files</li>
@@ -315,7 +319,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>When you run <code>library(here)</code> in your RStudio project, you will automatically see the location where “here” starts in the console:</p>
 <p align="center">
-<img src="img/rproject-here.png" width="100%">
+<img src="img/rproject-here.png" width="90%">
 </p>
 <p>And you can now refer to the same relative filepath relative to the main project folder, separating as many levels of sub-folder names as needed by commas, as follows:</p>
 <div class="cell">

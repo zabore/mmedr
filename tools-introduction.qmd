@@ -67,19 +67,19 @@ R and RStudio are two separate things, and to use both you will need to install 
 
 1. Login in using your Linux credentials at one of the links, for example lri-r07: [https://lri-r07.lerner.ccf.org/auth-sign-in](https://lri-r07.lerner.ccf.org/auth-sign-in)
 
-<p align="center"><img src="img/posit-login.jpg" width=80%></p>
+<p align="center"><img src="img/posit-login.jpg" width=90%></p>
 
 2. Select "New Session"
 
-<p align="center"><img src="img/posit-new-session.jpg" width=80%></p>
+<p align="center"><img src="img/posit-new-session.jpg" width=90%></p>
 
 3. Select "RStudio Pro" then click "Start Session"
 
-<p align="center"><img src="img/posit-rstudio-start.jpg" width=80%></p>
+<p align="center"><img src="img/posit-rstudio-start.jpg" width=90%></p>
 
 4. You will have some version of the below appear. Note that it will not be identical to this as I have changed many options over time for my personal preferences. 
 
-<p align="center"><img src="img/posit-rstudio-session.jpg" width=80%></p>
+<p align="center"><img src="img/posit-rstudio-session.jpg" width=90%></p>
 
 The layout of the panes can be customized by going to Tools > Global Options > Pane Layout. I can help you customize as well if there are things you prefer, just ask!
 

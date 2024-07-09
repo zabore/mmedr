@@ -152,6 +152,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Tools - Basic programming</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./tools-manipulate-dataframes.html">
+ <span class="dropdown-text">Tools - Manipulate dataframes</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./bio-epi-refresher.html">
  <span class="dropdown-text">Biostatistics and Epidemiology - Refresher</span></a>
   </li>  
@@ -453,7 +457,7 @@ Tip
 <p>They perform (almost) identically, but one is built in to base R and the other requires you to load a package.</p>
 <p>Go to Tools &gt; Global Options &gt; Code &gt; Editing and tick the box for “Use native pipe operator” to enable this in RStudio.</p>
 <p align="center">
-<img src="img/options-native-pipe.png" width="100%">
+<img src="img/options-native-pipe.png" width="80%">
 </p>
 <p>You can insert the pipe operator through the keyboard shortcut ctrl + shift + m.</p>
 <p>For example, if we want generate 100 random numbers from the exponential distribution, take the log transformation, and then get the mean, we could nest the functions as follows:</p>
@@ -550,14 +554,14 @@ Tip
 </div>
 <p>For example, to calculate the mean of the variable <code>age_at_diagnosis_years</code> in the dataframe <code>df</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>age_at_diagnosis_years)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>age_dx_yrs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 57.2952</code></pre>
 </div>
 </div>
 <p>Alternatively, use double brackets in the form <code>dataframe[["varname"]]</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df[[<span class="st">"age_at_diagnosis_years"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df[[<span class="st">"age_dx_yrs"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 57.2952</code></pre>
 </div>
@@ -574,7 +578,7 @@ Session 2, Exercise 3
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Use the <code>table()</code> function to create a table of the values in “grade_3_vs_1_or_2” in the breastcancer data.</p>
+<p>Use the <code>table()</code> function to create a table of the values in “grade” in the breastcancer data.</p>
 </div>
 </div>
 </div>
@@ -591,11 +595,11 @@ Session 2, Exercise 3 Solution
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>grade_3_vs_1_or_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>grade)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-   0    1 
-1606 1394 </code></pre>
+   I   II  III 
+ 362 1310 1328 </code></pre>
 </div>
 </div>
 </div>
@@ -633,34 +637,34 @@ Session 2, Exercise 3 Solution
 <p>The <code>&amp;</code> operator signifies “and”.</p>
 <p>So for example we could subset based on patients who were treated with radiation therapy AND had grade 3 disease:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df[df<span class="sc">$</span>rt <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> df<span class="sc">$</span>grade_3_vs_1_or_2 <span class="sc">==</span> <span class="dv">1</span>, ]</span>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df[df<span class="sc">$</span>rt <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> df<span class="sc">$</span>grade <span class="sc">==</span> <span class="st">"III"</span>, ]</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 912</code></pre>
+<pre><code>[1] 851</code></pre>
 </div>
 </div>
-<p>And we see that the new data subset has 912 rows instead of the 3000 in the original dataset.</p>
+<p>And we see that the new data subset has 851 rows instead of the 3000 in the original dataset.</p>
 <p>The <code>|</code> operator signifies “or”.</p>
 <p>So for example we could subset based on patients who were treated with radiation therapy OR had grade 3 disease:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df[df<span class="sc">$</span>rt <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> df<span class="sc">$</span>grade_3_vs_1_or_2 <span class="sc">==</span> <span class="dv">1</span>, ]</span>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df[df<span class="sc">$</span>rt <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> df<span class="sc">$</span>grade <span class="sc">==</span> <span class="st">"III"</span>, ]</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2254</code></pre>
+<pre><code>[1] 2249</code></pre>
 </div>
 </div>
-<p>And we see that our new data subset has 2254 rows instead of the 3000 in the original dataset.</p>
+<p>And we see that our new data subset has 2249 rows instead of the 3000 in the original dataset.</p>
 <p>We can also create a subset of our data based on columns, for example limiting to radiation therapy:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df[ , <span class="fu">c</span>(<span class="st">"rt"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Or we can simultaneously subset based on rows and columns, for example limiting to the radiation column among patients with grade 3 disease:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df[df<span class="sc">$</span>grade_3_vs_1_or_2 <span class="sc">==</span> <span class="dv">1</span>, <span class="fu">c</span>(<span class="st">"rt"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df[df<span class="sc">$</span>grade <span class="sc">==</span> <span class="st">"III"</span>, <span class="fu">c</span>(<span class="st">"rt"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also subset directly within functions. Suppose we want to calculate the mean of the variable <code>age_at_diagnosis_years</code> in the dataframe <code>df</code>, but only among those who were treated with radiation therapy:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>age_at_diagnosis_years[df<span class="sc">$</span>rt <span class="sc">==</span> <span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>age_dx_yrs[df<span class="sc">$</span>rt <span class="sc">==</span> <span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 55.08356</code></pre>
 </div>
@@ -695,7 +699,7 @@ Session 2, Exercise 4 Solution
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df[df<span class="sc">$</span>age_at_diagnosis_years <span class="sc">&gt;=</span> <span class="dv">65</span>, ]</span>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df[df<span class="sc">$</span>age_dx_yrs <span class="sc">&gt;=</span> <span class="dv">65</span>, ]</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df_sub<span class="sc">$</span>rt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
