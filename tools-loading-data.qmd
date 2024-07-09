@@ -2,7 +2,7 @@
 title: ""
 ---
 
-# Tools course - R Session 1
+# Loading data
 
 In this part of Session 1, we will learn how to load external data into R.
 
@@ -45,11 +45,9 @@ GitHub onto our personal computers.
 3. Navigate to the "mmedr" folder we created earlier on your home directory, and save the file there as "breastcancer.xlsx".
 
 
-## Loading data
+## Loading Excel data
 
 The most common data format we work with are data from **Excel**. We will learn three ways to load Excel datasets into R, and then will introduce some options for alternative file types.
-
-### Excel
 
 We will look at options to:
 
@@ -57,7 +55,7 @@ We will look at options to:
 - Read in Excel files by converting to .csv first
 - Read in Excel files by converting to .csv first and using the {readr} package
 
-#### {readxl}
+### The readxl package
 
 First, install the {readxl} package from CRAN, then load the newly installed package. This should have been completed in Session 1, Exercise 2.
 
@@ -80,7 +78,7 @@ R treats the \\ as a special character so you either need to use / or $\backslas
 On the Linux server (i.e. on Rstudio Pro via Posit Workbench), the path starts at /home/username, so filepaths relative to your directory can start "~/" followed by the folder where the file is located. 
 :::
 
-#### Convert to .csv
+### Convert to .csv
 
 Alternatively, we can convert the file from .xlsx format to .csv format first, and then read it in.
 
@@ -95,7 +93,7 @@ Advantages: removes some of the possible formatting pitfalls associated with Exc
 mycsv <- read.csv("~/folder/filename.csv") 
 ```
 
-#### Convert to .csv and use the readr package
+### Convert to .csv and use the readr package
 
 Using the same approach as above to first save the Excel file into .csv format, we can alternatively use the `read_csv()` function from the {readr} package to read in the data, instead of `read.csv()`.
 
@@ -120,7 +118,7 @@ The `tibble` objects have some advantages over `data.frame` objects such as fast
 Note that the third approach is the one I use, and will form the basis of my examples in the rest of this course.
 :::
 
-### Other file formats
+## Loading other file formats
 
 Many other file formats exist, and here is a non-comprehensive list of functions for loading some of them:
 
@@ -155,9 +153,6 @@ Then use the `clean_names()` function to convert all variable names to snake cas
 ```{r eval = FALSE}
 mycsv2 <- clean_names(mycsv2)
 ```
-
-
-## Exercises
 
 ::: {.callout-note icon=false collapse="true"}
 ## Session 1, Exercise 3

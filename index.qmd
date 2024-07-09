@@ -1,10 +1,10 @@
 ---
 title: ""
+author: "Emily C. Zabor"
+date: today
 ---
 
-This is the new website to host R teaching materials for the Cleveland Clinic Molecular Medicine PhD students. It is in the very early stages of development and very much a work in progress.
-
-The material will be split across 5 1-hour sessions as part of the Tools course, followed by 2 2-hour sessions as part of the Biostatistics and Epidemiology course.
+This website hosts R teaching materials for the Cleveland Clinic Molecular Medicine PhD program. The material will be split across 5 1-hour sessions as part of the Tools course, followed by 2 2-hour sessions as part of the Biostatistics and Epidemiology course. 
 
 ## Tools course
 
@@ -37,17 +37,16 @@ The material will be split across 5 1-hour sessions as part of the Tools course,
 
 ### Session 2
 
-- Basic programming
+- [Basic programming](tools-basic-programming.qmd)
 
-    - Executing code
+    - Assigning objects
+    - Sending code to the console
+    - Functions
     - Getting help
     - The pipe operator
-    - Case sensitive
-    - Assigning objects
-    - Functions
-    - Vectors and sequences
-    - Strings
     - Testing for equality
+    - Indexing
+    - Subsets
 
 ### Session 3
 

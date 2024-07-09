@@ -177,6 +177,10 @@ window.Quarto = {
  <span class="dropdown-text">Tools - Reproducibility</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./tools-basic-programming.html">
+ <span class="dropdown-text">Tools - Basic programming</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./bio-epi-refresher.html">
  <span class="dropdown-text">Biostatistics and Epidemiology - Refresher</span></a>
   </li>  
@@ -199,6 +203,13 @@ window.Quarto = {
     </ul>
   </li>
 </ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="http://github.com/zabore/mmedr"> <i class="bi bi-fab fa-github fa-lg" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
 </div>
@@ -214,16 +225,17 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#tools-course---r-session-1" id="toc-tools-course---r-session-1" class="nav-link active" data-scroll-target="#tools-course---r-session-1">Tools course - R Session 1</a>
+  <li><a href="#loading-data" id="toc-loading-data" class="nav-link active" data-scroll-target="#loading-data">Loading data</a>
   <ul class="collapse">
   <li><a href="#dataset-for-use-in-this-class" id="toc-dataset-for-use-in-this-class" class="nav-link" data-scroll-target="#dataset-for-use-in-this-class">Dataset for use in this class</a></li>
-  <li><a href="#loading-data" id="toc-loading-data" class="nav-link" data-scroll-target="#loading-data">Loading data</a>
+  <li><a href="#loading-excel-data" id="toc-loading-excel-data" class="nav-link" data-scroll-target="#loading-excel-data">Loading Excel data</a>
   <ul class="collapse">
-  <li><a href="#excel" id="toc-excel" class="nav-link" data-scroll-target="#excel">Excel</a></li>
-  <li><a href="#other-file-formats" id="toc-other-file-formats" class="nav-link" data-scroll-target="#other-file-formats">Other file formats</a></li>
+  <li><a href="#the-readxl-package" id="toc-the-readxl-package" class="nav-link" data-scroll-target="#the-readxl-package">The readxl package</a></li>
+  <li><a href="#convert-to-.csv" id="toc-convert-to-.csv" class="nav-link" data-scroll-target="#convert-to-.csv">Convert to .csv</a></li>
+  <li><a href="#convert-to-.csv-and-use-the-readr-package" id="toc-convert-to-.csv-and-use-the-readr-package" class="nav-link" data-scroll-target="#convert-to-.csv-and-use-the-readr-package">Convert to .csv and use the readr package</a></li>
   </ul></li>
+  <li><a href="#loading-other-file-formats" id="toc-loading-other-file-formats" class="nav-link" data-scroll-target="#loading-other-file-formats">Loading other file formats</a></li>
   <li><a href="#variable-names-with-the-janitor-package" id="toc-variable-names-with-the-janitor-package" class="nav-link" data-scroll-target="#variable-names-with-the-janitor-package">Variable names with the {janitor} package</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -234,8 +246,8 @@ window.Quarto = {
 
 
 
-<section id="tools-course---r-session-1" class="level1">
-<h1>Tools course - R Session 1</h1>
+<section id="loading-data" class="level1">
+<h1>Loading data</h1>
 <p>In this part of Session 1, we will learn how to load external data into R.</p>
 <p>Many R packages come with data bundled into them. These datasets are available for use as soon as the package is loaded.</p>
 <p>However, we often need to load external data that we’ve generated in our lab or in a clinical study, a situation addressed in this lesson.</p>
@@ -276,19 +288,17 @@ Formatting data for use in R
 <li>Navigate to the “mmedr” folder we created earlier on your home directory, and save the file there as “breastcancer.xlsx”.</li>
 </ol>
 </section>
-<section id="loading-data" class="level2">
-<h2 class="anchored" data-anchor-id="loading-data">Loading data</h2>
+<section id="loading-excel-data" class="level2">
+<h2 class="anchored" data-anchor-id="loading-excel-data">Loading Excel data</h2>
 <p>The most common data format we work with are data from <strong>Excel</strong>. We will learn three ways to load Excel datasets into R, and then will introduce some options for alternative file types.</p>
-<section id="excel" class="level3">
-<h3 class="anchored" data-anchor-id="excel">Excel</h3>
 <p>We will look at options to:</p>
 <ul>
 <li>Read in Excel files with {readxl}</li>
 <li>Read in Excel files by converting to .csv first</li>
 <li>Read in Excel files by converting to .csv first and using the {readr} package</li>
 </ul>
-<section id="readxl" class="level4">
-<h4 class="anchored" data-anchor-id="readxl">{readxl}</h4>
+<section id="the-readxl-package" class="level3">
+<h3 class="anchored" data-anchor-id="the-readxl-package">The readxl package</h3>
 <p>First, install the {readxl} package from CRAN, then load the newly installed package. This should have been completed in Session 1, Exercise 2.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>) <span class="co"># Already installed on Posit Workbench</span></span>
@@ -325,8 +335,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="convert-to-.csv" class="level4">
-<h4 class="anchored" data-anchor-id="convert-to-.csv">Convert to .csv</h4>
+<section id="convert-to-.csv" class="level3">
+<h3 class="anchored" data-anchor-id="convert-to-.csv">Convert to .csv</h3>
 <p>Alternatively, we can convert the file from .xlsx format to .csv format first, and then read it in.</p>
 <p>Advantages: removes some of the possible formatting pitfalls associated with Excel files, and you don’t need any special packages to read this format.</p>
 <ol type="1">
@@ -339,8 +349,8 @@ Tip
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"~/folder/filename.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="convert-to-.csv-and-use-the-readr-package" class="level4">
-<h4 class="anchored" data-anchor-id="convert-to-.csv-and-use-the-readr-package">Convert to .csv and use the readr package</h4>
+<section id="convert-to-.csv-and-use-the-readr-package" class="level3">
+<h3 class="anchored" data-anchor-id="convert-to-.csv-and-use-the-readr-package">Convert to .csv and use the readr package</h3>
 <p>Using the same approach as above to first save the Excel file into .csv format, we can alternatively use the <code>read_csv()</code> function from the {readr} package to read in the data, instead of <code>read.csv()</code>.</p>
 <p>First, install the {readr} package from CRAN, then load the newly installed package. This should have been completed in Session 1, Exercise 2.</p>
 <div class="cell">
@@ -368,8 +378,8 @@ Tip
 </div>
 </section>
 </section>
-<section id="other-file-formats" class="level3">
-<h3 class="anchored" data-anchor-id="other-file-formats">Other file formats</h3>
+<section id="loading-other-file-formats" class="level2">
+<h2 class="anchored" data-anchor-id="loading-other-file-formats">Loading other file formats</h2>
 <p>Many other file formats exist, and here is a non-comprehensive list of functions for loading some of them:</p>
 <ul>
 <li><code>read.table()</code> is the most generic function and can read many file types</li>
@@ -378,7 +388,6 @@ Tip
 <li><code>read.delim()</code> is a special case with fixed defaults for tab-delimited files</li>
 <li><code>read.delim2()</code> is a special case with fixed defaults for tab-delimited files that were created in a country where commas are used in place of decimal places</li>
 </ul>
-</section>
 </section>
 <section id="variable-names-with-the-janitor-package" class="level2">
 <h2 class="anchored" data-anchor-id="variable-names-with-the-janitor-package">Variable names with the {janitor} package</h2>
@@ -414,9 +423,6 @@ R is case sensitive
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mycsv2 <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(mycsv2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="exercises" class="level2">
-<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">

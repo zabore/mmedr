@@ -2,7 +2,7 @@
 title: ""
 ---
 
-# Tools course - R Session 1
+# Reproducility
 
 In this part of Session 1, we will discuss the importance of reproducibility in statistical programming, and tools available in R to promote reproducible research.
 

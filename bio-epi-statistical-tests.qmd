@@ -2,14 +2,11 @@
 title: ""
 ---
 
-# Biostatistics and Epidemiology - Session 2
+# Statistical tests
 
 In this session, we will introduce methods to adjust p-values to account for multiple testing, learn advanced programming techniques including for loops and writing custom functions, and cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.
 
-## Statistical tests
-
-
-### Two categorical variables
+## Two categorical variables
 
 There are two main tests for associations between **two categorical variables**: the **chi-squared** test and **Fisher's exact** test. 
 
@@ -17,7 +14,6 @@ Conduct these tests in R using the following functions:
 
 - `chisq.test()` 
 - `fisher.test()`
-
 
 Conduct a chi-squared test of the null hypothesis that there is no association between treatment and response versus the alternative hypothesis that there is an association between treatment and response.
 
@@ -41,7 +37,7 @@ The p-value is `r round(fisher.test(trial$trt, trial$response)$p.value, 4)`.
 
 Do not reject the null hypothesis of no association between treatment and response since the p-value is greater than the traditional threshold for significance of 0.05.  
 
-### One continuous, one categorical
+## One continuous, one categorical
 
 The most common statistical tests for the association between a continuous and a categorical variable are the **non-parametric Kruskal-Wallis** test and the **parametric t-test**. 
 
@@ -104,7 +100,7 @@ anova(lm_mod)
 
 And here we would reject the null hypothesis of no association between marker and grade, at the 0.05 level.
 
-### Paired data
+## Paired data
 
 Next we consider the setting where we have paired data. Paired data are any data where a continuous variable is matched in a meaningful way between the two groups. Examples:
 

@@ -2,11 +2,9 @@
 title: ""
 ---
 
-# Biostatistics and Epidemiology - Session 2
+# Adjustment for multiple comparisons
 
 In this session, we will introduce methods to adjust p-values to account for multiple testing, learn advanced programming techniques including for loops and writing custom functions, and cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.
-
-## Adjustment for multiple comparisons
 
 The problem is referred to as multiple comparisons, multiple testing, or multiplicity, but they all mean the same thing.
 

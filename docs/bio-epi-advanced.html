@@ -148,6 +148,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Tools - Reproducibility</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./tools-basic-programming.html">
+ <span class="dropdown-text">Tools - Basic programming</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./bio-epi-refresher.html">
  <span class="dropdown-text">Biostatistics and Epidemiology - Refresher</span></a>
   </li>  
@@ -170,6 +174,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
   </li>
 </ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="http://github.com/zabore/mmedr"> <i class="bi bi-fab fa-github fa-lg" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
 </div>
@@ -185,13 +196,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#biostatistics-and-epidemiology---session-2" id="toc-biostatistics-and-epidemiology---session-2" class="nav-link active" data-scroll-target="#biostatistics-and-epidemiology---session-2">Biostatistics and Epidemiology - Session 2</a>
-  <ul class="collapse">
-  <li><a href="#advanced-programming" id="toc-advanced-programming" class="nav-link" data-scroll-target="#advanced-programming">Advanced programming</a>
+  <li><a href="#advanced-programming" id="toc-advanced-programming" class="nav-link active" data-scroll-target="#advanced-programming">Advanced programming</a>
   <ul class="collapse">
   <li><a href="#custom-functions" id="toc-custom-functions" class="nav-link" data-scroll-target="#custom-functions">Custom functions</a></li>
   <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops">Loops</a></li>
-  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -202,13 +210,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="biostatistics-and-epidemiology---session-2" class="level1">
-<h1>Biostatistics and Epidemiology - Session 2</h1>
+<section id="advanced-programming" class="level1">
+<h1>Advanced programming</h1>
 <p>In this session, we will introduce methods to adjust p-values to account for multiple testing, learn advanced programming techniques including for loops and writing custom functions, and cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.</p>
-<section id="advanced-programming" class="level2">
-<h2 class="anchored" data-anchor-id="advanced-programming">Advanced programming</h2>
-<section id="custom-functions" class="level3">
-<h3 class="anchored" data-anchor-id="custom-functions">Custom functions</h3>
+<section id="custom-functions" class="level2">
+<h2 class="anchored" data-anchor-id="custom-functions">Custom functions</h2>
 <p>We have previously discussed the role of functions in R, and have seen examples of built-in R functions, such as <code>mean()</code> and <code>p.adjust()</code>.</p>
 <p>But sometimes we’ll want to do something that isn’t included in a built-in R function, or that simplifies use of existing functions.</p>
 <p>User-defined functions are created using the <code>function()</code> function.</p>
@@ -253,8 +259,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This gets particularly useful for long or complex procedures, but is also really useful for short procedures that will be repeated many times - I often use this function 10+ times in a day.</p>
 <p>Try writing a custom function based on the <code>mean()</code> function but including the option to remove NAs from the calculation.</p>
 </section>
-<section id="loops" class="level3">
-<h3 class="anchored" data-anchor-id="loops">Loops</h3>
+<section id="loops" class="level2">
+<h2 class="anchored" data-anchor-id="loops">Loops</h2>
 <p>Often we will want to repeat a set of operations several times, and we can do so using a loop.</p>
 <p>There are three main types of loops in R:</p>
 <ul>
@@ -318,7 +324,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
-</section>
 </section>
 </section>
 

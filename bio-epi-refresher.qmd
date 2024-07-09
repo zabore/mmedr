@@ -2,17 +2,15 @@
 title: ""
 ---
 
-# Biostatistics and Epidemiology - Session 1
+# Refresher of the Tools course material
 
 In this session, we will review the basics of R and generating descriptive statistics in R, which were introduced in the Tools course. Then we will learn about data visualization, including creating scatterplots, bar charts, histograms, line charts, and boxplots. We'll discuss plot customization, faceting, and saving plots. Both univariate and bivariable plotting will be covered.
 
-## Refresher of the Tools course material
-
-### R basics
+## R basics
 
 First, we'll review the basics of R and R programming.
 
-#### About R
+### About R
 
 <p align="left"><img src="img/Rlogo.png" width=25%></p>
 
@@ -21,12 +19,12 @@ First, we'll review the basics of R and R programming.
 - It is your responsibility to vet the quality and accuracy of any user-contributed packages
 - The functions available with the initial installation of R, known as base R, can be considered trustworthy
 
-#### Installing R
+### Installing R
 
 1. Go to the website for [The Comprehensive R Archive Network](https://cran.r-project.org/). 
 2. The top of the web page provides three links for downloading R. Follow the link that describes your operating system: Windows, Mac, or Linux.
 
-#### About RStudio
+### About RStudio
 
 <p align="left"><img src="img/RStudio-Logo-Flat.png" width=45%></p>
 
@@ -34,7 +32,7 @@ First, we'll review the basics of R and R programming.
 - It runs R and allows users to develop and edit programs and offers higher quality graphics and a more user-friendly interface.
 - ***Note that RStudio is not a standalone program, you must have a separate installation of R***
 
-#### Installing RStudio
+### Installing RStudio
 
 1. Go to the website for [RStudio](https://posit.co/products/open-source/rstudio/)
 2. Select "Download RStudio Desktop" under "Open Source Edition"
@@ -42,7 +40,7 @@ First, we'll review the basics of R and R programming.
 4. Scroll down and select the appropriate version for your operating system
 5. An installer will download and provide simple instructions to follow
 
-#### Posit Workbench
+### Posit Workbench
 
 <p align="left"><img src="img/prod-logo-workbench-dk.jpg" width=45%></p>
 
@@ -50,7 +48,7 @@ First, we'll review the basics of R and R programming.
 - See the wiki for details: [http://jjnb-wiki-v-00.bio.ri.ccf.org/index.php/Running_R](http://jjnb-wiki-v-00.bio.ri.ccf.org/index.php/Running_R)
 - Login in using your Linux credentials at one of the links, for example lri-r07: [https://lri-r07.lerner.ccf.org/auth-sign-in](https://lri-r07.lerner.ccf.org/auth-sign-in)
 
-#### Using RStudio
+### Using RStudio
 
 When you first open RStudio you will see a number of panes:
 
@@ -70,7 +68,7 @@ Panes:
     - Help: this is where you will get help files for R functions
     - Viewer: this is where you would preview any html output like a gt table or Quarto document
     
-#### Using the text editor in RStudio
+### Using the text editor in RStudio
 
 Always use a text editor to type code so that it can be saved for reproducibility purposes.
 
@@ -79,7 +77,7 @@ How to open a text editor window:
 1. To open a new text editor window go to: File > New File > R script 
 2. To save the file go to: File > Save 
 
-#### Interactive RStudio demo
+### Interactive RStudio demo
 
 Navigate to [https://lri-r07.lerner.ccf.org/auth-sign-in](https://lri-r07.lerner.ccf.org/auth-sign-in), log in, and run some example code.
 
@@ -98,7 +96,7 @@ hist(rnorm(100))
 ?rnorm
 ```
 
-#### Sending code to the console
+### Sending code to the console
 
 To send this to the console to be executed, you can do one of the following:
 
@@ -106,7 +104,7 @@ To send this to the console to be executed, you can do one of the following:
 2. Place your cursor next to the line you want to run and hit the "Run" button
 3. Highlight all three lines of code and use one of the previous options
 
-#### Getting help
+### Getting help
 
 Get help by typing `?fnname` where `fnname` is the name of the function of interest.
 
@@ -114,18 +112,18 @@ Get help by typing `?fnname` where `fnname` is the name of the function of inter
 - `??fnname` can be used if you aren't sure of the exact function name - it will return any keyword matches
 
 
-#### View the output
+### View the output
 
 After we have run all three lines of code, we see the results of our mean computation in the Console pane. 
 
 And we see the resulting histogram in the Plots pane.
 
-#### Interactive RStudio demo results
+### Interactive RStudio demo results
 
 <p align="center"><img src="img/insteractive-rstudio-demo-results.png" width=100%></p>
 
 
-#### Installing R packages 
+### Installing R packages 
 
 CRAN is the primary repository for user-contributed R packages. 
 
@@ -190,7 +188,7 @@ survfit(formula, ...)
 survival::survfit(formula, ...)
 ```
 
-#### Example trial dataset
+### Example trial dataset
 
 The most common data format we work with are data from Excel. The example trial dataset is available in the {gtsummary} package in R.
 
@@ -218,7 +216,7 @@ And we see the variables and their definitions:
 
 I have saved this data file out to Excel so that we can practice loading it in R. Go to the [course website](https://mylearning.ccf.org/course/view.php?id=18794) to download the file named "trial-Excel.xlsx". Save it somewhere you can find it again.
 
-#### Loading data
+### Loading data
 
 The most common data format we work with are data from **Excel**. 
 
@@ -287,7 +285,7 @@ Many other file formats exist, and here is a non-comprehensive list of functions
 - `read.delim()` is a special case with fixed defaults for tab-delimited files
 - `read.delim2()` is a special case with fixed defaults for tab-delimited files that were created in a country where commas are used in place of decimal places
 
-#### Basic programming
+### Basic programming
 
 Use the assignment operator `<-` to assign **values** to **objects**
 
@@ -443,7 +441,7 @@ This avoids creating additional datasets that may not be needed again.
 
 
 
-### Descriptive statistics
+## Descriptive statistics
 
 Next, we'll review descriptive statistics in R. There are many ways to generate this type of descriptive statistics in R. I will demonstrate one way and if you end up using R a lot you will find what works well for you and the type of data you use.
 
@@ -467,7 +465,7 @@ install.packages("gt")
 library(gt)
 ```
 
-#### Introduction to the pipe operator
+### Introduction to the pipe operator
 
 First, we need to learn about the pipe operator, which we will use to string multiple functions together seamlessly.
 
@@ -493,7 +491,7 @@ This creates code that is very readable and concise, and easy to comment out var
 
 We'll be using this throughout the R sessions in this course.
 
-#### One-way frequency table
+### One-way frequency table
 
 Make sure your variable of interest is in its own column in your dataframe, then use the `tabyl()` function from {janitor}:
 
@@ -506,7 +504,7 @@ mycsv |>
 And we get a frequency table for the trt variable, with the percentages formatted using the `adorn_pct_formatting()` function.
 
 
-#### Two-way contingency table
+### Two-way contingency table
 
 Let's create a table with trt on the rows and response on the columns. The most basic table is created as:
 
@@ -560,7 +558,7 @@ mycsv |>
   )
 ```
 
-#### Summary statistics
+### Summary statistics
 
 We will use the `summarize()` function from the {dplyr} package to compute summary statistics.
 
@@ -584,7 +582,7 @@ mycsv |>
   )
 ```
 
-#### Summary statistics by group
+### Summary statistics by group
 
 And we can easily extend this code to generate summary statistics by group by using the `group_by()` function from the {dplyr} package.
 

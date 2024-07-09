@@ -2,13 +2,11 @@
 title: ""
 ---
 
-# Biostatistics and Epidemiology - Session 2
+# Advanced programming
 
 In this session, we will introduce methods to adjust p-values to account for multiple testing, learn advanced programming techniques including for loops and writing custom functions, and cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.
 
-## Advanced programming
-
-### Custom functions
+## Custom functions
 
 We have previously discussed the role of functions in R, and have seen examples of built-in R functions, such as `mean()` and `p.adjust()`.
 
@@ -61,7 +59,7 @@ This gets particularly useful for long or complex procedures, but is also really
 Try writing a custom function based on the `mean()` function but including the option to remove NAs from the calculation.
 
 
-### Loops
+## Loops
 
 Often we will want to repeat a set of operations several times, and we can do so using a loop. 
 

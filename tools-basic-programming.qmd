@@ -1,0 +1,378 @@
+---
+title: ""
+---
+
+# Basic programming
+
+In this session, we will learn the basics of programming in R. This will lay the foundation for more advanced topics to come.
+
+## Assigning objects
+
+Use the assignment operator `<-` to assign **values** to **objects**
+
+- `<-` assigns the value on the *right*, to the object on the *left*
+- Keyboard shortcut "Alt" + "-" will insert the assignment operator
+- Once the object is assigned, the assignment step will be evaluated but it will not print to the console
+- Print to the console by typing the object name alone
+
+```{r}
+x <- 55
+x
+```
+
+To assign a character variable, wrap it in single or double quotes:
+
+```{r}
+y <- "cat"
+y
+```
+
+## Sending code to the console
+
+To send this to the console to be executed, you can do one of the following:
+
+1. Place your cursor next to the line you want to run and hit Ctrl+Enter on your keyboard
+2. Place your cursor next to the line you want to run and hit the "Run" button
+3. Highlight multiple lines of code and use one of the previous options
+
+::: {.callout-note icon=false collapse="true"}
+## Session 2, Exercise 1
+
+1. Open RStudio Pro on Posit Workbench
+2. Create a new R script named "session2-exercises" and save it to the "mmedr" folder on your home directory that was created in Session 1
+3. Create an object called "age" and assign it the numeric value of your age
+4. Create an object called "name" and assign it the character value of your name
+5. Execute the code
+6. Print the object assignments to the console
+:::
+
+::: {.callout-warning icon=false collapse="true"}
+## Session 2, Exercise 1 Solution
+
+<p align="center"><img src="img/assign-object-run.png" width=80%></p>
+:::
+
+## Functions
+
+Functions are pre-packaged scripts that automate more complicated procedures. They are executed by typing the name of the function followed by round brackets. Inside the round brackets we can provide one or more parameters, or arguments:
+
+```{r}
+x <- 144
+sqrt(x)
+
+y <- 123.225
+round(y)
+round(y, digits = 1)
+```
+
+Use `c()` to create a vector of values or `seq()` to create a sequence of values:
+
+```{r}
+a <- c(1, 2, 3, 4)
+b <- seq(from = 0, to = 100, by = 10)
+```
+
+**Note**: when we supply the arguments to a function in the order in which they are listed in the documentation, we do not need to name them. If we name them, we can supply them in any order. The above three assignments to b yield the same results.
+
+Here are all of the possible arguments to the `seq()` function:
+
+```{r eval = FALSE}
+seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)),
+    length.out = NULL, along.with = NULL, ...)
+```
+
+So the following produce the same results:
+
+```{r}
+b <- seq(from = 0, to = 100, by = 10)
+b <- seq(0, 100, 10)
+b <- seq(by = 10, to = 100, from = 0)
+```
+
+
+## Getting help
+
+Get help by typing `?fnname` where `fnname` is the name of the function of interest.
+
+- e.g. to see the help file for the mean function, type `?mean` in the console
+- `??fnname` can be used if you aren't sure of the exact function name - it will return any keyword matches
+
+```{r}
+?mean
+```
+
+::: {.callout-tip}
+In the help file, it can be particularly useful to scroll to the bottom and read and try the exercises.
+:::
+
+::: {.callout-note icon=false collapse="true"}
+## Session 2, Exercise 2
+
+1. Look up the help file for the "log" function
+2. Calculate the natural log of 1
+3. Calculate log base 10 of 5
+:::
+
+::: {.callout-warning icon=false collapse="true"}
+## Session 2, Exercise 2 Solution
+
+```{r}
+#1. 
+?log
+
+#2. 
+log(1)
+
+#3.
+log10(5)
+# OR #
+log(5, base = 10)
+# OR #
+log(base = 10, x = 5)
+```
+:::
+
+::: {.callout-tip}
+You can write comments in your R code by starting a line with "#". It is recommended to write a lot of verbal comments about what your R code is doing so that if you need to come back to it later, you will know what it was doing and why.
+
+For example:
+
+```{r}
+# This R code file will demonstrate how to assign a value (on the right) to an object (on the left) using the "<-" operator
+
+# Assign the numeric value 5 to the object x
+x <- 5
+
+# Assign the character value a to the object y
+y <- "a"
+```
+:::
+
+## Pipe operator
+
+Before we go on, we need to learn about the pipe operator.
+
+We will use the pipe operator to string multiple functions together seamlessly.
+
+There are two forms of the pipe operator in R:
+
+- The "native" pipe operator "|>"
+- The pipe operator from the {magrittr} package "%>%
+
+They perform (almost) identically, but one is built in to base R and the other requires you to load a package.
+
+Go to Tools > Global Options > Code > Editing and tick the box for "Use native pipe operator" to enable this in RStudio.
+
+<p align="center"><img src="img/options-native-pipe.png" width=100%></p>
+
+You can insert the pipe operator through the keyboard shortcut ctrl + shift + m.
+
+For example, if we want generate 100 random numbers from the exponential distribution, take the log transformation, and then get the mean, we could nest the functions as follows:
+
+```{r}
+set.seed(123) # needed to make random number generation reproducible
+mean(log(rexp(100)))
+```
+
+Or we can connect them with the pipe operator:
+
+```{r}
+set.seed(123) # needed to make random number generation reproducible
+100 |>
+  rexp() |> 
+  log() |> 
+  mean()
+```
+
+The **left hand side** is passed as the **first argument** of the function on the **right hand side**.
+This creates code that is very readable and concise, expecially if you arrange your code vertically rather than horizontally, and it is also easy to comment out various parts if needed.
+
+```{r}
+# Horizontal pipes
+set.seed(123) # needed to make random number generation reproducible
+100 |> rexp() |>  log() |>  mean()
+```
+
+e.g. What if I change my mind and don't want the log transformation anymore?
+
+In the vertical setup this is easy:
+
+```{r}
+# Vertical pipes
+set.seed(123) # needed to make random number generation reproducible
+100 |>
+  rexp() |> 
+  # log() |> 
+  mean()
+```
+
+::: {.callout-tip}
+The keyboard shortcut ctrl + shift + c will insert a # (comment) at the beginning of the code line.
+:::
+
+We'll be using the pipe operator throughout the remaining R sessions in this course.
+
+## Testing for equality
+
+The `==` operator tests equality between two values:
+
+```{r}
+5 == 5
+5 == 9
+```
+    
+The first returns TRUE because 5 does in fact equal 5. 
+
+The second returns FALSE because 5 is not equal to 9.
+    
+This will be useful later when we subset data.
+
+## Indexing
+
+R has three main indexing operators: 
+
+1. Dollar sign: `$`
+2. Double brackets: `[[ ]]`
+3. Single brackets: `[ ]`
+
+To access specific variables, use the `$` operator in the form `dataframe$varname`, where `dataframe` is the name of the object to which we assigned our data set, and `varname` is the name of the variable of interest.
+
+To use best practices from last class, create an R project for use in this course. Create it in the existing "mmedr" folder on your home directory.
+
+Load the "breastcancer" data that we saved as a .csv to the "mmedr" folder on our home drive last class, and assign it to the object "df".
+
+Clean the names using the {janitor} package.
+
+```{r eval = FALSE}
+library(readr)
+library(here)
+library(janitor)
+df <- read_csv(here("breastcancer.csv")) |> 
+  clean_names()
+```
+
+```{r echo = FALSE, message = FALSE}
+library(readr)
+library(janitor)
+df <- read_csv("H:/mmedr/breastcancer.csv") |> 
+  clean_names()
+```
+
+For example, to calculate the mean of the variable `age_at_diagnosis_years` in the dataframe `df`:
+
+```{r}
+mean(df$age_at_diagnosis_years)
+```
+
+Alternatively, use double brackets in the form `dataframe[["varname"]]`
+
+```{r}
+mean(df[["age_at_diagnosis_years"]])
+```
+
+::: {.callout-note icon=false collapse="true"}
+## Session 2, Exercise 3
+
+Use the `table()` function to create a table of the values in "grade_3_vs_1_or_2" in the breastcancer data.
+
+:::
+
+::: {.callout-warning icon=false collapse="true"}
+## Session 2, Exercise 3 Solution
+
+```{r}
+table(df$grade_3_vs_1_or_2)
+```
+
+:::
+
+## Subsets
+
+Sometimes we may want to create a subset of our data, or access a value based on more than one dimension.
+
+Datasets typically have two dimensions: columns and rows
+
+For dataframe `df`, let `i` index the row and `j` index the column.
+
+Then we can access any single cell in the dataframe using the syntax:
+
+```{r eval = FALSE}
+df[i, j]
+```
+
+We can use this concept to create subsets of our data as well. 
+
+We can create a subset of our data based on the values in a row, for example limiting to patients who were treated with radiation therapy (i.e. rt = 1):
+
+```{r}
+df_sub <- df[df$rt == 1, ]
+nrow(df_sub)
+```
+
+We see that the new data subset has `r nrow(df_sub)` rows instead of the `r nrow(df)` in the original dataset.
+
+And now there are only values of 1 for the variable "rt":
+
+```{r}
+table(df_sub$rt)
+```
+
+The `&` operator signifies "and".
+
+So for example we could subset based on patients who were treated with radiation therapy AND had grade 3 disease:
+
+```{r}
+df_sub <- df[df$rt == 1 & df$grade_3_vs_1_or_2 == 1, ]
+nrow(df_sub)
+```
+
+And we see that the new data subset has `r nrow(df_sub)` rows instead of the `r nrow(df)` in the original dataset.
+
+The `|` operator signifies "or".
+
+So for example we could subset based on patients who were treated with radiation therapy OR had grade 3 disease:
+
+```{r}
+df_sub <- df[df$rt == 1 | df$grade_3_vs_1_or_2 == 1, ]
+nrow(df_sub)
+```
+
+And we see that our new data subset has `r nrow(df_sub)` rows instead of the `r nrow(df)` in the original dataset.
+
+We can also create a subset of our data based on columns, for example limiting to radiation therapy:
+
+```{r}
+df_sub <- df[ , c("rt")]
+```
+
+Or we can simultaneously subset based on rows and columns, for example limiting to the radiation column among patients with grade 3 disease:
+
+```{r}
+df_sub <- df[df$grade_3_vs_1_or_2 == 1, c("rt")]
+```
+
+We can also subset directly within functions. Suppose we want to calculate the mean of the variable `age_at_diagnosis_years` in the dataframe `df`, but only among those who were treated with radiation therapy:
+
+```{r}
+mean(df$age_at_diagnosis_years[df$rt == 1])
+```
+
+This avoids creating additional datasets that may not be needed again.
+
+::: {.callout-note icon=false collapse="true"}
+## Session 2, Exercise 4
+
+Say we are only interested in the affect of radiation therapy in older adults. Create a subset of the breastcancer data in patients >=65 years old, and then look at a table of rt among the older subset.
+:::
+
+::: {.callout-warning icon=false collapse="true"}
+## Session 2, Exercise 4 Solution
+
+```{r}
+df_sub <- df[df$age_at_diagnosis_years >= 65, ]
+table(df_sub$rt)
+```
+
+:::
+
+

@@ -20,6 +20,8 @@ website:
             href: tools-loading-data.qmd
           - text: Tools - Reproducibility
             href: tools-reproducibility.qmd
+          - text: Tools - Basic programming
+            href: tools-basic-programming.qmd
           - text: Biostatistics and Epidemiology - Refresher
             href: bio-epi-refresher.qmd
           - text: Biostatistics and Epidemiology - Visualization
@@ -30,6 +32,9 @@ website:
             href: bio-epi-advanced.qmd
           - text: Biostatistics and Epidemiology - Statistical tests
             href: bio-epi-statistical-tests.qmd
+    right:
+      - icon: fab fa-github fa-lg
+        href: http://github.com/zabore/mmedr
 
 format:
   html:
@@ -38,4 +43,4 @@ format:
     linkcolor: "#f08122"
     css: styles.css
     toc: true
-    toc_depth: 4
+    toc_depth: 3

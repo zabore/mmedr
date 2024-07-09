@@ -2,7 +2,7 @@
 title: ""
 ---
 
-# Tools course - R Session 1
+# Installing and loading R packages
 
 In the next part of Session 1, we will learn how to install and load R packages.
 
@@ -130,7 +130,6 @@ It is important to include statements to **load** the packages used in any analy
 However, I do not think it is necessary to include statements to **install** the packages in the R script. I personally type these statements directly into the console since they do not need to be run every time and therefore are not part of the reproducibility pipeline.
 :::
 
-## Exercises
 
 ::: {.callout-note icon=false collapse="true"}
 ## Session 1, Exercise 2

@@ -43,5 +43,8 @@
   },
   "tools-reproducibility.qmd": {
     "tools-reproducibility.html": "20a59b6d"
+  },
+  "tools-basic-programming.qmd": {
+    "tools-basic-programming.html": "bb4c13f6"
   }
 }

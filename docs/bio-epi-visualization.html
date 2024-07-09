@@ -148,6 +148,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Tools - Reproducibility</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./tools-basic-programming.html">
+ <span class="dropdown-text">Tools - Basic programming</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./bio-epi-refresher.html">
  <span class="dropdown-text">Biostatistics and Epidemiology - Refresher</span></a>
   </li>  
@@ -170,6 +174,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
   </li>
 </ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="http://github.com/zabore/mmedr"> <i class="bi bi-fab fa-github fa-lg" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
 </div>
@@ -185,9 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#biostatistics-and-epidemiology---session-1" id="toc-biostatistics-and-epidemiology---session-1" class="nav-link active" data-scroll-target="#biostatistics-and-epidemiology---session-1">Biostatistics and Epidemiology - Session 1</a>
-  <ul class="collapse">
-  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link active" data-scroll-target="#visualization">Visualization</a>
   <ul class="collapse">
   <li><a href="#scatterplot" id="toc-scatterplot" class="nav-link" data-scroll-target="#scatterplot">Scatterplot</a></li>
   <li><a href="#line-chart" id="toc-line-chart" class="nav-link" data-scroll-target="#line-chart">Line chart</a></li>
@@ -196,7 +205,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot">Boxplot</a></li>
   <li><a href="#customization" id="toc-customization" class="nav-link" data-scroll-target="#customization">Customization</a></li>
   <li><a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting">Faceting</a></li>
-  <li><a href="#saving-plots" id="toc-saving-plots" class="nav-link" data-scroll-target="#saving-plots">Saving plots</a></li>
+  <li><a href="#saving-plots" id="toc-saving-plots" class="nav-link" data-scroll-target="#saving-plots">Saving plots</a>
+  <ul class="collapse">
+  <li><a href="#interactive-saving-options" id="toc-interactive-saving-options" class="nav-link" data-scroll-target="#interactive-saving-options">Interactive saving options</a></li>
+  <li><a href="#save-to-file-with-the-ggsave-function" id="toc-save-to-file-with-the-ggsave-function" class="nav-link" data-scroll-target="#save-to-file-with-the-ggsave-function">Save to file with the ggsave() function</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -208,11 +220,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="biostatistics-and-epidemiology---session-1" class="level1">
-<h1>Biostatistics and Epidemiology - Session 1</h1>
+<section id="visualization" class="level1">
+<h1>Visualization</h1>
 <p>In this session, we will review the basics of R and generating descriptive statistics in R, which were introduced in the Tools course. Then we will learn about data visualization, including creating scatterplots, bar charts, histograms, line charts, and boxplots. We’ll discuss plot customization, faceting, and saving plots. Both univariate and bivariable plotting will be covered.</p>
-<section id="visualization" class="level2">
-<h2 class="anchored" data-anchor-id="visualization">Visualization</h2>
 <p>Plotting features are available in base R, but a very popular package for plotting in R is the {ggplot2} package, which will be the focus in this course.</p>
 <p align="left">
 <img src="img/ggplot2.png" width="25%">
@@ -223,8 +233,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="scatterplot" class="level3">
-<h3 class="anchored" data-anchor-id="scatterplot">Scatterplot</h3>
+<section id="scatterplot" class="level2">
+<h2 class="anchored" data-anchor-id="scatterplot">Scatterplot</h2>
 <p>Scatterplots display the joint distribution of two continuous variables. For example, what if we wanted to see a plot of “marker” by “age”. Put age on the x-axis and marker on the y-axis.</p>
 <p>The first layer of the plot simply specifies the dataset and the basic aesthetics, in this case just the x-axis and y-axis variables:</p>
 <div class="cell">
@@ -244,8 +254,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Look for increasing or decreasing trends, or clusters of points.</p>
 </section>
-<section id="line-chart" class="level3">
-<h3 class="anchored" data-anchor-id="line-chart">Line chart</h3>
+<section id="line-chart" class="level2">
+<h2 class="anchored" data-anchor-id="line-chart">Line chart</h2>
 <p>We can also look at the association between two continuous variables using a line chart.</p>
 <p>The first layer of the plot specifies the dataset along with the x-axis and y-axis variables:</p>
 <div class="cell">
@@ -265,8 +275,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>There is no discernible pattern in this example, but we would look for increasing or decreasing trends in the line.</p>
 </section>
-<section id="bar-charts" class="level3">
-<h3 class="anchored" data-anchor-id="bar-charts">Bar charts</h3>
+<section id="bar-charts" class="level2">
+<h2 class="anchored" data-anchor-id="bar-charts">Bar charts</h2>
 <p>A bar chart can be used to visualize the distribution of a categorical variable.</p>
 <p>The first layer of the plot specifies the dataset and the x-axis variable:</p>
 <div class="cell">
@@ -286,8 +296,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The height of the bar is the number of observations in that category.</p>
 </section>
-<section id="histogram" class="level3">
-<h3 class="anchored" data-anchor-id="histogram">Histogram</h3>
+<section id="histogram" class="level2">
+<h2 class="anchored" data-anchor-id="histogram">Histogram</h2>
 <p>It is common to want to describe a continuous variable using a histogram, particularly to examine whether the distribution appears approximately normal.</p>
 <p>Let’s look at a histogram of marker. The first layer of the plot simply specifies the dataset and the basic aesthetics, in this case just the x-axis variable:</p>
 <div class="cell">
@@ -323,8 +333,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We find that the variable “marker” from the <code>trial</code> dataset has a positively skewed distribution.</p>
 </section>
-<section id="boxplot" class="level3">
-<h3 class="anchored" data-anchor-id="boxplot">Boxplot</h3>
+<section id="boxplot" class="level2">
+<h2 class="anchored" data-anchor-id="boxplot">Boxplot</h2>
 <p>Boxplots are another common way of examining continuous variables. The continuous variable is on the y-axis, and there is no variable on the x-axis:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mycsv, <span class="fu">aes</span>(<span class="at">y =</span> marker))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -355,8 +365,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="customization" class="level3">
-<h3 class="anchored" data-anchor-id="customization">Customization</h3>
+<section id="customization" class="level2">
+<h2 class="anchored" data-anchor-id="customization">Customization</h2>
 <p>There are many customizations available.</p>
 <p>For example, we can change the x-axis and y-axis labels:</p>
 <div class="cell">
@@ -430,8 +440,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>There are many other customizations available, see the <a href="https://ggplot2.tidyverse.org/">ggplot2 website</a> for details and for a helpful cheatsheet of plotting options.</p>
 </section>
-<section id="faceting" class="level3">
-<h3 class="anchored" data-anchor-id="faceting">Faceting</h3>
+<section id="faceting" class="level2">
+<h2 class="anchored" data-anchor-id="faceting">Faceting</h2>
 <p>What if it was of interest to see the distribution of marker according to disease grade?</p>
 <p>Add a layer to our histogram using <code>facet_grid()</code> to get panels for each level of the disease grade variable “grade”.</p>
 <p>Note that by default the y-axis and x-axis limits are fixed across all plots, so we can directly compare the distributions. It is possible to control this with the <code>scales</code> argument to <code>facet_grid()</code>, see <code>?facet_grid</code> for details.</p>
@@ -448,19 +458,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="saving-plots" class="level3">
-<h3 class="anchored" data-anchor-id="saving-plots">Saving plots</h3>
+<section id="saving-plots" class="level2">
+<h2 class="anchored" data-anchor-id="saving-plots">Saving plots</h2>
 <p>We will often want to save plots to an external file to insert into a later document. There are several options:</p>
 <ol type="1">
 <li><p>Use the interactive plot window to export your created plot.</p></li>
 <li><p>Use code to save your plot to an external location. There is a function called <code>ggsave()</code> specifically for saving results of <code>ggplot()</code>. By default it will save the last created plot, or you can save your plot to an object and specify it directly using the <code>plot</code> argument to <code>ggsave()</code>. You will specify the file format by including an extension, here “.png” on your filename. ]</p></li>
 </ol>
-<section id="interactive-saving-options" class="level4">
-<h4 class="anchored" data-anchor-id="interactive-saving-options">Interactive saving options</h4>
+<section id="interactive-saving-options" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-saving-options">Interactive saving options</h3>
 <p>Create your plot. Click on “Export” then select the option… 1. “Copy to Clipboard”. This will open a pop-up window where you could rescale the plot, if desired, and then click “Copy Plot” to copy the plot to your clipboard so that you can paste it into any external document. 2. “Save as Image…”. Here you can change the directory location where you want to save the plot to the same location where you have your code and data files for this class saved so far. You can select from a variety of file formats. Save it as “my-histogram” in PNG format. You can then insert this file into other documents as needed. 3. “Save as PDF…” and follow the same instructions as in B to save a .pdf version of your image.</p>
 </section>
-<section id="save-to-file-with-the-ggsave-function" class="level4">
-<h4 class="anchored" data-anchor-id="save-to-file-with-the-ggsave-function">Save to file with the ggsave() function</h4>
+<section id="save-to-file-with-the-ggsave-function" class="level3">
+<h3 class="anchored" data-anchor-id="save-to-file-with-the-ggsave-function">Save to file with the ggsave() function</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mycsv, <span class="fu">aes</span>(<span class="at">y =</span> marker)) <span class="sc">+</span> </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
@@ -471,7 +481,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>Adjust the width and height using the <code>width</code> and/or <code>height</code> arguments to the <code>ggsave()</code> function</em></p>
 
 
-</section>
 </section>
 </section>
 </section>
