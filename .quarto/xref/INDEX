@@ -49,5 +49,11 @@
   },
   "tools-manipulate-dataframes.qmd": {
     "tools-manipulate-dataframes.html": "31fd6b30"
+  },
+  "r-awesome.qmd": {
+    "r-awesome.html": "968eff93"
+  },
+  "tools-descriptive-statistics.qmd": {
+    "tools-descriptive-statistics.html": "7ac4a5fd"
   }
 }

@@ -4,3 +4,238 @@ title: ""
 
 # Manipulate dataframes
 
+In this session we will delve further into the topic of manipulating dataframes. The dataframe is the most common format of data with which most of us will work, with data arranged in a 2-dimensional format of rows and columns that can be displayed as a table. We were introduced to some basics of dataframe manipulation in the basic programming session, such as subsetting.
+
+## The dplyr package
+
+All of the manipulations you may want to do with a dataframe are possible with base R, but there are some packages that can make dataframe manipulation easier while also making our code more readable. 
+
+The {dplyr} package is a package specifically designed for data manipulation, and it we will focus on learning functions from this and other related packages in this course.
+
+Let's take a look at a few things we learned at the end of the basic programming session, and see how we could do things differently using the {dplyr} package.
+
+First, read in the breastcancer data for use in this session, and use the `clean_names()` function from the {janitor} package to standardize the column names to snake case.
+
+```{r eval = FALSE}
+library(readr)
+library(here)
+library(janitor)
+df <- read_csv(here("breastcancer.csv")) |> 
+  clean_names()
+```
+
+```{r echo = FALSE, message = FALSE}
+library(readr)
+library(janitor)
+df <- read_csv("H:/mmedr/breastcancer.csv") |> 
+  clean_names()
+```
+
+In the basic progamming session we learned how to subset dataframes using single brackets (`[]`), and to subset by either rows or columns.
+
+Recall that we can create a subset of our data based on the values in a row, such as limiting to patients who were treated with radiation therapy (i.e. rt = 1):
+
+```{r}
+df_sub <- df[df$rt == 1, ]
+```
+
+Or we can create a subset of our data based on columns, for example limiting to only the column containing age at diagnosis:
+
+```{r}
+df_sub <- df[ , c("age_dx_yrs")]
+```
+
+Using the {dplyr} package, we can similarly subset based on rows using the `filter()` functions and based on columns using the `select()` function.
+
+First, install (if needed) and load the {dplyr} package:
+
+```{r eval = FALSE}
+install.packages("dplyr")
+```
+
+```{r}
+library(dplyr)
+```
+
+We can similarly create a subset of the rows of patients who were treated with radiation therapy as:
+
+```{r}
+df_sub <-
+  df |> 
+  filter(rt == 1)
+```
+
+And we can similarly create a subset of the column of age at diagnosis as:
+
+```{r}
+df_sub <-
+  df |> 
+  select(age_dx_yrs)
+```
+
+Recall that the pipe operator passes what is on the LHS as the first argument to the function on the RHS. So the first argument to the `select()` function should be a dataframe, and we are passing our dataframe "df" to it.
+
+You'll notice that functions from the {dplyr} package work naturally with the pipe operator (`|>`). Using the pipe operator, it is also natural to program vertically rather than horizontally, making the code more readable.
+
+## Rename columns
+
+Sometimes we may wish to rename a column in a dataframe. Perhaps the name from the original data file was too long or cumbersome, or not descriptive enough.
+
+For example, perhaps the variable name "event" in our breastcancer data is not descriptive enough, and we would like to rename it as "recurrence" to indicate that the event it contains information about is a disease recurrence.
+
+We can use the `rename()` function from the {dplyr} package to do this.
+
+```{r}
+df_new <- 
+  df |> 
+  rename(recurrence = event)
+```
+
+The rename function takes the form `rename(new_name = old_name)` where `old_name` is the current name of the column in the data frame and `new_name` is the desired name of the column in the data frame.
+
+We can make sure this worked as expected by checking the names of our new dataframe `df_new` using the `names()` function, and we see that the second column is now named "recurrence" instead of "event":
+
+```{r}
+names(df_new)
+```
+
+We can also rename multiple columns at once, separated by commas:
+
+```{r}
+df_new <- 
+  df |> 
+  rename(recurrence = event, grade_categories = grade)
+
+names(df_new)
+```
+
+## Add columns
+
+Sometimes we will want to add columns to our dataframe. Typically we'll want to do this because we are calculating something new based on an existing variable in our dataframe.
+
+For example, we may be interested in the log of nodal ratio in our breastcancer data, since we know that nodal ratio is not a normally distributed variable.
+
+We can add a new calculated column to a dataframe using the `mutate()` function from the {dplyr} package:
+
+```{r}
+df_new <-
+  df |> 
+  mutate(
+    log_nodal_ratio = log(nodal_ratio)
+  )
+```
+
+The first argument to `mutate()` is the name of the dataframe, which comes from the LHS of the previous pipe (i.e. "df"). The second argument contains the name of the new variable, then an equal sign ("="), then the value to be assigned to the new variable. In this case the value we are assigning to the new variable "log_nodal_ratio" is the natural log (`log()`) of the current column "nodal_ratio".
+
+Now we can see the first few values of these two columns as:
+
+```{r}
+df_new |> 
+  select(nodal_ratio, log_nodal_ratio)
+```
+
+We can also add multiple new columns, separated by commas, for example the log of `nodal_ratio` and also the square of `tumor_size_cm`:
+
+```{r}
+df_new <-
+  df |> 
+  mutate(
+    log_nodal_ratio = log(nodal_ratio),
+    tumor_size_cm_squared = tumor_size_cm^2
+  )
+
+df_new |> 
+  select(nodal_ratio, log_nodal_ratio, tumor_size_cm, tumor_size_cm_squared)
+```
+
+## Group a continuous variable
+
+We just saw how to add a new column by performing a simple mathematical function on an existing column, but we can also use the `mutate()` function to add a new variable that categorizes a continuous variable by combining it with the `case_when()` function.
+
+Let's say, for example, that we want to add a new variable for age categories, called `age_cat` to our data, which categorizes age as <50 versus 50-65 versus >=65. 
+
+We can do this by:
+
+```{r}
+df_new <-
+  df |> 
+  mutate(
+    age_cat = case_when(
+      age_dx_yrs < 50 ~ "<50",
+      age_dx_yrs >= 50 & age_dx_yrs <= 65 ~ "50-65",
+      age_dx_yrs > 65 ~ ">65"
+    )
+  )
+```
+
+Inside the function `case_when()` we have a sequence of two-sided formulas, where the LHS determines which values of the existing variable (in this case "age_dx_yrs") match the case, and the RHS provides the replacement value for the new variable (in this case "age_cat"). The two sides of the formula are separated by the "~" symbol.
+
+We can see the result of this new categorical age variable by passing it to the `table()` function:
+
+```{r}
+table(df_new$age_cat)
+```
+
+## Recategorize a categorical variable
+
+Similarly, we can use the `mutate()` function together with `case_when()` to recategorize an already categorical variable. Say we want to combine grades I and II to compare against grade III from the existing variable "grade":
+
+```{r}
+df_new <- 
+  df |> 
+  mutate(
+    grade_bin = case_when(
+      grade %in% c("I", "II") ~ "I/II",
+      grade == "III" ~ "III"
+    )
+  )
+
+table(df_new$grade_bin)
+```
+
+::: {.callout-tip}
+The "%in%" operator is used to test for "vector membership", meaning whether the value on the LHS is a member of anything in the vector on the RHS. 
+:::
+
+## Sort by row
+
+There may be times when we want to sort our dataframe according to a value in a row. For example, maybe we want to sort our dataframe from youngest to oldest age. We can do this using the `arrange()` function from the {dplyr} package:
+
+```{r}
+df_new <-
+  df |> 
+  arrange(age_dx_yrs)
+
+df_new |> 
+  select(age_dx_yrs)
+```
+
+And we can see that the dataframe is now arranged from youngest to oldest age at diagnosis.
+
+We can also sort by multiple variables, separated by commas. For example, maybe we want to sort by age at diagnosis within levels of radiation therapy:
+
+```{r}
+df_new <-
+  df |> 
+  arrange(rt, age_dx_yrs)
+```
+
+## Reshape (wide to long, long to wide)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+---
+title: ""
+---
+
+Before we begin with any formal instruction, why R?
+
+Because R is awesome.
+
+
+

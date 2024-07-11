@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -204,17 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#advanced-programming" id="toc-advanced-programming" class="nav-link active" data-scroll-target="#advanced-programming">Advanced programming</a>
-  <ul class="collapse">
-  <li><a href="#custom-functions" id="toc-custom-functions" class="nav-link" data-scroll-target="#custom-functions">Custom functions</a></li>
-  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops">Loops</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -222,124 +178,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="advanced-programming" class="level1">
-<h1>Advanced programming</h1>
-<p>In this session, we will introduce methods to adjust p-values to account for multiple testing, learn advanced programming techniques including for loops and writing custom functions, and cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.</p>
-<section id="custom-functions" class="level2">
-<h2 class="anchored" data-anchor-id="custom-functions">Custom functions</h2>
-<p>We have previously discussed the role of functions in R, and have seen examples of built-in R functions, such as <code>mean()</code> and <code>p.adjust()</code>.</p>
-<p>But sometimes we’ll want to do something that isn’t included in a built-in R function, or that simplifies use of existing functions.</p>
-<p>User-defined functions are created using the <code>function()</code> function.</p>
-<p>Basic usage is:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span>(arguments) expression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Where <code>arguments</code> are arguments you supply to the function and <code>expression</code> is the expression you want to evaluate.</p>
-<p>For more complicated procedures, you can wrap multiple expressions in curly brackets, and can also specify what value to return using the <code>return()</code> function:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span>(arguments) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  expression1</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  expression2</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(value)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>For example, I always want to show NA values when I look at a contingency table, which means I have to type in the <code>useNA = "ifany"</code> arguement every time I use the <code>table()</code> function, since the default in that function is to exclude missing values.</p>
-<p>To streamline things, I can create a custom function that includes this option:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tabna <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">'ifany'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now instead of typing:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#StandWithUkraine</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(trial<span class="sc">$</span>response, <span class="at">useNA =</span> <span class="st">'ifany'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-   0    1 &lt;NA&gt; 
- 132   61    7 </code></pre>
-</div>
-</div>
-<p>I can type:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabna</span>(trial<span class="sc">$</span>response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>x
-   0    1 &lt;NA&gt; 
- 132   61    7 </code></pre>
-</div>
-</div>
-<p>This gets particularly useful for long or complex procedures, but is also really useful for short procedures that will be repeated many times - I often use this function 10+ times in a day.</p>
-<p>Try writing a custom function based on the <code>mean()</code> function but including the option to remove NAs from the calculation.</p>
-</section>
-<section id="loops" class="level2">
-<h2 class="anchored" data-anchor-id="loops">Loops</h2>
-<p>Often we will want to repeat a set of operations several times, and we can do so using a loop.</p>
-<p>There are three main types of loops in R:</p>
-<ul>
-<li>for loop</li>
-<li>while loop</li>
-<li>repeat loop</li>
-</ul>
-<p>We will focus on the for loop today.</p>
-<p>Here is a basic example using the <code>print()</code> function to repeatedly print a value:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1
-[1] 2
-[1] 3
-[1] 4
-[1] 5</code></pre>
-</div>
-</div>
-<p>Here are the steps of the execution:</p>
-<ol type="1">
-<li>The value of <code>i</code> is set to 1</li>
-<li>The value of <code>i</code> is printed to the console (first iteration complete)</li>
-<li>The value of <code>i</code> is set to 2 (the for loop loops back to the beginning)</li>
-<li>The value of <code>i</code> is printed to the console</li>
-</ol>
-<p>And so on until we reach the last value of <code>i</code>, and the process is complete.</p>
-<p>Say you have a biomarker in your dataset but you know the machine that generated the data has a lower limit of detection of 0.2. You could choose to impute half the detection limit for any values that fall below 0.2 as follows:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>trial<span class="sc">$</span>marker_corrected <span class="ot">&lt;-</span> trial<span class="sc">$</span>marker</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(trial)) {</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(trial<span class="sc">$</span>marker[i])) {</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    trial<span class="sc">$</span>marker_corrected[i] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (trial<span class="sc">$</span>marker[i] <span class="sc">&lt;</span> <span class="fl">0.2</span>) {</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    trial<span class="sc">$</span>marker_corrected[i] <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>And we can see that our new variable has the value 0.1 for all cases where <code>marker</code> was &lt;0.2:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>trial[trial<span class="sc">$</span>marker <span class="sc">&lt;</span> <span class="fl">0.2</span>, <span class="fu">c</span>(<span class="st">"marker"</span>, <span class="st">"marker_corrected"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 54 × 2
-   marker marker_corrected
-    &lt;dbl&gt;            &lt;dbl&gt;
- 1  0.16               0.1
- 2  0.144              0.1
- 3  0.06               0.1
- 4  0.128              0.1
- 5  0.157              0.1
- 6  0.066              0.1
- 7  0.096              0.1
- 8  0.105              0.1
- 9  0.043              0.1
-10  0.105              0.1
-# ℹ 44 more rows</code></pre>
-</div>
-</div>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

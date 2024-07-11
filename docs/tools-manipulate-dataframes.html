@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -98,6 +132,10 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-lessons">    
         <li>
+    <a class="dropdown-item" href="./r-awesome.html">
+ <span class="dropdown-text">Why R is awesome</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./tools-introduction.html">
  <span class="dropdown-text">Tools - Introduction</span></a>
   </li>  
@@ -120,6 +158,10 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="./tools-manipulate-dataframes.html">
  <span class="dropdown-text">Tools - Manipulate dataframes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./tools-descriptive-statistics.html">
+ <span class="dropdown-text">Tools - Descriptive statistics</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./bio-epi-refresher.html">
@@ -166,7 +208,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#manipulate-dataframes" id="toc-manipulate-dataframes" class="nav-link active" data-scroll-target="#manipulate-dataframes">Manipulate dataframes</a></li>
+  <li><a href="#manipulate-dataframes" id="toc-manipulate-dataframes" class="nav-link active" data-scroll-target="#manipulate-dataframes">Manipulate dataframes</a>
+  <ul class="collapse">
+  <li><a href="#the-dplyr-package" id="toc-the-dplyr-package" class="nav-link" data-scroll-target="#the-dplyr-package">The dplyr package</a></li>
+  <li><a href="#rename-columns" id="toc-rename-columns" class="nav-link" data-scroll-target="#rename-columns">Rename columns</a></li>
+  <li><a href="#add-columns" id="toc-add-columns" class="nav-link" data-scroll-target="#add-columns">Add columns</a></li>
+  <li><a href="#group-a-continuous-variable" id="toc-group-a-continuous-variable" class="nav-link" data-scroll-target="#group-a-continuous-variable">Group a continuous variable</a></li>
+  <li><a href="#recategorize-a-categorical-variable" id="toc-recategorize-a-categorical-variable" class="nav-link" data-scroll-target="#recategorize-a-categorical-variable">Recategorize a categorical variable</a></li>
+  <li><a href="#sort-by-row" id="toc-sort-by-row" class="nav-link" data-scroll-target="#sort-by-row">Sort by row</a></li>
+  <li><a href="#reshape-wide-to-long-long-to-wide" id="toc-reshape-wide-to-long-long-to-wide" class="nav-link" data-scroll-target="#reshape-wide-to-long-long-to-wide">Reshape (wide to long, long to wide)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -178,8 +229,272 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="manipulate-dataframes" class="level1">
 <h1>Manipulate dataframes</h1>
+<p>In this session we will delve further into the topic of manipulating dataframes. The dataframe is the most common format of data with which most of us will work, with data arranged in a 2-dimensional format of rows and columns that can be displayed as a table. We were introduced to some basics of dataframe manipulation in the basic programming session, such as subsetting.</p>
+<section id="the-dplyr-package" class="level2">
+<h2 class="anchored" data-anchor-id="the-dplyr-package">The dplyr package</h2>
+<p>All of the manipulations you may want to do with a dataframe are possible with base R, but there are some packages that can make dataframe manipulation easier while also making our code more readable.</p>
+<p>The {dplyr} package is a package specifically designed for data manipulation, and it we will focus on learning functions from this and other related packages in this course.</p>
+<p>Let’s take a look at a few things we learned at the end of the basic programming session, and see how we could do things differently using the {dplyr} package.</p>
+<p>First, read in the breastcancer data for use in this session, and use the <code>clean_names()</code> function from the {janitor} package to standardize the column names to snake case.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"breastcancer.csv"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the basic progamming session we learned how to subset dataframes using single brackets (<code>[]</code>), and to subset by either rows or columns.</p>
+<p>Recall that we can create a subset of our data based on the values in a row, such as limiting to patients who were treated with radiation therapy (i.e.&nbsp;rt = 1):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df[df<span class="sc">$</span>rt <span class="sc">==</span> <span class="dv">1</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Or we can create a subset of our data based on columns, for example limiting to only the column containing age at diagnosis:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df[ , <span class="fu">c</span>(<span class="st">"age_dx_yrs"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using the {dplyr} package, we can similarly subset based on rows using the <code>filter()</code> functions and based on columns using the <code>select()</code> function.</p>
+<p>First, install (if needed) and load the {dplyr} package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+</div>
+<p>We can similarly create a subset of the rows of patients who were treated with radiation therapy as:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rt <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And we can similarly create a subset of the column of age at diagnosis as:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age_dx_yrs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Recall that the pipe operator passes what is on the LHS as the first argument to the function on the RHS. So the first argument to the <code>select()</code> function should be a dataframe, and we are passing our dataframe “df” to it.</p>
+<p>You’ll notice that functions from the {dplyr} package work naturally with the pipe operator (<code>|&gt;</code>). Using the pipe operator, it is also natural to program vertically rather than horizontally, making the code more readable.</p>
+</section>
+<section id="rename-columns" class="level2">
+<h2 class="anchored" data-anchor-id="rename-columns">Rename columns</h2>
+<p>Sometimes we may wish to rename a column in a dataframe. Perhaps the name from the original data file was too long or cumbersome, or not descriptive enough.</p>
+<p>For example, perhaps the variable name “event” in our breastcancer data is not descriptive enough, and we would like to rename it as “recurrence” to indicate that the event it contains information about is a disease recurrence.</p>
+<p>We can use the <code>rename()</code> function from the {dplyr} package to do this.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_new <span class="ot">&lt;-</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">recurrence =</span> event)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The rename function takes the form <code>rename(new_name = old_name)</code> where <code>old_name</code> is the current name of the column in the data frame and <code>new_name</code> is the desired name of the column in the data frame.</p>
+<p>We can make sure this worked as expected by checking the names of our new dataframe <code>df_new</code> using the <code>names()</code> function, and we see that the second column is now named “recurrence” instead of “event”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "time"                     "recurrence"              
+ [3] "rt"                       "age_dx_yrs"              
+ [5] "tumor_size_cm"            "grade"                   
+ [7] "n_ln_pos_3_vs_1or2"       "nodal_ratio"             
+ [9] "lvi"                      "er_or_pr_pos"            
+[11] "her2_pos"                 "quadrant_inner_vs_other" 
+[13] "optimal_systemic_therapy"</code></pre>
+</div>
+</div>
+<p>We can also rename multiple columns at once, separated by commas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_new <span class="ot">&lt;-</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">recurrence =</span> event, <span class="at">grade_categories =</span> grade)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "time"                     "recurrence"              
+ [3] "rt"                       "age_dx_yrs"              
+ [5] "tumor_size_cm"            "grade_categories"        
+ [7] "n_ln_pos_3_vs_1or2"       "nodal_ratio"             
+ [9] "lvi"                      "er_or_pr_pos"            
+[11] "her2_pos"                 "quadrant_inner_vs_other" 
+[13] "optimal_systemic_therapy"</code></pre>
+</div>
+</div>
+</section>
+<section id="add-columns" class="level2">
+<h2 class="anchored" data-anchor-id="add-columns">Add columns</h2>
+<p>Sometimes we will want to add columns to our dataframe. Typically we’ll want to do this because we are calculating something new based on an existing variable in our dataframe.</p>
+<p>For example, we may be interested in the log of nodal ratio in our breastcancer data, since we know that nodal ratio is not a normally distributed variable.</p>
+<p>We can add a new calculated column to a dataframe using the <code>mutate()</code> function from the {dplyr} package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_new <span class="ot">&lt;-</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_nodal_ratio =</span> <span class="fu">log</span>(nodal_ratio)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The first argument to <code>mutate()</code> is the name of the dataframe, which comes from the LHS of the previous pipe (i.e.&nbsp;“df”). The second argument contains the name of the new variable, then an equal sign (“=”), then the value to be assigned to the new variable. In this case the value we are assigning to the new variable “log_nodal_ratio” is the natural log (<code>log()</code>) of the current column “nodal_ratio”.</p>
+<p>Now we can see the first few values of these two columns as:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_new <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(nodal_ratio, log_nodal_ratio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,000 × 2
+   nodal_ratio log_nodal_ratio
+         &lt;dbl&gt;           &lt;dbl&gt;
+ 1       0.159          -1.84 
+ 2       0.157          -1.85 
+ 3       0.190          -1.66 
+ 4       0.377          -0.975
+ 5       0.608          -0.498
+ 6       0.291          -1.23 
+ 7       0.497          -0.698
+ 8       0.466          -0.764
+ 9       0.209          -1.56 
+10       0.423          -0.859
+# ℹ 2,990 more rows</code></pre>
+</div>
+</div>
+<p>We can also add multiple new columns, separated by commas, for example the log of <code>nodal_ratio</code> and also the square of <code>tumor_size_cm</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_new <span class="ot">&lt;-</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_nodal_ratio =</span> <span class="fu">log</span>(nodal_ratio),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tumor_size_cm_squared =</span> tumor_size_cm<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>df_new <span class="sc">|&gt;</span> </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(nodal_ratio, log_nodal_ratio, tumor_size_cm, tumor_size_cm_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,000 × 4
+   nodal_ratio log_nodal_ratio tumor_size_cm tumor_size_cm_squared
+         &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;                 &lt;dbl&gt;
+ 1       0.159          -1.84          3.57                 12.7  
+ 2       0.157          -1.85          1.43                  2.05 
+ 3       0.190          -1.66         NA                    NA    
+ 4       0.377          -0.975         3.49                 12.2  
+ 5       0.608          -0.498         1.97                  3.89 
+ 6       0.291          -1.23          0.696                 0.484
+ 7       0.497          -0.698         2.93                  8.56 
+ 8       0.466          -0.764         1.10                  1.22 
+ 9       0.209          -1.56          1.25                  1.55 
+10       0.423          -0.859         3.12                  9.73 
+# ℹ 2,990 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="group-a-continuous-variable" class="level2">
+<h2 class="anchored" data-anchor-id="group-a-continuous-variable">Group a continuous variable</h2>
+<p>We just saw how to add a new column by performing a simple mathematical function on an existing column, but we can also use the <code>mutate()</code> function to add a new variable that categorizes a continuous variable by combining it with the <code>case_when()</code> function.</p>
+<p>Let’s say, for example, that we want to add a new variable for age categories, called <code>age_cat</code> to our data, which categorizes age as &lt;50 versus 50-65 versus &gt;=65.</p>
+<p>We can do this by:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_new <span class="ot">&lt;-</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>      age_dx_yrs <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"&lt;50"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>      age_dx_yrs <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">&amp;</span> age_dx_yrs <span class="sc">&lt;=</span> <span class="dv">65</span> <span class="sc">~</span> <span class="st">"50-65"</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>      age_dx_yrs <span class="sc">&gt;</span> <span class="dv">65</span> <span class="sc">~</span> <span class="st">"&gt;65"</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Inside the function <code>case_when()</code> we have a sequence of two-sided formulas, where the LHS determines which values of the existing variable (in this case “age_dx_yrs”) match the case, and the RHS provides the replacement value for the new variable (in this case “age_cat”). The two sides of the formula are separated by the “~” symbol.</p>
+<p>We can see the result of this new categorical age variable by passing it to the <code>table()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df_new<span class="sc">$</span>age_cat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  &lt;50   &gt;65 50-65 
+  891   873  1236 </code></pre>
+</div>
+</div>
+</section>
+<section id="recategorize-a-categorical-variable" class="level2">
+<h2 class="anchored" data-anchor-id="recategorize-a-categorical-variable">Recategorize a categorical variable</h2>
+<p>Similarly, we can use the <code>mutate()</code> function together with <code>case_when()</code> to recategorize an already categorical variable. Say we want to combine grades I and II to compare against grade III from the existing variable “grade”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df_new <span class="ot">&lt;-</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">grade_bin =</span> <span class="fu">case_when</span>(</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>      grade <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"I"</span>, <span class="st">"II"</span>) <span class="sc">~</span> <span class="st">"I/II"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>      grade <span class="sc">==</span> <span class="st">"III"</span> <span class="sc">~</span> <span class="st">"III"</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df_new<span class="sc">$</span>grade_bin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+I/II  III 
+1672 1328 </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The “%in%” operator is used to test for “vector membership”, meaning whether the value on the LHS is a member of anything in the vector on the RHS.</p>
+</div>
+</div>
+</section>
+<section id="sort-by-row" class="level2">
+<h2 class="anchored" data-anchor-id="sort-by-row">Sort by row</h2>
+<p>There may be times when we want to sort our dataframe according to a value in a row. For example, maybe we want to sort our dataframe from youngest to oldest age. We can do this using the <code>arrange()</code> function from the {dplyr} package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df_new <span class="ot">&lt;-</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(age_dx_yrs)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>df_new <span class="sc">|&gt;</span> </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age_dx_yrs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,000 × 1
+   age_dx_yrs
+        &lt;dbl&gt;
+ 1       18.2
+ 2       19.6
+ 3       19.9
+ 4       20.1
+ 5       21.0
+ 6       21.3
+ 7       21.3
+ 8       22.0
+ 9       22.1
+10       22.3
+# ℹ 2,990 more rows</code></pre>
+</div>
+</div>
+<p>And we can see that the dataframe is now arranged from youngest to oldest age at diagnosis.</p>
+<p>We can also sort by multiple variables, separated by commas. For example, maybe we want to sort by age at diagnosis within levels of radiation therapy:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df_new <span class="ot">&lt;-</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rt, age_dx_yrs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reshape-wide-to-long-long-to-wide" class="level2">
+<h2 class="anchored" data-anchor-id="reshape-wide-to-long-long-to-wide">Reshape (wide to long, long to wide)</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

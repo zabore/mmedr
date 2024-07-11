@@ -12,6 +12,8 @@ website:
         text: Outline
       - text: Lessons
         menu:
+          - text: Why R is awesome
+            href: r-awesome.qmd
           - text: Tools - Introduction
             href: tools-introduction.qmd
           - text: Tools - Install packages
@@ -24,6 +26,8 @@ website:
             href: tools-basic-programming.qmd
           - text: Tools - Manipulate dataframes
             href: tools-manipulate-dataframes.qmd
+          - text: Tools - Descriptive statistics
+            href: tools-descriptive-statistics.qmd
           - text: Biostatistics and Epidemiology - Refresher
             href: bio-epi-refresher.qmd
           - text: Biostatistics and Epidemiology - Visualization

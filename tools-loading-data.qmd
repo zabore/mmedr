@@ -29,8 +29,9 @@ If you are creating your own datasets for future analysis in R, or advising some
 ```{r echo = FALSE, eval = FALSE}
 # Write out the simulated breast cancer dataset in my GitHub repo cancersimdata to Excel and save it in a data folder on the course website
 library(cancersimdata)
-library(xlsx)
-write.xlsx(bc_rt_data, file = here::here("data/breastcancer.xlsx"), row.names = FALSE)
+library(openxlsx)
+write.xlsx(bc_rt_data, 
+           file = here::here("data/breastcancer.xlsx"))
 ```
 
 The dataset used in this course is stored in this [folder](https://github.com/zabore/mmedr/tree/main/data). We need to download it from 
