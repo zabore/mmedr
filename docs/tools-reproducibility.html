@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -170,7 +204,18 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#reproducility" id="toc-reproducility" class="nav-link active" data-scroll-target="#reproducility">Reproducility</a>
+  <ul class="collapse">
+  <li><a href="#r-projects" id="toc-r-projects" class="nav-link" data-scroll-target="#r-projects">R projects</a></li>
+  <li><a href="#project-workflow-and-organization" id="toc-project-workflow-and-organization" class="nav-link" data-scroll-target="#project-workflow-and-organization">Project workflow and organization</a></li>
+  <li><a href="#here-package" id="toc-here-package" class="nav-link" data-scroll-target="#here-package">{here} package</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -178,10 +223,145 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Before we begin with any formal instruction, why R?</p>
-<p>Because R is awesome.</p>
+<section id="reproducility" class="level1">
+<h1>Reproducility</h1>
+<p>In this part of Session 1, we will discuss the importance of reproducibility in statistical programming, and tools available in R to promote reproducible research.</p>
+<p>We can make the statistical analysis components of our scientific research more reproducible using a variety of tools in R.</p>
+<section id="r-projects" class="level2">
+<h2 class="anchored" data-anchor-id="r-projects">R projects</h2>
+<p>One challenge in scientific research is organization. Keeping track of data, code, sources of information, connections between data sets and images, connections between lab equipment and the data they produce, and even basic file organization. We can’t tackle all of these issues in R, but we can address some of them.</p>
+<p>The first area we can focus on is starting with a project oriented workflow.</p>
+<p>First, create a folder where everything related to one project will be stored. In this case, let’s consider a “project” to be a single scientific question of interest. Every document related to this question of interest, from lab notes to plots to code for statistical analyses, manuscript drafs, and references will be stored in this one folder. The folder should be created in a backed-up location on your computer.</p>
+<p>Next, give the folder a meaningful name. This will be unique to everone’s line of work, but you should consider devising a system that you will use for all of your projects. For example, in my collaborative work I always name my project folders with PILastName-FellowLastName-TwoToThreeWordDescription. In this way I always know what pattern to look for when I’m trying to locate a specific project folder in the future.</p>
+<p>Let’s say I’m doing a project for this class with an investigator named Jane Doe with a fellow named Bob Clark about breast cancer outcomes, I may create a project folder named “Doe-Clark-breast-cancer-outcomes” under my “mmedr” folder on my home network drive.</p>
+<p align="center">
+<img src="img/project-folder.png" width="90%">
+</p>
+<p>Then, create an RStudio project in this location. An RStudio project is an easy way to divide your work into multiple contexts, each with their own working directory and source documents.</p>
+<p>To create an RStudio project in an existing directory, in RStudio go to File &gt; New Project.</p>
+<p align="center">
+<img src="img/rstudio-new-project.png" width="90%">
+</p>
+<p>Select “Existing directory” from the pop-up box.</p>
+<p align="center">
+<img src="img/rstudio-new-project-existing.png" width="90%">
+</p>
+<p>Then use “Browse” to navigate to the desired folder, and select “Create Project”.</p>
+<p align="center">
+<img src="img/rstudio-new-project-existing-create.png" width="90%">
+</p>
+<p>Your RStudio session will then automatically switch to your new R project.</p>
+<p>You will notice two things.</p>
+<ol type="1">
+<li>There is a new .Rproj file in your project folder with the same name as the folder.</li>
+</ol>
+<p align="center">
+<img src="img/project-folder-rproj.png" width="90%">
+</p>
+<ol start="2" type="1">
+<li>Now you have a fresh RStudio session, with the name of the project indicated in the top right corner.</li>
+</ol>
+<p align="center">
+<img src="img/rstudio-project-session.png" width="90%">
+</p>
+</section>
+<section id="project-workflow-and-organization" class="level2">
+<h2 class="anchored" data-anchor-id="project-workflow-and-organization">Project workflow and organization</h2>
+<p>Now every time you want to work on an analysis for this project, you will first open the RStudio project.</p>
+<p>You can do this in one of several ways.</p>
+<ol type="1">
+<li>On Posit Workbench or your personal computer, in RStudio go to File &gt; Open Project</li>
+</ol>
+<p align="center">
+<img src="img/rstudio-open-project-1.png" width="90%">
+</p>
+<ol start="2" type="1">
+<li>On Posit Workbench or your personal computer, in RStudio click on the arrow next to the project name in the top right corner and either select “Open Project” or choose from the list of recently opened project names.</li>
+</ol>
+<p align="center">
+<img src="img/rstudio-open-project-2.png" width="90%">
+</p>
+<ol start="3" type="1">
+<li>On your personal computer, double click on the R project file in your project folder, which will open a new RStudio session.</li>
+</ol>
+<p align="center">
+<img src="img/project-folder-rproj.png" width="90%">
+</p>
+<p>Benefits of working inside an RStudio project include:</p>
+<ul>
+<li>Starting a fresh R session every time the project is opened</li>
+<li>The current working directory is set to the project directory</li>
+<li>Previously open R scrips are restored at project startup</li>
+<li>Other RStudio settings are restored</li>
+<li>Multiple RStudio sessions can be open at one time, running independently in different RStudio projects</li>
+</ul>
+<p>It is beneficial to create a standard set of sub-folders using standard naming conventions across projects. This will depend on the type of materials you typically have, but here is an example of my persona structure:</p>
+<p align="center">
+<img src="img/folder-structure.png" width="90%">
+</p>
+<ul>
+<li>code: contains all of my R code files</li>
+<li>data: contains all of my datasets</li>
+<li>manuscript: contains all manuscript drafts</li>
+<li>meeting-notes: contains any notes from meetings</li>
+<li>references: contains PDFs of references as well as any reference manager files</li>
+</ul>
+<p>Then I will name documents in standard ways and managing versions over time by appending the date in yyyy-mm-dd format so that they sort appropriately. I use caution to name files in standard ways using all lowercase letters, dashes between words, and letters or numbers to keep files in order if they need to be used in a certain order. File and folder names with spaces are not readable by all computers, and should be avoided.</p>
+</section>
+<section id="here-package" class="level2">
+<h2 class="anchored" data-anchor-id="here-package">{here} package</h2>
+<p>While use of an RStudio project does automatically set the working directory to the project directory, the relative file paths will still not be completely portable. For example, if I were to move the entire project folder “Doe-Clark-breast-cancer-outcomes” to a different location on my computer, any file paths that were relative to the previous location would be broken.</p>
+<p>For example, the location of my project folder is: /home/zabore2/mmedr/Doe-Clark-breast-Cancer-Outcomes</p>
+<p>Under that project folder, I have a folder called “data”. I have copied “breastcancer.csv” into this sub-folder.</p>
+<p>To read in the data in the RStudio project, use:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"./data/breastcancer.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This is a <em>relative filepath</em> to the full filepath “/home/zabore2/mmedr/Doe-Clark-breast-cancer-outcomes/data/breastcancer.csv”. The code file I’m working from is in a parallel sub-folder named “code”, so I have to go up one level to the main project folder (“.”) then back down into the data folder (“/data”) and then reference the file name (“/breastcancer.csv”). This is a nice short relative file path, but if I were to move this project off my home directory and onto a shared network drive, for example, any such relative filepaths would then be broken. Also, coding conventions are not the same across different operating systems, so these relative paths used in Linux will not work on Windows, for example.</p>
+<p>To avoid this, we can take advantage of the {here} package.</p>
+<p>First, install and load the {here} package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"here"</span>) <span class="co"># Already installed on Posit Workbench</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When you run <code>library(here)</code> in your RStudio project, you will automatically see the location where “here” starts in the console:</p>
+<p align="center">
+<img src="img/rproject-here.png" width="90%">
+</p>
+<p>And you can now refer to the same relative filepath relative to the main project folder, separating as many levels of sub-folder names as needed by commas, as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"breastcancer.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now this code would work both across computers with different operating systems, and also if the project folder is moved to any other location.</p>
+<p>This avoids issues of reproducibility related to file paths.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Session 1, Exercise 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Create a project folder for our fake project under your “mmedr” folder.</li>
+<li>Create an RStudio project in this folder location</li>
+<li>Create sub-folders named “code” and “data”</li>
+<li>Copy the breastcancer.csv file into the “code” folder</li>
+<li>Create a new R script called “session1-exercise4.R” saved to the code folder</li>
+<li>In the R script, load the {here} package and use it to read in the breastcancer.csv data</li>
+</ol>
+</div>
+</div>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

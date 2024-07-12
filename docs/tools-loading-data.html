@@ -101,6 +101,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -208,10 +237,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#advanced-programming" id="toc-advanced-programming" class="nav-link active" data-scroll-target="#advanced-programming">Advanced programming</a>
+  <li><a href="#loading-data" id="toc-loading-data" class="nav-link active" data-scroll-target="#loading-data">Loading data</a>
   <ul class="collapse">
-  <li><a href="#custom-functions" id="toc-custom-functions" class="nav-link" data-scroll-target="#custom-functions">Custom functions</a></li>
-  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops">Loops</a></li>
+  <li><a href="#dataset-for-use-in-this-class" id="toc-dataset-for-use-in-this-class" class="nav-link" data-scroll-target="#dataset-for-use-in-this-class">Dataset for use in this class</a></li>
+  <li><a href="#loading-excel-data" id="toc-loading-excel-data" class="nav-link" data-scroll-target="#loading-excel-data">Loading Excel data</a>
+  <ul class="collapse">
+  <li><a href="#the-readxl-package" id="toc-the-readxl-package" class="nav-link" data-scroll-target="#the-readxl-package">The readxl package</a></li>
+  <li><a href="#convert-to-.csv" id="toc-convert-to-.csv" class="nav-link" data-scroll-target="#convert-to-.csv">Convert to .csv</a></li>
+  <li><a href="#convert-to-.csv-and-use-the-readr-package" id="toc-convert-to-.csv-and-use-the-readr-package" class="nav-link" data-scroll-target="#convert-to-.csv-and-use-the-readr-package">Convert to .csv and use the readr package</a></li>
+  </ul></li>
+  <li><a href="#loading-other-file-formats" id="toc-loading-other-file-formats" class="nav-link" data-scroll-target="#loading-other-file-formats">Loading other file formats</a></li>
+  <li><a href="#variable-names-with-the-janitor-package" id="toc-variable-names-with-the-janitor-package" class="nav-link" data-scroll-target="#variable-names-with-the-janitor-package">Variable names with the {janitor} package</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -222,116 +258,273 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="advanced-programming" class="level1">
-<h1>Advanced programming</h1>
-<p>In this session, we will introduce methods to adjust p-values to account for multiple testing, learn advanced programming techniques including for loops and writing custom functions, and cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.</p>
-<section id="custom-functions" class="level2">
-<h2 class="anchored" data-anchor-id="custom-functions">Custom functions</h2>
-<p>We have previously discussed the role of functions in R, and have seen examples of built-in R functions, such as <code>mean()</code> and <code>p.adjust()</code>.</p>
-<p>But sometimes we’ll want to do something that isn’t included in a built-in R function, or that simplifies use of existing functions.</p>
-<p>User-defined functions are created using the <code>function()</code> function.</p>
-<p>Basic usage is:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span>(arguments) expression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="loading-data" class="level1">
+<h1>Loading data</h1>
+<p>In this part of Session 1, we will learn how to load external data into R.</p>
+<p>Many R packages come with data bundled into them. These datasets are available for use as soon as the package is loaded.</p>
+<p>However, we often need to load external data that we’ve generated in our lab or in a clinical study, a situation addressed in this lesson.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Where <code>arguments</code> are arguments you supply to the function and <code>expression</code> is the expression you want to evaluate.</p>
-<p>For more complicated procedures, you can wrap multiple expressions in curly brackets, and can also specify what value to return using the <code>return()</code> function:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span>(arguments) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  expression1</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  expression2</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(value)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>For example, I always want to show NA values when I look at a contingency table, which means I have to type in the <code>useNA = "ifany"</code> arguement every time I use the <code>table()</code> function, since the default in that function is to exclude missing values.</p>
-<p>To streamline things, I can create a custom function that includes this option:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tabna <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">'ifany'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now instead of typing:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(trial<span class="sc">$</span>response, <span class="at">useNA =</span> <span class="st">'ifany'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-   0    1 &lt;NA&gt; 
- 132   61    7 </code></pre>
+<div class="callout-title-container flex-fill">
+Formatting data for use in R
 </div>
 </div>
-<p>I can type:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabna</span>(trial<span class="sc">$</span>response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>x
-   0    1 &lt;NA&gt; 
- 132   61    7 </code></pre>
-</div>
-</div>
-<p>This gets particularly useful for long or complex procedures, but is also really useful for short procedures that will be repeated many times - I often use this function 10+ times in a day.</p>
-<p>Try writing a custom function based on the <code>mean()</code> function but including the option to remove NAs from the calculation.</p>
-</section>
-<section id="loops" class="level2">
-<h2 class="anchored" data-anchor-id="loops">Loops</h2>
-<p>Often we will want to repeat a set of operations several times, and we can do so using a loop.</p>
-<p>There are three main types of loops in R:</p>
+<div class="callout-body-container callout-body">
+<p>If you are creating your own datasets for future analysis in R, or advising someone else about how best to do so, here are some tips:</p>
 <ul>
-<li>for loop</li>
-<li>while loop</li>
-<li>repeat loop</li>
+<li>One row per patient/subject</li>
+<li>Column with a unique identifier for each subject (i.e.&nbsp;a patient ID)
+<ul>
+<li>OR, if you have longitudinal or other repeated measures data, have another column identifying the repeat instance and then there can be multiple rows per patient for each repeat instance</li>
+</ul></li>
+<li>One row of column labels (i.e.&nbsp;avoid a second row of headers where some cells are merged, etc)</li>
+<li>One measurement with one column name in each column (i.e.&nbsp;avoid separating multiple pieces of data by commas, semicolons, etc within a cell)</li>
+<li>Simple variable names for each column - avoid long names and special characters</li>
 </ul>
-<p>We will focus on the for loop today.</p>
-<p>Here is a basic example using the <code>print()</code> function to repeatedly print a value:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1
-[1] 2
-[1] 3
-[1] 4
-[1] 5</code></pre>
 </div>
 </div>
-<p>Here are the steps of the execution:</p>
+<section id="dataset-for-use-in-this-class" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-for-use-in-this-class">Dataset for use in this class</h2>
+<p>The dataset used in this course is stored in this <a href="https://github.com/zabore/mmedr/tree/main/data">folder</a>. We need to download it from GitHub onto our personal computers.</p>
 <ol type="1">
-<li>The value of <code>i</code> is set to 1</li>
-<li>The value of <code>i</code> is printed to the console (first iteration complete)</li>
-<li>The value of <code>i</code> is set to 2 (the for loop loops back to the beginning)</li>
-<li>The value of <code>i</code> is printed to the console</li>
+<li><p>Navigate to the above location and <strong>left click</strong> on breastcancer.xlsx.</p></li>
+<li><p>For a .xlsx file like this, you won’t see a preview of the data. Now <strong>right click</strong> on “Raw” and then select “Save link as…”</p></li>
 </ol>
-<p>And so on until we reach the last value of <code>i</code>, and the process is complete.</p>
-<p>Say you have a biomarker in your dataset but you know the machine that generated the data has a lower limit of detection of 0.2. You could choose to impute half the detection limit for any values that fall below 0.2 as follows:</p>
+<p align="center">
+<img src="img/github-save-data.png" width="90%">
+</p>
+<ol start="3" type="1">
+<li>Navigate to the “mmedr” folder we created earlier on your home directory, and save the file there as “breastcancer.xlsx”.</li>
+</ol>
+</section>
+<section id="loading-excel-data" class="level2">
+<h2 class="anchored" data-anchor-id="loading-excel-data">Loading Excel data</h2>
+<p>The most common data format we work with are data from <strong>Excel</strong>. We will learn three ways to load Excel datasets into R, and then will introduce some options for alternative file types.</p>
+<p>We will look at options to:</p>
+<ul>
+<li>Read in Excel files with {readxl}</li>
+<li>Read in Excel files by converting to .csv first</li>
+<li>Read in Excel files by converting to .csv first and using the {readr} package</li>
+</ul>
+<section id="the-readxl-package" class="level3">
+<h3 class="anchored" data-anchor-id="the-readxl-package">The readxl package</h3>
+<p>First, install the {readxl} package from CRAN, then load the newly installed package. This should have been completed in Session 1, Exercise 2.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>trial<span class="sc">$</span>marker_corrected <span class="ot">&lt;-</span> trial<span class="sc">$</span>marker</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(trial)) {</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(trial<span class="sc">$</span>marker[i])) {</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    trial<span class="sc">$</span>marker_corrected[i] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (trial<span class="sc">$</span>marker[i] <span class="sc">&lt;</span> <span class="fl">0.2</span>) {</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    trial<span class="sc">$</span>marker_corrected[i] <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>) <span class="co"># Already installed on Posit Workbench</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>And we can see that our new variable has the value 0.1 for all cases where <code>marker</code> was &lt;0.2:</p>
+<p>Then use the <code>read_excel()</code> function with the appropriate filepath to read in the data and create an object called “mydf”:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>trial[trial<span class="sc">$</span>marker <span class="sc">&lt;</span> <span class="fl">0.2</span>, <span class="fu">c</span>(<span class="st">"marker"</span>, <span class="st">"marker_corrected"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mydf <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/folder/filename.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>R treats the \ as a special character so you either need to use / or <span class="math inline">\(\backslash \backslash\)</span> in file paths.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>On the Linux server (i.e.&nbsp;on Rstudio Pro via Posit Workbench), the path starts at /home/username, so filepaths relative to your directory can start “~/” followed by the folder where the file is located.</p>
+</div>
+</div>
+</section>
+<section id="convert-to-.csv" class="level3">
+<h3 class="anchored" data-anchor-id="convert-to-.csv">Convert to .csv</h3>
+<p>Alternatively, we can convert the file from .xlsx format to .csv format first, and then read it in.</p>
+<p>Advantages: removes some of the possible formatting pitfalls associated with Excel files, and you don’t need any special packages to read this format.</p>
+<ol type="1">
+<li>Open the Excel file.</li>
+<li>Go to File &gt; Save As and navigate to the folder where you want to save the data, if you are not already there</li>
+<li>Select “CSV (Comma delimited)” from the “Save as type” drop down and save the file with the desired name</li>
+<li>Use the <code>read.csv()</code> function with the appropriate file path to read in the data and create an object called “mycsv”</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"~/folder/filename.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="convert-to-.csv-and-use-the-readr-package" class="level3">
+<h3 class="anchored" data-anchor-id="convert-to-.csv-and-use-the-readr-package">Convert to .csv and use the readr package</h3>
+<p>Using the same approach as above to first save the Excel file into .csv format, we can alternatively use the <code>read_csv()</code> function from the {readr} package to read in the data, instead of <code>read.csv()</code>.</p>
+<p>First, install the {readr} package from CRAN, then load the newly installed package. This should have been completed in Session 1, Exercise 2.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readr"</span>) <span class="co"># Already installed on Posit Workbench</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then read in the data using the <code>reade_csv()</code> function with the appropriate filepath and create and object called “mycsv2”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mycsv2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"~/folder/filename.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>read.csv()</code> function reads a file into a <code>data.frame</code> object whereas the <code>read_csv()</code> function reads a file into a <code>tibble</code> object.</p>
+<p>The <code>tibble</code> objects have some advantages over <code>data.frame</code> objects such as faster loading and ability to handle non-standard column names.</p>
+<p>Note that the third approach is the one I use, and will form the basis of my examples in the rest of this course.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="loading-other-file-formats" class="level2">
+<h2 class="anchored" data-anchor-id="loading-other-file-formats">Loading other file formats</h2>
+<p>Many other file formats exist, and here is a non-comprehensive list of functions for loading some of them:</p>
+<ul>
+<li><code>read.table()</code> is the most generic function and can read many file types</li>
+<li><code>read.csv()</code> is a special case with fixed defaults for comma-separated files</li>
+<li><code>read.csv2()</code> is a special case with fixed defaults for comma-separated files that were created in a country where commas are used in place of decimal places</li>
+<li><code>read.delim()</code> is a special case with fixed defaults for tab-delimited files</li>
+<li><code>read.delim2()</code> is a special case with fixed defaults for tab-delimited files that were created in a country where commas are used in place of decimal places</li>
+</ul>
+</section>
+<section id="variable-names-with-the-janitor-package" class="level2">
+<h2 class="anchored" data-anchor-id="variable-names-with-the-janitor-package">Variable names with the {janitor} package</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+R is case sensitive
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>i.e.&nbsp;<code>age</code> is not the same as <code>Age</code>.</li>
+</ul>
+</div>
+</div>
+<ul>
+<li>Variable names with spaces and special characters can be problematic:
+<ul>
+<li>Depending on how you read your data in, R may or may not automatically reformat variable names</li>
+<li>If you end up with a variable called, e.g.&nbsp;“Patient Age” you would need to reference it in all code using backticks: <code>`Patient Age`</code></li>
+<li>One alternative is to use the <code>clean_names()</code> function from the {janitor} package to convert all variable names to a standard format, such as snake case</li>
+</ul></li>
+</ul>
+<p>First, install the {janitor} package from CRAN, then load the newly installed package. This should have been completed in Session 1, Exercise 2.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"janitor"</span>) <span class="co"># Already installed on Posit Workbench</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then use the <code>clean_names()</code> function to convert all variable names to snake case (default):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mycsv2 <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(mycsv2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Session 1, Exercise 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Save the “breastcancer.xlsx” file to .csv format</li>
+<li>Use the third method presented in this section to load the breastcancer data using the <code>read_csv()</code> function from the {readr} package, to an object called “df”</li>
+<li>Run <code>names(df)</code> to see the original variable names</li>
+<li>Use the <code>clean_names()</code> function from the janitor package to convert the column names to snake case</li>
+<li>Again run <code>names(df)</code> to see the original variable names</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Session 1, Exercise 3 Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Go to File &gt; Save as. Navigate to the “mmedr” folder on your home directory. Select “CSV” from the drop down. Save as “breastcancer.csv”</p>
+<p align="center">
+<img src="img/github-save-data.png" width="80%">
+</p>
+<p>Then read the data into R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"~/mmedr/breastcancer.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 3000 Columns: 13
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (1): grade
+dbl (12): time, event, rt, age_dx_yrs, tumor_size_cm, n_ln_pos_3_vs_1or2, no...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>You will see that you get a message printed out with some details about the file you read in.</p>
+<p>Let’s look at the names when we first read it in the data, using the <code>names()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 54 × 2
-   marker marker_corrected
-    &lt;dbl&gt;            &lt;dbl&gt;
- 1  0.16               0.1
- 2  0.144              0.1
- 3  0.06               0.1
- 4  0.128              0.1
- 5  0.157              0.1
- 6  0.066              0.1
- 7  0.096              0.1
- 8  0.105              0.1
- 9  0.043              0.1
-10  0.105              0.1
-# ℹ 44 more rows</code></pre>
+<pre><code> [1] "time"                     "event"                   
+ [3] "rt"                       "age_dx_yrs"              
+ [5] "tumor_size_cm"            "grade"                   
+ [7] "n_ln_pos_3_vs_1or2"       "nodal_ratio"             
+ [9] "lvi"                      "er_or_pr_pos"            
+[11] "her2_pos"                 "quadrant_inner_vs_other" 
+[13] "optimal_systemic_therapy"</code></pre>
+</div>
+</div>
+<p>We see these names contain a mix of uppercase and lowercase, spaces, and special characters. They would be hard to work with in R code.</p>
+<p>Now standardize the names:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And look again at the variable names:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "time"                     "event"                   
+ [3] "rt"                       "age_dx_yrs"              
+ [5] "tumor_size_cm"            "grade"                   
+ [7] "n_ln_pos_3_vs_1or2"       "nodal_ratio"             
+ [9] "lvi"                      "er_or_pr_pos"            
+[11] "her2_pos"                 "quadrant_inner_vs_other" 
+[13] "optimal_systemic_therapy"</code></pre>
+</div>
+</div>
+<p>Now we see that the variable names are all lowercase, with “_” (underscore) in place of any spaces and special characters have been removed.</p>
+</div>
 </div>
 </div>
 
