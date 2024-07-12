@@ -148,6 +148,53 @@ df_new |>
   select(nodal_ratio, log_nodal_ratio, tumor_size_cm, tumor_size_cm_squared)
 ```
 
+::: {.callout-note icon=false collapse="true"}
+## Session 3, Exercise 1
+
+1. Open your mmedr R project 
+2. Load the breastcancer data using the {readr} and {here} packages, and use the `clean_names()` function from the {janitor} package to standardize the names
+3. Create a new variable called "rt_optimal" that is 1 if the patient received both rt (1) and optimal_systemic_therapy (1), 2 if the patient received rt (1) and did not receive optimal_systemic_therapy (0), 3 if the patient did not recieve rt (0) and received optimal_systemic_therapy (1), and 4 if the patient did not receive rt (0) and did not receive optimal_systemic_therapy, using the `case_when()` function from the {dplyr} package
+3. Rename the variable "rt" as "radiation_therapy" using the `rename()` function from the {dplyr} package
+:::
+
+::: {.callout-warning icon=false collapse="true"}
+## Session 3, Exercise 1 Solution
+
+```{r}
+library(readr)
+library(here)
+library(janitor)
+library(dplyr)
+```
+
+
+```{r eval = FALSE}
+df <- read_csv(here("breastcancer.csv")) |> 
+  clean_names()
+```
+
+```{r echo = FALSE, message = FALSE}
+df <- read_csv("H:/mmedr/breastcancer.csv") |> 
+  clean_names()
+```
+
+```{r}
+df2 <- 
+  df |> 
+  mutate(
+    rt_optimal = case_when(
+      rt == 1 & optimal_systemic_therapy == 1 ~ 1,
+      rt == 1 & optimal_systemic_therapy == 0 ~ 2,
+      rt == 0 & optimal_systemic_therapy == 1 ~ 3,
+      rt == 0 & optimal_systemic_therapy == 0 ~ 4
+    )
+  ) |> 
+  rename(radiation_therapy = rt)
+```
+
+:::
+
+
 ## Group a continuous variable
 
 We just saw how to add a new column by performing a simple mathematical function on an existing column, but we can also use the `mutate()` function to add a new variable that categorizes a continuous variable by combining it with the `case_when()` function.
@@ -197,6 +244,30 @@ table(df_new$grade_bin)
 The "%in%" operator is used to test for "vector membership", meaning whether the value on the LHS is a member of anything in the vector on the RHS. 
 :::
 
+::: {.callout-note icon=false collapse="true"}
+## Session 3, Exercise 2
+
+In the breastcancer data we already loaded, group tumor_size_cm into three groups: <=1.5, >1.5 and <=3, >3, in a new variable named "tumor_size_cat".
+
+:::
+
+::: {.callout-warning icon=false collapse="true"}
+## Session 3, Exercise 2 Solution
+
+```{r}
+df3 <- 
+  df |> 
+  mutate(
+    tumor_size_cat = case_when(
+      tumor_size_cm <= 1.5 ~ "<=1.5cm",
+      tumor_size_cm > 1.5 & tumor_size_cm <= 3 ~ ">1.5cm and <=3cm",
+      tumor_size_cm > 3 ~ ">3cm"
+    )
+  )
+```
+
+:::
+
 ## Sort by row
 
 There may be times when we want to sort our dataframe according to a value in a row. For example, maybe we want to sort our dataframe from youngest to oldest age. We can do this using the `arrange()` function from the {dplyr} package:
@@ -221,6 +292,8 @@ df_new <-
 ```
 
 ## Reshape (wide to long, long to wide)
+
+
 
 
 

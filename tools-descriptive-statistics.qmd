@@ -1,3 +1,276 @@
 ---
   title: ""
 ---
+
+# Descriptive statistics
+
+It will be common to want some basic tabulations of categorical variables and summaries of continuous variables, to examine our data and make sure they are in line with what we expect, and to report results for papers.
+
+In this session, we will learn some basic descriptive statistics including one-way and two-way contingency tables, summary statistics for continuous variables, and summary statistics by group.
+
+In this session, we will be using functions from the {janitor}, {dplyr}, and {readr} packages, which we have used previously, and we will also be introducing the {gt} package. First, make sure these packages are installed and loaded in your current R session. 
+
+*Note that all of these packages are already installed on Posit Workbench on the server*
+
+```{r eval = FALSE}
+install.packages("janitor")
+install.packages("dplyr")
+install.packages("readr")
+install.packages("gt")
+```
+
+```{r message = FALSE, warning = FALSE}
+library(janitor)
+library(dplyr)
+library(readr)
+library(gt)
+```
+
+The {gt} package will be used to creeate nicely styled tables.
+
+Also make sure the breastcancer data are loaded into your current R session, with names standardized using the `clean_names()` function from the {janitor} package, and that you are working inside your mmedr R project.
+
+```{r eval = FALSE}
+df <- read_csv(here("breastcancer.csv")) |> 
+  clean_names()
+```
+
+```{r echo = FALSE, message = FALSE}
+df <- read_csv("H:/mmedr/breastcancer.csv") |> 
+  clean_names()
+```
+
+## One-way frequency table
+
+We can use the `tabyl()` function from the {janitor} package to make a basic one-way frequency table. 
+
+Let's say we want a table of grade:
+
+```{r}
+df |> 
+  tabyl(grade)
+```
+
+Then we could additionally format the percentages using the `adorn_pct_formatting()` function:
+
+```{r}
+df |> 
+  tabyl(grade) |> 
+  adorn_pct_formatting()
+```
+
+And with just three short lines of code, we have a basic one-way contingency table for our categorical variable of interest.
+
+
+## Two-way contingency table
+
+We can similarly use the`tabyl()` function from the {janitor} package to make two-way contingency tables by simply adding another variable name, separated by a comma. Let's say we now want to see grade tabulated by rt:
+
+```{r}
+df |> 
+  tabyl(grade, rt)
+```
+
+And we get a basic two-way contingency table with counts of grade according to the value of rt.
+
+To enhance the appearance of our table, we can use the {gt} package and it's associated features to customize our two-way contingency table. 
+
+See the [{gt} package website](https://gt.rstudio.com/) for many details and features.
+
+Let's label the row variable and column variable, and add a title:
+
+```{r}
+df |> 
+  tabyl(grade, rt) |> 
+  gt(
+    rowname_col = "rt" 
+  ) |> 
+  tab_spanner(          
+    columns = 2:3,
+    label = "Radiation therapy?"
+  ) |> 
+  tab_stubhead(         
+    label = "Grade" 
+  ) |> 
+  tab_header(           
+    title = "Grade according to radiation therapy"
+  )
+```
+
+And now you see we have a nicely styled html table with the frequencies of grade according to rt, with row and column headers and a title.
+
+Alternatively, we could display percentages in our table. Let's say we are interested in row percentages, to see what percentage of subjects received radiation therapy within each level of grade.
+
+```{r}
+df |> 
+  tabyl(grade, rt) |> 
+  adorn_percentages(denominator = "row") |> 
+  gt() |> 
+  fmt_percent(
+    columns = -1,
+    decimals = 1
+  ) |> 
+  tab_spanner(          
+    columns = 2:3,
+    label = "Radiation therapy?"
+  ) |> 
+  tab_stubhead(         
+    label = "Grade" 
+  ) |> 
+  tab_header(           
+    title = "Grade according to radiation therapy"
+  )
+```
+
+::: {.callout-note icon=false collapse="true"}
+## Session 4, Exercise 1
+
+Create a table of n_ln_pos_3_vs_1or2 by optimal_systemic_therapy, with percentages of sujects who received optimal_systemic_therapy within each level of n_ln_pos_3_vs_1or2, and styled with row and column names and a descriptive title.
+
+*Note that n_ln_pos_3_vs_1or2 is 1 if a subject had 3 positive lymph nodes and 0 if a subject had 1 or 2 positive lymph nodes*
+:::
+
+::: {.callout-warning icon=false collapse="true"}
+## Session 4, Exercise 1 Solution
+
+```{r}
+df |> 
+  tabyl(n_ln_pos_3_vs_1or2, optimal_systemic_therapy) |> 
+  adorn_percentages(denominator = "row") |> 
+  gt() |> 
+  fmt_percent(
+    columns = -1,
+    decimals = 1
+  ) |> 
+  tab_spanner(          
+    columns = 2:3,
+    label = "Optimal systemic therapy?"
+  ) |> 
+  tab_stubhead(         
+    label = "No. positive lymph nodes" 
+  ) |> 
+  tab_header(           
+    title = "No. positive lymph nodes according to optimal systemic therapy"
+  )
+```
+
+To make the table look even nicer, we could use the `case_match()` function from the {dplyr} package, which works similarly to `case_when()` but only considering a single variable, and is useful for recoding the levels of a categorical variables. We may want to create more descriptive levels than the 1/0 indicators these variables currently contain.
+
+```{r}
+df |> 
+  mutate(
+    n_ln_pos_3_vs_1or2 = case_match(
+      n_ln_pos_3_vs_1or2,
+      1 ~ "3",
+      0 ~ "1 or 2"
+    ),
+    optimal_systemic_therapy = case_match(
+      optimal_systemic_therapy,
+      1 ~ "Yes",
+      0 ~ "No"
+    )
+  ) |> 
+  tabyl(n_ln_pos_3_vs_1or2, optimal_systemic_therapy) |> 
+  adorn_percentages(denominator = "row") |> 
+  gt() |> 
+  fmt_percent(
+    columns = -1,
+    decimals = 1
+  ) |> 
+  tab_spanner(          
+    columns = 2:3,
+    label = "Optimal systemic therapy?"
+  ) |> 
+  tab_stubhead(         
+    label = "No. positive lymph nodes" 
+  ) |> 
+  tab_header(           
+    title = "No. positive lymph nodes according to optimal systemic therapy"
+  )
+```
+
+:::
+
+
+::: {.callout-tip}
+The `case_match()` function from the {dplyr} package is useful for recoding the levels of a categorical variable to get more desriptive levels when making tables or presenting summaries, e.g. from 0 to "No" and 1 to "Yes"
+:::
+
+
+## Summary statistics
+
+We can use the `summarize()` function from the {dplyr} package to compute summary statistics.
+
+Let's compute the mean and standard deviation of age_dx_yrs:
+
+```{r}
+df |> 
+  summarize(
+    avg_age = mean(age_dx_yrs),
+    sd_age = sd(age_dx_yrs)
+  )
+```
+
+## Summary statistics by group
+
+And we can easily extend this code to generate summary statistics by group by using the `group_by()` function from the {dplyr} package prior to using `summarize()`.
+
+Let's get the same summary table for age_dx_yrs, according to rt:
+
+```{r}
+df |> 
+  group_by(rt) |> 
+  summarize(
+    avg_age = mean(age_dx_yrs),
+    sd_age = sd(age_dx_yrs)
+  )
+```
+
+::: {.callout-tip}
+The `group_by()` function is useful in many settings, and it takes an existing dataframe and converts it to a grouped dataframe where all following operations are done within the group.
+
+Note: It is best practice to `ungroup()` when group operations are complete, to avoid unintended results.
+
+For example:
+
+```{r}
+df |> 
+  group_by(rt) |> 
+  summarize(
+    avg_age = mean(age_dx_yrs),
+    sd_age = sd(age_dx_yrs)
+  ) |> 
+  ungroup()
+```
+:::
+
+::: {.callout-note icon=false collapse="true"}
+## Session 4, Exercise 2
+
+Summarize tumor_size_cm according to grade. 
+
+Note that there are missing values in tumor_size_cm (i.e. NA entries) that must be accounted for by supplying the appropriate additional argument to the `mean()` and `sd()` functions. Look at the help files at `?mean` or `?sd` to see how.
+:::
+
+::: {.callout-warning icon=false collapse="true"}
+## Session 4, Exercise 2 Solution
+
+```{r}
+# Session 4, Exercise 2 ----
+df |> 
+  group_by(grade) |> 
+  summarize(
+    avg_size = mean(tumor_size_cm, na.rm = TRUE),
+    sd_size = sd(tumor_size_cm, na.rm = TRUE)
+  ) |> 
+  ungroup()
+```
+
+:::
+
+
+
+
+
+
+
