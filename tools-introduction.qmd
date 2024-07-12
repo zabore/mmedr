@@ -36,8 +36,7 @@ R and RStudio are two separate things, and to use both you will need to install 
 1. Go to the website for [The Comprehensive R Archive Network](https://cran.r-project.org/). 
 2. The top of the web page provides three links for downloading R. Follow the link that describes your operating system: Windows, Mac, or Linux.
 3. Select the appropriate operating system
-4a. Windows: Then click "base", then click "Download R-x.y.z for Windows" where x.y.z corresponds to the current version of R, then double click the .exe file that downloads and follow the prompts
-4b. Mac: Then click the option corresponding to your Mac model, then double click the .pkg file that downloads and follow the prompts
+4. **Windows**: Then click "base", then click "Download R-x.y.z for Windows" where x.y.z corresponds to the current version of R, then double click the .exe file that downloads and follow the prompts. **Mac**: Then click the option corresponding to your Mac model, then double click the .pkg file that downloads and follow the prompts
 :::
 
 ## RStudio
@@ -93,7 +92,7 @@ The layout of the panes can be customized by going to Tools > Global Options > P
 
     - Environment: where you can see objects and data files that are available in your current session
     - Files: here you should be able to access all folders and files on your home drive
-    - Plots: this is where plots will disply
+    - Plots: this is where plots will display
     - Help: this is where you will get help files for R functions
     - Viewer: this is where you would preview any html output like a gt table or Quarto document
     

@@ -8,6 +8,8 @@ website:
     background: "#0078bf"
     foreground: "#ffffff"
     left:
+      - icon: fab fa-github fa-lg
+        href: http://github.com/zabore/mmedr
       - href: index.qmd
         text: Outline
       - text: Lessons
@@ -38,9 +40,6 @@ website:
             href: bio-epi-advanced.qmd
           - text: Biostatistics and Epidemiology - Statistical tests
             href: bio-epi-statistical-tests.qmd
-    right:
-      - icon: fab fa-github fa-lg
-        href: http://github.com/zabore/mmedr
 
 format:
   html:

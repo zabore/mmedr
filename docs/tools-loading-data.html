@@ -151,6 +151,11 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="http://github.com/zabore/mmedr"> <i class="bi bi-fab fa-github fa-lg" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Outline</span></a>
@@ -215,13 +220,6 @@ window.Quarto = {
     </ul>
   </li>
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="http://github.com/zabore/mmedr"> <i class="bi bi-fab fa-github fa-lg" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-</ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
 </div>
@@ -262,7 +260,7 @@ window.Quarto = {
 <h1>Loading data</h1>
 <p>In this part of Session 1, we will learn how to load external data into R.</p>
 <p>Many R packages come with data bundled into them. These datasets are available for use as soon as the package is loaded.</p>
-<p>However, we often need to load external data that we’ve generated in our lab or in a clinical study, a situation addressed in this lesson.</p>
+<p>However, we often need to load external data that we’ve generated in our lab or from a clinical study.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -283,12 +281,13 @@ Formatting data for use in R
 <li>One row of column labels (i.e.&nbsp;avoid a second row of headers where some cells are merged, etc)</li>
 <li>One measurement with one column name in each column (i.e.&nbsp;avoid separating multiple pieces of data by commas, semicolons, etc within a cell)</li>
 <li>Simple variable names for each column - avoid long names and special characters</li>
+<li>No color coding or other special formatting - will be stripped away on loading into R</li>
 </ul>
 </div>
 </div>
 <section id="dataset-for-use-in-this-class" class="level2">
 <h2 class="anchored" data-anchor-id="dataset-for-use-in-this-class">Dataset for use in this class</h2>
-<p>The dataset used in this course is stored in this <a href="https://github.com/zabore/mmedr/tree/main/data">folder</a>. We need to download it from GitHub onto our personal computers.</p>
+<p>The primary dataset used throughout this course is stored in this <a href="https://github.com/zabore/mmedr/tree/main/data">folder</a>. We need to download it from GitHub onto our personal computers.</p>
 <ol type="1">
 <li><p>Navigate to the above location and <strong>left click</strong> on breastcancer.xlsx.</p></li>
 <li><p>For a .xlsx file like this, you won’t see a preview of the data. Now <strong>right click</strong> on “Raw” and then select “Save link as…”</p></li>
@@ -305,7 +304,7 @@ Formatting data for use in R
 <p>The most common data format we work with are data from <strong>Excel</strong>. We will learn three ways to load Excel datasets into R, and then will introduce some options for alternative file types.</p>
 <p>We will look at options to:</p>
 <ul>
-<li>Read in Excel files with {readxl}</li>
+<li>Read in Excel files with the {readxl} package</li>
 <li>Read in Excel files by converting to .csv first</li>
 <li>Read in Excel files by converting to .csv first and using the {readr} package</li>
 </ul>
@@ -369,7 +368,7 @@ Tip
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readr"</span>) <span class="co"># Already installed on Posit Workbench</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Then read in the data using the <code>reade_csv()</code> function with the appropriate filepath and create and object called “mycsv2”</p>
+<p>Then read in the data using the <code>read_csv()</code> function with the appropriate filepath and create an object called “mycsv2”</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mycsv2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"~/folder/filename.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -385,9 +384,9 @@ Tip
 <div class="callout-body-container callout-body">
 <p>The <code>read.csv()</code> function reads a file into a <code>data.frame</code> object whereas the <code>read_csv()</code> function reads a file into a <code>tibble</code> object.</p>
 <p>The <code>tibble</code> objects have some advantages over <code>data.frame</code> objects such as faster loading and ability to handle non-standard column names.</p>
-<p>Note that the third approach is the one I use, and will form the basis of my examples in the rest of this course.</p>
 </div>
 </div>
+<p><strong><em>Note that the third approach is the one I use, and will form the basis of my examples in the rest of this course.</em></strong></p>
 </section>
 </section>
 <section id="loading-other-file-formats" class="level2">
@@ -435,6 +434,7 @@ R is case sensitive
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mycsv2 <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(mycsv2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Snake case is all lowercase letters, with underscores separating any individual words.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -483,8 +483,8 @@ Session 1, Exercise 3 Solution
 <pre><code>Rows: 3000 Columns: 13
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
-chr  (1): grade
-dbl (12): time, event, rt, age_dx_yrs, tumor_size_cm, n_ln_pos_3_vs_1or2, no...
+chr  (1): Grade
+dbl (12): Time, Event, RT, Age dx (yrs), Tumor size (cm), N LN pos 3 vs 1or2...
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -495,13 +495,13 @@ dbl (12): time, event, rt, age_dx_yrs, tumor_size_cm, n_ln_pos_3_vs_1or2, no...
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "time"                     "event"                   
- [3] "rt"                       "age_dx_yrs"              
- [5] "tumor_size_cm"            "grade"                   
- [7] "n_ln_pos_3_vs_1or2"       "nodal_ratio"             
- [9] "lvi"                      "er_or_pr_pos"            
-[11] "her2_pos"                 "quadrant_inner_vs_other" 
-[13] "optimal_systemic_therapy"</code></pre>
+<pre><code> [1] "Time"                     "Event"                   
+ [3] "RT"                       "Age dx (yrs)"            
+ [5] "Tumor size (cm)"          "Grade"                   
+ [7] "N LN pos 3 vs 1or2"       "Nodal ratio"             
+ [9] "LVI"                      "ER or PR pos"            
+[11] "HER2 pos"                 "Quadrant: inner vs upper"
+[13] "Optimal systemic therapy"</code></pre>
 </div>
 </div>
 <p>We see these names contain a mix of uppercase and lowercase, spaces, and special characters. They would be hard to work with in R code.</p>
@@ -519,7 +519,7 @@ dbl (12): time, event, rt, age_dx_yrs, tumor_size_cm, n_ln_pos_3_vs_1or2, no...
  [5] "tumor_size_cm"            "grade"                   
  [7] "n_ln_pos_3_vs_1or2"       "nodal_ratio"             
  [9] "lvi"                      "er_or_pr_pos"            
-[11] "her2_pos"                 "quadrant_inner_vs_other" 
+[11] "her2_pos"                 "quadrant_inner_vs_upper" 
 [13] "optimal_systemic_therapy"</code></pre>
 </div>
 </div>

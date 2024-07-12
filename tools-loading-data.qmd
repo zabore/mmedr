@@ -8,7 +8,7 @@ In this part of Session 1, we will learn how to load external data into R.
 
 Many R packages come with data bundled into them. These datasets are available for use as soon as the package is loaded. 
 
-However, we often need to load external data that we've generated in our lab or in a clinical study, a situation addressed in this lesson.
+However, we often need to load external data that we've generated in our lab or from a clinical study.
 
 ::: {.callout-tip}
 ## Formatting data for use in R
@@ -21,6 +21,7 @@ If you are creating your own datasets for future analysis in R, or advising some
 - One row of column labels (i.e. avoid a second row of headers where some cells are merged, etc)
 - One measurement with one column name in each column (i.e. avoid separating multiple pieces of data by commas, semicolons, etc within a cell)
 - Simple variable names for each column - avoid long names and special characters
+- No color coding or other special formatting - will be stripped away on loading into R
 
 :::
 
@@ -32,9 +33,11 @@ library(cancersimdata)
 library(openxlsx)
 write.xlsx(bc_rt_data, 
            file = here::here("data/breastcancer.xlsx"))
+
+# Note that I manually changed the column headers in this file to demonstrate the usefulness of the clean_names() function
 ```
 
-The dataset used in this course is stored in this [folder](https://github.com/zabore/mmedr/tree/main/data). We need to download it from 
+The primary dataset used throughout this course is stored in this [folder](https://github.com/zabore/mmedr/tree/main/data). We need to download it from 
 GitHub onto our personal computers.
 
 1. Navigate to the above location and **left click** on breastcancer.xlsx.
@@ -52,7 +55,7 @@ The most common data format we work with are data from **Excel**. We will learn 
 
 We will look at options to:
 
-- Read in Excel files with {readxl}
+- Read in Excel files with the {readxl} package
 - Read in Excel files by converting to .csv first
 - Read in Excel files by converting to .csv first and using the {readr} package
 
@@ -105,7 +108,7 @@ install.packages("readr") # Already installed on Posit Workbench
 library(readr)
 ```
 
-Then read in the data using the `reade_csv()` function with the appropriate filepath and create and object called "mycsv2"
+Then read in the data using the `read_csv()` function with the appropriate filepath and create an object called "mycsv2"
 
 ```{r eval = FALSE}
 mycsv2 <- read_csv("~/folder/filename.csv") 
@@ -115,9 +118,9 @@ mycsv2 <- read_csv("~/folder/filename.csv")
 The `read.csv()` function reads a file into a `data.frame` object whereas the `read_csv()` function reads a file into a `tibble` object.
 
 The `tibble` objects have some advantages over `data.frame` objects such as faster loading and ability to handle non-standard column names.
-
-Note that the third approach is the one I use, and will form the basis of my examples in the rest of this course.
 :::
+
+***Note that the third approach is the one I use, and will form the basis of my examples in the rest of this course.***
 
 ## Loading other file formats
 
@@ -154,6 +157,8 @@ Then use the `clean_names()` function to convert all variable names to snake cas
 ```{r eval = FALSE}
 mycsv2 <- clean_names(mycsv2)
 ```
+
+Snake case is all lowercase letters, with underscores separating any individual words.
 
 ::: {.callout-note icon=false collapse="true"}
 ## Session 1, Exercise 3

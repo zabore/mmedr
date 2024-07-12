@@ -65,7 +65,7 @@ This package has comprehensive functionality for survival analyses.
 
 ### GitHub
 
-GitHub is a common repository for packages that are still in development, or have not developed thoroughly enough to be accepted onto CRAN.
+GitHub is a common repository for packages that are still in development, or have not been developed thoroughly enough to be accepted onto CRAN.
 
 To install packages from GitHub, first install the {remotes} package from CRAN:
     
@@ -153,7 +153,7 @@ library(readr)
 library(readxl)
 ```
 
-If using a personal computer where you have not previousling installed these packages:
+If using a personal computer where you have not previously installed these packages:
 
 ```{r eval = FALSE}
 install.packages("janitor")

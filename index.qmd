@@ -6,9 +6,7 @@ date: today
 
 This website hosts R teaching materials for the Cleveland Clinic Molecular Medicine PhD program. The material will be split across 5 1-hour sessions as part of the Tools course, followed by 2 2-hour sessions as part of the Biostatistics and Epidemiology course. 
 
-## But first:
-
-- [Why R is awesome](r-awesome.qmd)
+<!-- - [Why R is awesome](r-awesome.qmd) -->
 
 ## Tools course
 
@@ -75,7 +73,7 @@ This website hosts R teaching materials for the Cleveland Clinic Molecular Medic
     
 ### Session 5
 
-- Put it all together 
+- Catch up / put it all together
     
 ## Biostatistics and Epidemiology
 

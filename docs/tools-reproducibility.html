@@ -122,6 +122,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="http://github.com/zabore/mmedr"> <i class="bi bi-fab fa-github fa-lg" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Outline</span></a>
@@ -186,13 +191,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
   </li>
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="http://github.com/zabore/mmedr"> <i class="bi bi-fab fa-github fa-lg" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-</ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
 </div>
@@ -231,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="r-projects">R projects</h2>
 <p>One challenge in scientific research is organization. Keeping track of data, code, sources of information, connections between data sets and images, connections between lab equipment and the data they produce, and even basic file organization. We can’t tackle all of these issues in R, but we can address some of them.</p>
 <p>The first area we can focus on is starting with a project oriented workflow.</p>
-<p>First, create a folder where everything related to one project will be stored. In this case, let’s consider a “project” to be a single scientific question of interest. Every document related to this question of interest, from lab notes to plots to code for statistical analyses, manuscript drafs, and references will be stored in this one folder. The folder should be created in a backed-up location on your computer.</p>
+<p>First, create a folder where everything related to one project will be stored. In this case, let’s consider a “project” to be a single scientific question of interest. Every document related to this question of interest, from lab notes to plots to code for statistical analyses, manuscript drafts, and references will be stored in this one folder. The folder should be created in a backed-up location on your computer.</p>
 <p>Next, give the folder a meaningful name. This will be unique to everone’s line of work, but you should consider devising a system that you will use for all of your projects. For example, in my collaborative work I always name my project folders with PILastName-FellowLastName-TwoToThreeWordDescription. In this way I always know what pattern to look for when I’m trying to locate a specific project folder in the future.</p>
 <p>Let’s say I’m doing a project for this class with an investigator named Jane Doe with a fellow named Bob Clark about breast cancer outcomes, I may create a project folder named “Doe-Clark-breast-cancer-outcomes” under my “mmedr” folder on my home network drive.</p>
 <p align="center">
@@ -291,11 +289,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Starting a fresh R session every time the project is opened</li>
 <li>The current working directory is set to the project directory</li>
-<li>Previously open R scrips are restored at project startup</li>
+<li>Previously open R scripts are restored at project startup</li>
 <li>Other RStudio settings are restored</li>
 <li>Multiple RStudio sessions can be open at one time, running independently in different RStudio projects</li>
 </ul>
-<p>It is beneficial to create a standard set of sub-folders using standard naming conventions across projects. This will depend on the type of materials you typically have, but here is an example of my persona structure:</p>
+<p>It is beneficial to create a standard set of sub-folders using standard naming conventions across projects. This will depend on the type of materials you typically have, but here is an example of my personal structure:</p>
 <p align="center">
 <img src="img/folder-structure.png" width="90%">
 </p>
@@ -306,7 +304,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>meeting-notes: contains any notes from meetings</li>
 <li>references: contains PDFs of references as well as any reference manager files</li>
 </ul>
-<p>Then I will name documents in standard ways and managing versions over time by appending the date in yyyy-mm-dd format so that they sort appropriately. I use caution to name files in standard ways using all lowercase letters, dashes between words, and letters or numbers to keep files in order if they need to be used in a certain order. File and folder names with spaces are not readable by all computers, and should be avoided.</p>
+<p>Then I will name documents in standard ways and manage versions over time by appending the date in yyyy-mm-dd format so that they sort appropriately. I use caution to name files in standard ways using all lowercase letters, dashes between words, and letters or numbers to keep files in order if they need to be used in a certain order. File and folder names with spaces are not readable by all computers, and should be avoided.</p>
 </section>
 <section id="here-package" class="level2">
 <h2 class="anchored" data-anchor-id="here-package">{here} package</h2>
@@ -329,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p align="center">
 <img src="img/rproject-here.png" width="90%">
 </p>
-<p>And you can now refer to the same relative filepath relative to the main project folder, separating as many levels of sub-folder names as needed by commas, as follows:</p>
+<p>And you can now refer to the same filepath relative to the main project folder, separating as many levels of sub-folder names as needed by commas, as follows:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"breastcancer.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

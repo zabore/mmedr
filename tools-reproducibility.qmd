@@ -14,7 +14,7 @@ One challenge in scientific research is organization. Keeping track of data, cod
 
 The first area we can focus on is starting with a project oriented workflow. 
 
-First, create a folder where everything related to one project will be stored. In this case, let's consider a "project" to be a single scientific question of interest. Every document related to this question of interest, from lab notes to plots to code for statistical analyses, manuscript drafs, and references will be stored in this one folder. The folder should be created in a backed-up location on your computer.
+First, create a folder where everything related to one project will be stored. In this case, let's consider a "project" to be a single scientific question of interest. Every document related to this question of interest, from lab notes to plots to code for statistical analyses, manuscript drafts, and references will be stored in this one folder. The folder should be created in a backed-up location on your computer.
 
 Next, give the folder a meaningful name. This will be unique to everone's line of work, but you should consider devising a system that you will use for all of your projects. For example, in my collaborative work I always name my project folders with PILastName-FellowLastName-TwoToThreeWordDescription. In this way I always know what pattern to look for when I'm trying to locate a specific project folder in the future.
 
@@ -70,11 +70,11 @@ Benefits of working inside an RStudio project include:
 
 - Starting a fresh R session every time the project is opened
 - The current working directory is set to the project directory
-- Previously open R scrips are restored at project startup
+- Previously open R scripts are restored at project startup
 - Other RStudio settings are restored
 - Multiple RStudio sessions can be open at one time, running independently in different RStudio projects
 
-It is beneficial to create a standard set of sub-folders using standard naming conventions across projects. This will depend on the type of materials you typically have, but here is an example of my persona structure:
+It is beneficial to create a standard set of sub-folders using standard naming conventions across projects. This will depend on the type of materials you typically have, but here is an example of my personal structure:
 
 <p align="center"><img src="img/folder-structure.png" width=90%></p>
 
@@ -84,7 +84,7 @@ It is beneficial to create a standard set of sub-folders using standard naming c
 - meeting-notes: contains any notes from meetings
 - references: contains PDFs of references as well as any reference manager files
 
-Then I will name documents in standard ways and managing versions over time by appending the date in yyyy-mm-dd format so that they sort appropriately. I use caution to name files in standard ways using all lowercase letters, dashes between words, and letters or numbers to keep files in order if they need to be used in a certain order. File and folder names with spaces are not readable by all computers, and should be avoided.
+Then I will name documents in standard ways and manage versions over time by appending the date in yyyy-mm-dd format so that they sort appropriately. I use caution to name files in standard ways using all lowercase letters, dashes between words, and letters or numbers to keep files in order if they need to be used in a certain order. File and folder names with spaces are not readable by all computers, and should be avoided.
 
 ## {here} package
 
@@ -116,7 +116,7 @@ When you run `library(here)` in your RStudio project, you will automatically see
 
 <p align="center"><img src="img/rproject-here.png" width=90%></p>
 
-And you can now refer to the same relative filepath relative to the main project folder, separating as many levels of sub-folder names as needed by commas, as follows:
+And you can now refer to the same filepath relative to the main project folder, separating as many levels of sub-folder names as needed by commas, as follows:
 
 ```{r eval = FALSE}
 df <- read_csv(here("data", "breastcancer.csv"))

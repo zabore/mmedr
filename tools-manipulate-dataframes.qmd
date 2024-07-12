@@ -10,7 +10,7 @@ In this session we will delve further into the topic of manipulating dataframes.
 
 All of the manipulations you may want to do with a dataframe are possible with base R, but there are some packages that can make dataframe manipulation easier while also making our code more readable. 
 
-The {dplyr} package is a package specifically designed for data manipulation, and it we will focus on learning functions from this and other related packages in this course.
+The {dplyr} package is a package specifically designed for data manipulation, and we will focus on learning functions from this and other related packages in this course.
 
 Let's take a look at a few things we learned at the end of the basic programming session, and see how we could do things differently using the {dplyr} package.
 
@@ -33,7 +33,7 @@ df <- read_csv("H:/mmedr/breastcancer.csv") |>
 
 In the basic progamming session we learned how to subset dataframes using single brackets (`[]`), and to subset by either rows or columns.
 
-Recall that we can create a subset of our data based on the values in a row, such as limiting to patients who were treated with radiation therapy (i.e. rt = 1):
+Recall that we can create a subset of our data based on the values in a row, such as limiting to patients who were treated with radiation therapy (i.e. rt value of 1):
 
 ```{r}
 df_sub <- df[df$rt == 1, ]
@@ -45,15 +45,15 @@ Or we can create a subset of our data based on columns, for example limiting to 
 df_sub <- df[ , c("age_dx_yrs")]
 ```
 
-Using the {dplyr} package, we can similarly subset based on rows using the `filter()` functions and based on columns using the `select()` function.
+Using the {dplyr} package, we can similarly subset based on rows using the `filter()` function and based on columns using the `select()` function.
 
 First, install (if needed) and load the {dplyr} package:
 
 ```{r eval = FALSE}
-install.packages("dplyr")
+install.packages("dplyr") # Already installed on Posit Workbench
 ```
 
-```{r}
+```{r message = FALSE}
 library(dplyr)
 ```
 
@@ -160,7 +160,7 @@ df_new |>
 ::: {.callout-warning icon=false collapse="true"}
 ## Session 3, Exercise 1 Solution
 
-```{r}
+```{r message = FALSE}
 library(readr)
 library(here)
 library(janitor)

@@ -83,7 +83,7 @@ Let's label the row variable and column variable, and add a title:
 df |> 
   tabyl(grade, rt) |> 
   gt(
-    rowname_col = "rt" 
+    rowname_col = "grade" 
   ) |> 
   tab_spanner(          
     columns = 2:3,
@@ -105,7 +105,9 @@ Alternatively, we could display percentages in our table. Let's say we are inter
 df |> 
   tabyl(grade, rt) |> 
   adorn_percentages(denominator = "row") |> 
-  gt() |> 
+  gt(
+    rowname_col = "grade" 
+  ) |> 
   fmt_percent(
     columns = -1,
     decimals = 1
@@ -137,7 +139,9 @@ Create a table of n_ln_pos_3_vs_1or2 by optimal_systemic_therapy, with percentag
 df |> 
   tabyl(n_ln_pos_3_vs_1or2, optimal_systemic_therapy) |> 
   adorn_percentages(denominator = "row") |> 
-  gt() |> 
+  gt(
+    rowname_col = "n_ln_pos_3_vs_1or2"
+  ) |> 
   fmt_percent(
     columns = -1,
     decimals = 1
@@ -154,7 +158,7 @@ df |>
   )
 ```
 
-To make the table look even nicer, we could use the `case_match()` function from the {dplyr} package, which works similarly to `case_when()` but only considering a single variable, and is useful for recoding the levels of a categorical variables. We may want to create more descriptive levels than the 1/0 indicators these variables currently contain.
+To make the table look even nicer, we could use the `case_match()` function from the {dplyr} package, which works similarly to `case_when()` but only considering a single variable, and is useful for recoding the levels of a categorical variable. We may want to create more descriptive levels than the 1/0 indicators these variables currently contain.
 
 ```{r}
 df |> 
@@ -172,7 +176,9 @@ df |>
   ) |> 
   tabyl(n_ln_pos_3_vs_1or2, optimal_systemic_therapy) |> 
   adorn_percentages(denominator = "row") |> 
-  gt() |> 
+  gt(
+    rowname_col = "n_ln_pos_3_vs_1or2"
+  ) |> 
   fmt_percent(
     columns = -1,
     decimals = 1
@@ -256,7 +262,6 @@ Note that there are missing values in tumor_size_cm (i.e. NA entries) that must 
 ## Session 4, Exercise 2 Solution
 
 ```{r}
-# Session 4, Exercise 2 ----
 df |> 
   group_by(grade) |> 
   summarize(
