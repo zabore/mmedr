@@ -103,10 +103,6 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-lessons">    
         <li>
-    <a class="dropdown-item" href="./r-awesome.html">
- <span class="dropdown-text">Why R is awesome</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./tools-introduction.html">
  <span class="dropdown-text">Tools - Introduction</span></a>
   </li>  
@@ -176,8 +172,14 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
   <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio">RStudio</a></li>
-  <li><a href="#posit-workbench" id="toc-posit-workbench" class="nav-link" data-scroll-target="#posit-workbench">Posit Workbench</a></li>
-  <li><a href="#using-rstudio" id="toc-using-rstudio" class="nav-link" data-scroll-target="#using-rstudio">Using RStudio</a></li>
+  <li><a href="#posit-workbench" id="toc-posit-workbench" class="nav-link" data-scroll-target="#posit-workbench">Posit Workbench</a>
+  <ul class="collapse">
+  <li><a href="#changing-your-linux-password" id="toc-changing-your-linux-password" class="nav-link" data-scroll-target="#changing-your-linux-password">Changing your Linux password</a></li>
+  </ul></li>
+  <li><a href="#using-rstudio" id="toc-using-rstudio" class="nav-link" data-scroll-target="#using-rstudio">Using RStudio</a>
+  <ul class="collapse">
+  <li><a href="#sending-code-to-the-console" id="toc-sending-code-to-the-console" class="nav-link" data-scroll-target="#sending-code-to-the-console">Sending code to the console</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -301,6 +303,31 @@ Installing RStudio
 <img src="img/posit-rstudio-session.jpg" width="90%">
 </p>
 <p>The layout of the panes can be customized by going to Tools &gt; Global Options &gt; Pane Layout. I can help you customize as well if there are things you prefer, just ask!</p>
+<section id="changing-your-linux-password" class="level3">
+<h3 class="anchored" data-anchor-id="changing-your-linux-password">Changing your Linux password</h3>
+<ol type="1">
+<li>Type “putty” into the search bar on your computer and open the PuTTY application</li>
+<li>Type “lri-r00.lerner.ccf.org” in the Host Name field. The rest of the defaults should be okay.</li>
+</ol>
+<p align="center">
+<img src="img/putty.png" width="90%">
+</p>
+<ol start="3" type="1">
+<li>Click “Open”.</li>
+<li>At the prompt that says “login as:” type your username and hit Enter</li>
+<li>Type your current password and hit Enter</li>
+<li>Type “yppasswd” and hit Enter</li>
+<li>Follow the prompts, which will ask you for:
+<ul>
+<li>Your old password</li>
+<li>Your new password</li>
+<li>Your new password again to confirm</li>
+</ul></li>
+</ol>
+<p align="center">
+<img src="img/putty-yppasswd.png" width="90%">
+</p>
+</section>
 </section>
 <section id="using-rstudio" class="level2">
 <h2 class="anchored" data-anchor-id="using-rstudio">Using RStudio</h2>
@@ -323,6 +350,14 @@ Installing RStudio
 <ol type="1">
 <li>To open a new text editor window go to: File &gt; New File &gt; R Script</li>
 <li>To save the file go to: File &gt; Save</li>
+</ol>
+<section id="sending-code-to-the-console" class="level3">
+<h3 class="anchored" data-anchor-id="sending-code-to-the-console">Sending code to the console</h3>
+<p>To send this to the console to be executed, you can do one of the following:</p>
+<ol type="1">
+<li>Place your cursor next to the line you want to run and hit Ctrl+Enter on your keyboard</li>
+<li>Place your cursor next to the line you want to run and hit the “Run” button</li>
+<li>Highlight multiple lines of code and use one of the previous options</li>
 </ol>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
@@ -373,6 +408,7 @@ Session 1, Exercise 1 Solution
 </div>
 
 
+</section>
 </section>
 </section>
 

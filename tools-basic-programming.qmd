@@ -27,14 +27,6 @@ y <- "cat"
 y
 ```
 
-## Sending code to the console
-
-To send this to the console to be executed, you can do one of the following:
-
-1. Place your cursor next to the line you want to run and hit Ctrl+Enter on your keyboard
-2. Place your cursor next to the line you want to run and hit the "Run" button
-3. Highlight multiple lines of code and use one of the previous options
-
 ::: {.callout-note icon=false collapse="true"}
 ## Session 2, Exercise 1
 

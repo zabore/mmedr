@@ -14,8 +14,8 @@ website:
         text: Outline
       - text: Lessons
         menu:
-          - text: Why R is awesome
-            href: r-awesome.qmd
+          # - text: Why R is awesome
+          #   href: r-awesome.qmd
           - text: Tools - Introduction
             href: tools-introduction.qmd
           - text: Tools - Install packages

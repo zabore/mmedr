@@ -42,7 +42,6 @@ This website hosts R teaching materials for the Cleveland Clinic Molecular Medic
 - [Basic programming](tools-basic-programming.qmd)
 
     - Assigning objects
-    - Sending code to the console
     - Functions
     - Getting help
     - The pipe operator
@@ -60,7 +59,6 @@ This website hosts R teaching materials for the Cleveland Clinic Molecular Medic
     - Group a continuous variable
     - Recategorize a categorical variable
     - Sort by row
-    - Reshape (wide to long, long to wide)
     
 ### Session 4
 

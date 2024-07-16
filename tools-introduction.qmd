@@ -82,6 +82,25 @@ R and RStudio are two separate things, and to use both you will need to install 
 
 The layout of the panes can be customized by going to Tools > Global Options > Pane Layout. I can help you customize as well if there are things you prefer, just ask!
 
+### Changing your Linux password
+
+1. Type "putty" into the search bar on your computer and open the PuTTY application
+2. Type "lri-r00.lerner.ccf.org" in the Host Name field. The rest of the defaults should be okay. 
+
+<p align="center"><img src="img/putty.png" width=90%></p>
+
+3. Click "Open".
+4. At the prompt that says "login as:" type your username and hit Enter
+5. Type your current password and hit Enter
+6. Type "yppasswd" and hit Enter
+7. Follow the prompts, which will ask you for:
+    - Your old password
+    - Your new password
+    - Your new password again to confirm
+    
+<p align="center"><img src="img/putty-yppasswd.png" width=90%></p>
+
+
 ## Using RStudio
 
 **Rstudio panes:**
@@ -104,6 +123,14 @@ How to open a text editor window:
 
 1. To open a new text editor window go to: File > New File > R Script 
 2. To save the file go to: File > Save 
+
+### Sending code to the console
+
+To send this to the console to be executed, you can do one of the following:
+
+1. Place your cursor next to the line you want to run and hit Ctrl+Enter on your keyboard
+2. Place your cursor next to the line you want to run and hit the "Run" button
+3. Highlight multiple lines of code and use one of the previous options
 
 ::: {.callout-note icon=false collapse="true"}
 ## Session 1, Exercise 1
