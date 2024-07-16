@@ -135,7 +135,7 @@ Many other file formats exist, and here is a non-comprehensive list of functions
 ## Variable names with the {janitor} package
 
 ::: {.callout-tip}
-## R is case sensitive
+## Recall: R is case sensitive
 
 - i.e. `age` is not the same as `Age`.
 :::

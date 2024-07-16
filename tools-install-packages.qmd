@@ -116,6 +116,18 @@ install("ggtree")
 
 This package is designed for visualization and annotation of phylogentic trees.
 
+::: {.callout-important}
+Note that when you are loading packages, there are no quotes around the package name inside `library()`, e.g. `library(survival)`.
+
+But when you are installing packages, using any of the three repositories described above, there are quotes around the package name, e.g. `install.packages("survival")`.
+:::
+
+::: {.callout-important}
+## R is case sensitive
+
+- i.e. `age` is not the same as `Age`
+:::
+
 ::: {.callout-tip}
 When using Posit Workbench, many commonly used packages have already been installed for the current version of R by the system administrator. 
 
