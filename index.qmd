@@ -18,11 +18,15 @@ This website hosts R teaching materials for the Cleveland Clinic Molecular Medic
     - RStudio
     - Posit Workbench
     
+- Using RStudio
+    
 - [Installing and loading R packages](tools-install-packages.qmd)
 
     - CRAN
     - Github
     - Bioconductor
+
+### Session 2
 
 - [Loading data](tools-loading-data.qmd)
 
@@ -37,7 +41,7 @@ This website hosts R teaching materials for the Cleveland Clinic Molecular Medic
     - Project workflow and organization
     - {here} package
 
-### Session 2
+### Session 3
 
 - [Basic programming](tools-basic-programming.qmd)
 
@@ -48,8 +52,8 @@ This website hosts R teaching materials for the Cleveland Clinic Molecular Medic
     - Testing for equality
     - Indexing
     - Subsetting
-
-### Session 3
+    
+### Session 4
 
 - [Manipulate dataframes](tools-manipulate-dataframes.qmd)
 
@@ -59,19 +63,10 @@ This website hosts R teaching materials for the Cleveland Clinic Molecular Medic
     - Group a continuous variable
     - Recategorize a categorical variable
     - Sort by row
-    
-### Session 4
 
-- [Descriptive statistics](tools-descriptive-statistics.qmd)
-
-    - One-way frequency table
-    - Two-way contingency table
-    - Summary statistics
-    - Summary statistics by group
-    
 ### Session 5
 
-- Catch up / put it all together
+- [Put it all together](tools-review-practice.qmd)
     
 ## Biostatistics and Epidemiology
 

@@ -1,0 +1,16 @@
+---
+title: ""
+---
+
+Here are my notes on changes to make for next year:
+
+- I already rearranged the outline to reflect the material we were able to get through each day this year and believe this is more realistic
+- Put assigning objects (and what objects even ar) earlier - needs to be before installing packages - currently its in the basic programming session (note that I put a placeholder called Using RStudio for this, currently with no content)
+- One of my examples in session 2 has the wrong path to the data - it should point to the data folder where I told them to save the data
+- In general need to streamline where I told them to save files and what the folder structure should look like throughout
+- Also need to streamline which parts they should be working on along with me and which parts are lecture, right now it's confusing
+- add the != operator to the section on operators/indexing
+- show how to arrange() in the opposite direction in the session on manipulating dataframes
+- note that the sesison on manipulating dataframes took <1 hour so could potentially add to it a bit - got done about 15 mins early
+- session 3 exercise 1 comes too soon - haven't introduced case_when() yet - the two exercises here are too similar
+

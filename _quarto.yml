@@ -28,8 +28,10 @@ website:
             href: tools-basic-programming.qmd
           - text: Tools - Manipulate dataframes
             href: tools-manipulate-dataframes.qmd
-          - text: Tools - Descriptive statistics
-            href: tools-descriptive-statistics.qmd
+          # - text: Tools - Descriptive statistics
+          #   href: tools-descriptive-statistics.qmd
+          - text: Tools - Put it all together
+            href: tools-review-practice.qmd
           - text: Biostatistics and Epidemiology - Refresher
             href: bio-epi-refresher.qmd
           - text: Biostatistics and Epidemiology - Visualization

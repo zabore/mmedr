@@ -168,8 +168,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#websites-in-r" id="toc-websites-in-r" class="nav-link active" data-scroll-target="#websites-in-r">Websites in R</a></li>
-  <li><a href="#r-shiny" id="toc-r-shiny" class="nav-link" data-scroll-target="#r-shiny">R Shiny</a></li>
+  <li><a href="#review-and-practice" id="toc-review-and-practice" class="nav-link active" data-scroll-target="#review-and-practice">Review and practice</a>
+  <ul class="collapse">
+  <li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  <li><a href="#part-3" id="toc-part-3" class="nav-link" data-scroll-target="#part-3">Part 3</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -179,19 +183,90 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Before we begin with any formal instruction, why R?</p>
-<p>Because R is awesome.</p>
-<p>In addition to being a great statistical programming software for basic data manipulation, plotting, and statistical analyses, R has a lot of other cool tools.</p>
-<p>Let’s see some examples.</p>
-<section id="websites-in-r" class="level1">
-<h1>Websites in R</h1>
-<p>This entire course website is written in R!</p>
-<p>You can see the source code on GitHub: <a href="https://github.com/zabore/mmedr">https://github.com/zabore/mmedr</a></p>
+<section id="review-and-practice" class="level1">
+<h1>Review and practice</h1>
+<p>This session will be an interactive practice session, giving you a chance to review what we have learned this week and ask questions as needed.</p>
+<p>Let’s pretend we are working on a project with our principal investigator, Carolyn Ball, and another project staff in the lab Alexandra Davies. The project is to describe characteristics of a population of patients with breast cancer.</p>
+<section id="part-1" class="level2">
+<h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
+<ol type="1">
+<li>Create a new project folder inside the “mmedr” folder we’ve been using for this class so far. Give it a descriptive name related to the project at hand.</li>
+<li>Inside the project folder, create a sub-folder called “data” and copy the breastcancer.csv data file there.</li>
+<li>Create an RStudio project inside the project folder, and open it.</li>
+<li>Open a new R script inside the Rstudio project, and save it to the project folder with a descriptive name</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This part of the practice session reviews topics covered in Reproducibility, including RStudio projects and a project oriented workflow.</p>
+</div>
+</div>
 </section>
-<section id="r-shiny" class="level1">
-<h1>R Shiny</h1>
+<section id="part-2" class="level2">
+<h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
+<ol type="1">
+<li>Load (after installing, if needed) the readr, here, janitor, and dplyr packages in your newly saved R script</li>
+<li>Read in the datafile breastcancer.csv to an object</li>
+<li>Standardize the column names of the breastcancer data</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This part of the practice session reviews topics covered in Installing and loading R packages, Loading data, and Reproducibility.</p>
+</div>
+</div>
+</section>
+<section id="part-3" class="level2">
+<h2 class="anchored" data-anchor-id="part-3">Part 3</h2>
+<ol type="1">
+<li>Create a new variable dichotomizing age_dx_yrs at 60 (i.e.&nbsp;a group for &lt;=60 and a group for &gt;60)</li>
+<li>Create a new variable called “triple_negative” that is 1 if both er_or_pr_pos is 0 and her_pos is 0, and 0 otherwise. <strong>Please use caution here because there are some missing values in both of the variables that go into this calculation, so you need to think about how they should be handled</strong></li>
+<li>Limit the dataset to patients who received optimal systemic therapy (i.e.&nbsp;optimal_systemic_therapy is 1)</li>
+<li>Only keep the variable rt, and the two new variables you created above (whatever you called them) in the dataset</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This part of the practice session reviews topics covered in Manipulate dataframes</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For an extra challenge, try to string all of the above steps together in a single step using the pipe operator</p>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

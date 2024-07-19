@@ -1,0 +1,48 @@
+---
+title: ""
+---
+
+# Review and practice
+
+This session will be an interactive practice session, giving you a chance to review what we have learned this week and ask questions as needed.
+
+Let's pretend we are working on a project with our principal investigator, Carolyn Ball, and another project staff in the lab Alexandra Davies. The project is to describe characteristics of a population of patients with breast cancer.
+
+## Part 1
+
+1. Create a new project folder inside the "mmedr" folder we've been using for this class so far. Give it a descriptive name related to the project at hand. 
+2. Inside the project folder, create a sub-folder called "data" and copy the breastcancer.csv data file there. 
+3. Create an RStudio project inside the project folder, and open it.
+4. Open a new R script inside the Rstudio project, and save it to the project folder with a descriptive name
+
+::: {.callout-note}
+This part of the practice session reviews topics covered in Reproducibility, including RStudio projects and a project oriented workflow.
+:::
+
+## Part 2
+
+1. Load (after installing, if needed) the readr, here, janitor, and dplyr packages in your newly saved R script
+2. Read in the datafile breastcancer.csv to an object
+3. Standardize the column names of the breastcancer data
+
+::: {.callout-note}
+This part of the practice session reviews topics covered in Installing and loading R packages, Loading data, and Reproducibility.
+:::
+
+## Part 3
+
+1. Create a new variable dichotomizing age_dx_yrs at 60 (i.e. a group for <=60 and a group for >60)
+2. Create a new variable called "triple_negative" that is 1 if both er_or_pr_pos is 0 and her_pos is 0, and 0 otherwise. **Please use caution here because there are some missing values in both of the variables that go into this calculation, so you need to think about how they should be handled**
+3. Limit the dataset to patients who received optimal systemic therapy (i.e. optimal_systemic_therapy is 1)
+4. Only keep the variable rt, and the two new variables you created above (whatever you called them) in the dataset
+
+::: {.callout-note}
+This part of the practice session reviews topics covered in Manipulate dataframes
+:::
+
+::: {.callout-important}
+For an extra challenge, try to string all of the above steps together in a single step using the pipe operator
+:::
+
+
+
