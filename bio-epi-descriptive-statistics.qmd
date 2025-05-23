@@ -125,7 +125,7 @@ df |>
 ```
 
 ::: {.callout-note icon=false collapse="true"}
-## Session 4, Exercise 1
+## Exercise 1
 
 Create a table of n_ln_pos_3_vs_1or2 by optimal_systemic_therapy, with percentages of sujects who received optimal_systemic_therapy within each level of n_ln_pos_3_vs_1or2, and styled with row and column names and a descriptive title.
 
@@ -133,7 +133,7 @@ Create a table of n_ln_pos_3_vs_1or2 by optimal_systemic_therapy, with percentag
 :::
 
 ::: {.callout-warning icon=false collapse="true"}
-## Session 4, Exercise 1 Solution
+## Exercise 1 Solution
 
 ```{r}
 df |> 
@@ -251,7 +251,7 @@ df |>
 :::
 
 ::: {.callout-note icon=false collapse="true"}
-## Session 4, Exercise 2
+## Exercise 2
 
 Summarize tumor_size_cm according to grade. 
 
@@ -259,7 +259,7 @@ Note that there are missing values in tumor_size_cm (i.e. NA entries) that must 
 :::
 
 ::: {.callout-warning icon=false collapse="true"}
-## Session 4, Exercise 2 Solution
+## Exercise 2 Solution
 
 ```{r}
 df |> 
