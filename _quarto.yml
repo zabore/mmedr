@@ -36,6 +36,8 @@ website:
             href: bio-epi-refresher.qmd
           - text: Biostatistics and Epidemiology - Visualization
             href: bio-epi-visualization.qmd
+          - text: Biostatistics and Epidemiology - Descriptive statistics
+            href: bio-epi-descriptive-statistics.qmd
           - text: Biostatistics and Epidemiology - Multiple testing
             href: bio-epi-multiple-testing.qmd
           - text: Biostatistics and Epidemiology - Advanced programming
