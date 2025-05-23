@@ -74,9 +74,6 @@ This website hosts R teaching materials for the Cleveland Clinic Molecular Medic
 
 - [Refresher of the Tools course material](bio-epi-refresher.qmd)
 
-    - R basics
-    - Descriptive statistics
-    
 - [Visualization](bio-epi-visualization.qmd) 
 
     - Scatterplot
@@ -87,6 +84,13 @@ This website hosts R teaching materials for the Cleveland Clinic Molecular Medic
     - Customization
     - Faceting
     - Saving plots
+    
+- [Descriptive statistics](bio-epi-descriptive-statistics.qmd)
+
+    - One-way frequency table
+    - Two-way contingency table
+    - Summary statistics
+    - Summary statistics by group
     
 ### Session 2
     

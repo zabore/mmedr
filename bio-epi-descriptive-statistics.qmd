@@ -28,15 +28,15 @@ library(gt)
 
 The {gt} package will be used to creeate nicely styled tables.
 
-Also make sure the breastcancer data are loaded into your current R session, with names standardized using the `clean_names()` function from the {janitor} package, and that you are working inside your mmedr R project.
+Also make sure the breastcancer data are loaded into your current R session, with names standardized using the `clean_names()` function from the {janitor} package.
 
-```{r eval = FALSE}
-df <- read_csv(here("breastcancer.csv")) |> 
+```{r echo = FALSE, message = FALSE}
+df <- read_csv(here::here("data", "breastcancer.csv")) |> 
   clean_names()
 ```
 
-```{r echo = FALSE, message = FALSE}
-df <- read_csv("H:/mmedr/breastcancer.csv") |> 
+```{r eval = FALSE, message = FALSE, }
+df <- read_csv("~folder/breastcancer.csv") |> 
   clean_names()
 ```
 

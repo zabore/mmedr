@@ -18,27 +18,32 @@ install.packages("ggplot2")
 library(ggplot2)
 ```
 
-```{r echo = FALSE}
-mycsv <- 
-  read.csv(
-    "H:/MMED/MMED501/data/trial-csv.csv"
-    ) 
+```{r echo = FALSE, message = FALSE}
+mycsv <- readr::read_csv(here::here("data", "breastcancer.csv")) |> 
+  janitor::clean_names()
+```
+
+Make sure the breastcancer dataset is loaded in your current R session, with names cleaned up using `clean_names()` from the {janitor} package:
+
+```{r eval = FALSE}
+mycsv <- read.csv("~/folder/breastcancer.csv") |> 
+  clean_names()
 ```
 
 ## Scatterplot
 
-Scatterplots display the joint distribution of two continuous variables. For example, what if we wanted to see a plot of "marker" by "age". Put age on the x-axis and marker on the y-axis.
+Scatterplots display the joint distribution of two continuous variables. For example, what if we wanted to see a plot of "tumor_size_cm" by "age_dx__yrs". Put age on the x-axis and tumor size on the y-axis.
 
 The first layer of the plot simply specifies the dataset and the basic aesthetics, in this case just the x-axis and y-axis variables:
 
 ```{r eval = FALSE}
-ggplot(data = mycsv, aes(x = age, y = marker))
+ggplot(data = mycsv, aes(x = age_dx_yrs, y = tumor_size_cm))
 ```
 
 Then the scatterplot is created by adding a layer with `geom_point()` using the `+` operator:
 
 ```{r warning = FALSE}
-ggplot(data = mycsv, aes(x = age, y = marker)) + 
+ggplot(data = mycsv, aes(x = age_dx_yrs, y = tumor_size_cm)) + 
   geom_point()
 ```
 
@@ -51,13 +56,13 @@ We can also look at the association between two continuous variables using a lin
 The first layer of the plot specifies the dataset along with the x-axis and y-axis variables:
 
 ```{r eval = FALSE}
-ggplot(data = mycsv, aes(x = age, y = marker))
+ggplot(data = mycsv, aes(x = age_dx_yrs, y = tumor_size_cm))
 ```
 
 Then the line chart is created by adding a layer with `geom_line()` using the `+` operator. 
 
 ```{r warning = FALSE}
-ggplot(data = mycsv, aes(x = age, y = marker)) + 
+ggplot(data = mycsv, aes(x = age_dx_yrs, y = tumor_size_cm)) + 
   geom_line()
 ```
 
@@ -86,29 +91,29 @@ The height of the bar is the number of observations in that category.
 
 It is common to want to describe a continuous variable using a histogram, particularly to examine whether the distribution appears approximately normal.
 
-Let's look at a histogram of marker. The first layer of the plot simply specifies the dataset and the basic aesthetics, in this case just the x-axis variable:
+Let's look at a histogram of tumor size The first layer of the plot simply specifies the dataset and the basic aesthetics, in this case just the x-axis variable:
 
 ```{r eval = FALSE}
-ggplot(data = mycsv, aes(x = marker))
+ggplot(data = mycsv, aes(x = tumor_size_cm))
 ```
 
 Create the histogram by adding a layer with `geom_histogram()` using the `+` operator:
 
 ```{r warning = FALSE}
-ggplot(data = mycsv, aes(x = marker)) + 
+ggplot(data = mycsv, aes(x = tumor_size_cm)) + 
   geom_histogram()
 ```
 
-*Note that we received a message along with our output, regarding the number of bins being used in our histogram. This is prompting you to examine whether the default of 30 bins is appropriate for your given sample size and distribution*
+*Note that we received a message along with our output, regarding the number of bins being used in our histogram. This is prompting you to examine whether the default of 30 bins is appropriate for your given sample size and distribution - it usually isn't*
 
 In this case, we will specify a smaller number of bins for the histogram using the `bins = ` argument to `geom_histogram()`:
   
 ```{r warning = FALSE}
-ggplot(data = mycsv, aes(x = marker)) + 
+ggplot(data = mycsv, aes(x = tumor_size_cm)) + 
   geom_histogram(bins = 15)
 ```
 
-We find that the variable "marker" from the `trial` dataset has a positively skewed distribution.
+We find that the distribution is aproximately normal.
 
 ## Boxplot
 
@@ -121,7 +126,7 @@ ggplot(data = mycsv, aes(y = marker))
 And the boxplot is created by adding a layer with `geom_boxplot()` using the `+` operator:
 
 ```{r warning = FALSE}
-ggplot(data = mycsv, aes(y = marker)) + 
+ggplot(data = mycsv, aes(y = tumor_size_cm)) + 
   geom_boxplot()
 ```
 
@@ -130,7 +135,7 @@ The top and bottom of the box are the 25th and 75th quantiles, the center line i
 We may also want to make a boxplot according to a categorical variables. Say we are interested in the distribution of marker according to disease grade. We can add an argument to the x-axis of the first layer aesthetics to get separate boxes by grade:
 
 ```{r warning = FALSE}
-ggplot(data = mycsv, aes(y = marker, x = grade)) + 
+ggplot(data = mycsv, aes(y = tumor_size_cm, x = grade)) + 
   geom_boxplot()
 ```
 
@@ -141,22 +146,22 @@ There are many customizations available.
 For example, we can change the x-axis and y-axis labels:
 
 ```{r warning = FALSE}
-ggplot(data = mycsv, aes(y = marker, x = grade)) + 
+ggplot(data = mycsv, aes(y = tumor_size_cm, x = grade)) + 
   geom_boxplot() + 
   labs(
     x = "Disease grade",
-    y = "Marker level (ng/mL)"
+    y = "Tumor size (cm)"
   )
 ```
 
 We can add titles:
 
 ```{r warning = FALSE}
-ggplot(data = mycsv, aes(y = marker, x = grade)) + 
+ggplot(data = mycsv, aes(y = tumor_size_cm, x = grade)) + 
   geom_boxplot() + 
   labs(
     x = "Disease grade",
-    y = "Marker level (ng/mL)",
+    y = "Tumor size (cm)",
     title = "Boxplot of marker level by disease grade"
   )
 ```
@@ -164,27 +169,41 @@ ggplot(data = mycsv, aes(y = marker, x = grade)) +
 We can set axis limits:
 
 ```{r warning = FALSE}
-ggplot(data = mycsv, aes(y = marker, x = grade)) + 
+ggplot(data = mycsv, aes(y = tumor_size_cm, x = grade)) + 
   geom_boxplot() + 
   labs(
     x = "Disease grade",
-    y = "Marker level (ng/mL)",
+    y = "Tumor size (cm)",
     title = "Boxplot of marker level by disease grade"
   ) + 
-  ylim(c(0, 5))
+  ylim(c(0, 6))
 ```
 
-And we can change the style of the plot using theme elements:
+We can change the style of the plot using theme elements:
 
 ```{r warning = FALSE}
-ggplot(data = mycsv, aes(y = marker, x = grade)) + 
+ggplot(data = mycsv, aes(y = tumor_size_cm, x = grade)) + 
   geom_boxplot() + 
   labs(
     x = "Disease grade",
-    y = "Marker level (ng/mL)",
+    y = "Tumor size (cm)",
     title = "Boxplot of marker level by disease grade"
   ) + 
-  ylim(c(0, 5)) + 
+  ylim(c(0, 6)) + 
+  theme_bw()
+```
+
+And we can add color, in this case fill in the boxes:
+
+```{r warning = FALSE}
+ggplot(data = mycsv, aes(y = tumor_size_cm, x = grade, fill = grade)) + 
+  geom_boxplot() + 
+  labs(
+    x = "Disease grade",
+    y = "Tumor size (cm)",
+    title = "Boxplot of marker level by disease grade"
+  ) + 
+  ylim(c(0, 6)) + 
   theme_bw()
 ```
 
@@ -192,14 +211,14 @@ There are many other customizations available, see the [ggplot2 website](https:/
 
 ## Faceting
 
-What if it was of interest to see the distribution of marker according to disease grade?
+What if it was of interest to see the distribution of tumor size according to disease grade?
   
 Add a layer to our histogram using `facet_grid()` to get panels for each level of the disease grade variable "grade". 
 
 Note that by default the y-axis and x-axis limits are fixed across all plots, so we can directly compare the distributions. It is possible to control this with the `scales` argument to `facet_grid()`, see `?facet_grid` for details. 
 
 ```{r warning = FALSE}
-ggplot(data = mycsv, aes(x = marker)) + 
+ggplot(data = mycsv, aes(x = tumor_size_cm)) + 
   geom_histogram(bins = 10) +
   facet_grid(cols = vars(grade))
 ```
@@ -223,12 +242,12 @@ Create your plot. Click on "Export" then select the option...
 ### Save to file with the ggsave() function
 
 ```{r eval = FALSE}
-p <- ggplot(data = mycsv, aes(y = marker)) + 
+p <- ggplot(data = mycsv, aes(y = tumor_size_cv)) + 
   geom_boxplot() + 
   facet_grid(cols = vars(grade))
     
-ggsave(filename = "H:/MMED/MMED501/plots/my-boxplot.png", plot = p)
+ggsave(filename = "~/folder/filename.png", plot = p)
 ```
 
-*Adjust the width and height using the `width` and/or `height` arguments to the `ggsave()` function*
+*Adjust the width and height using the `width` and/or `height` arguments to the `ggsave()` function, or save as different formats by using an alternate extension like .jpg, .tiff, .eps, etc*
 

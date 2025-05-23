@@ -188,35 +188,36 @@ survfit(formula, ...)
 survival::survfit(formula, ...)
 ```
 
-### Example trial dataset
 
-The most common data format we work with are data from Excel. The example trial dataset is available in the {gtsummary} package in R.
+### Dataset for use in this class
 
-1. Install and load the "gtsummary" package
-2. Preview the `trial` data by simply typing the name of the dataset:
+```{r echo = FALSE, eval = FALSE}
+# Write out the simulated breast cancer dataset in my GitHub repo cancersimdata to Excel and save it in a data folder on the course website
+library(cancersimdata)
+library(openxlsx)
+write.xlsx(bc_rt_data, 
+           file = here::here("data/breastcancer.xlsx"))
 
-```{r eval = FALSE}
-install.packages("gtsummary")
+# Note that I manually changed the column headers in this file to demonstrate the usefulness of the clean_names() function
 ```
 
-```{r warning = FALSE}
-library(gtsummary)
-trial
-```
+The primary dataset used throughout this course is stored in this [folder](https://github.com/zabore/mmedr/tree/main/data). We need to download it from 
+GitHub onto our personal computers.
 
-The help page for the trial data can be accessed by running:
+1. Navigate to the above location and **left click** on breastcancer.xlsx.
 
-```{r eval = FALSE}
-?trial
-```
+2. For a .xlsx file like this, you won't see a preview of the data. Now **right click** on "Raw" and then select "Save link as..."
 
-And we see the variables and their definitions:
+<p align="center"><img src="img/github-save-data.png" width=90%></p>
 
-<p align="center"><img src="img/trial-help.png" width=100%></p>
+3. Navigate to the "mmedr" folder we created earlier on your home directory, and save the file there as "breastcancer.xlsx".
 
-I have saved this data file out to Excel so that we can practice loading it in R. Go to the [course website](https://mylearning.ccf.org/course/view.php?id=18794) to download the file named "trial-Excel.xlsx". Save it somewhere you can find it again.
 
 ### Loading data
+
+```{r echo = FALSE, message = FALSE}
+mycsv <- readr::read_csv("H:/mmedr/breastcancer.csv")
+```
 
 The most common data format we work with are data from **Excel**. 
 
@@ -243,9 +244,7 @@ library(readxl)
 Then use the `read_excel()` function with the appropriate filepath to read in the data and create an object called "mydf":
 
 ```{r eval = FALSE}
-mydf <- read_excel(
-  "~/MMED/MMED501/data/trial-Excel.xlsx"
-  )
+mydf <- read_excel("~/folder/filename.xlsx")
 ```
 
 Note that R treats the \\ as a special character so you either need to use / or $\backslash \backslash$ in file paths.
@@ -260,19 +259,8 @@ Advantages: removes some of the possible formatting pitfalls associated with Exc
 2. Go to File > Save As and select "CSV (Comma delimited)" from the "Save as type" drop down and save the file to the same location as "trial-csv.csv"
 3. Use the `read.csv()` function with the appropriate file path to read in the data and create an object called "mycsv"
 
-```{r echo = FALSE}
-# I'm executing this code with the local filepath, but showing the code with the appropriate Linux filepath for use on Posit Workbench
-mycsv <- 
-  read.csv(
-    "H:/MMED/MMED501/data/trial-csv.csv"
-    ) 
-```
-
 ```{r eval = FALSE}
-mycsv <- 
-  read.csv(
-    "~/MMED/MMED501/data/trial-csv.csv"
-    ) 
+mycsv <- read.csv("~/folder/filename.csv") 
 ```
 
 *Note that this is the approach I always use myself and will form the basis of all of my examples*
@@ -284,6 +272,15 @@ Many other file formats exist, and here is a non-comprehensive list of functions
 - `read.csv2()` is a special case with fixed defaults for comma-separated files that were created in a country where commas are used in place of decimal places
 - `read.delim()` is a special case with fixed defaults for tab-delimited files
 - `read.delim2()` is a special case with fixed defaults for tab-delimited files that were created in a country where commas are used in place of decimal places
+
+Recall that we can clean up the names of the variables in our dataset using the `clean_names()` function from the {janitor} package:
+
+```{r message = FALSE}
+mycsv <- 
+  mycsv |> 
+  janitor::clean_names()
+```
+
 
 ### Basic programming
 
@@ -360,10 +357,10 @@ R has three main indexing operators:
 
 To access specific variables, use the `$` operator in the form `dataframe$varname`, where `dataframe` is the name of the object to which we assigned our data set, and `varname` is the name of the variable of interest
 
-For example, to calculate the mean of the variable `age` in the dataframe `mycsv`:
+For example, to calculate the mean of the variable `age_dx_years` in the dataframe `mycsv`:
 
 ```{r}
-mean(mycsv$age, na.rm = TRUE)
+mean(mycsv$age_dx_yrs, na.rm = TRUE)
 ```
 
 *Note that we need to add the argument `na.rm = TRUE` to remove missing values from the calculation of the mean, otherwise NA will be returned if missing values are present*
@@ -371,7 +368,7 @@ mean(mycsv$age, na.rm = TRUE)
 Alternatively, use double brackets in the form `dataframe[["varname"]]`
 
 ```{r}
-mean(mycsv[["age"]], na.rm = TRUE)
+mean(mycsv[["age_dx_yrs"]], na.rm = TRUE)
 ```
 
 Sometimes we may want to create a subset of our data, or access a value based on more than one dimension.
@@ -388,10 +385,10 @@ df[i, j]
 
 We can use this concept to create subsets of our data as well. 
 
-We can create a subset of our data based on the values in a row, for example limiting to patients who were treated with Drug A:
+We can create a subset of our data based on the values in a row, for example limiting to patients who were treated with optimal systemic therapy:
 
 ```{r}
-df_sub <- mycsv[mycsv$trt == "Drug A", ]
+df_sub <- mycsv[mycsv$optimal_systemic_therapy == 1, ]
 nrow(df_sub)
 ```
 
@@ -399,10 +396,10 @@ We see that the new data subset has `r nrow(df_sub)` rows.
 
 The `&` operator signifies "and".
 
-So for example we could subset based on patients who were treated with Drug A AND are over 45 years old:
+So for example we could subset based on patients who were treated with optimal systemic therapy AND are over 45 years old:
 
 ```{r}
-df_sub <- mycsv[mycsv$trt == "Drug A" & mycsv$age > 45, ]
+df_sub <- mycsv[mycsv$optimal_systemic_therapy == 1 & mycsv$age_dx_yrs > 45, ]
 nrow(df_sub)
 ```
 
@@ -410,199 +407,33 @@ And we see that the new data subset has `r nrow(df_sub)` rows.
 
 The `|` operator signifies "or".
 
-So for example we could subset based on patients who were treated with Drug A OR are over 45 years old:
+So for example we could subset based on patients who were treated with optimal systemic therapy OR are over 45 years old:
 
 ```{r}
-df_sub <- mycsv[mycsv$trt == "Drug A" | mycsv$age > 45, ]
+df_sub <- mycsv[mycsv$optimal_systemic_therapy == 1 | mycsv$age_dx_yrs > 45, ]
 nrow(df_sub)
 ```
 
 And we see that our new datasubset has `r nrow(df_sub)` rows.
 
-We can also create a subset of our data based on columns, for example limiting to trt:
+We can also create a subset of our data based on columns, for example limiting to optimal_systemic_therapy:
 
 ```{r}
-df_sub <- mycsv[ , c("trt")]
+df_sub <- mycsv[ , c("optimal_systemic_therapy")]
 ```
 
-Or we can simultaneously subset based on rows and columns, for example limiting to the trt column among patients with age greater than 45:
+Or we can simultaneously subset based on rows and columns, for example limiting to the optimal_systemic_therapy column among patients with age greater than 45:
 
 ```{r}
-df_sub <- mycsv[mycsv$age > 45, c("trt")]
+df_sub <- mycsv[mycsv$age_dx_yrs > 45, c("optimal_systemic_therapy")]
 ```
 
-We can also subset directly within functions. Suppose we want to calculate the mean of the variable `age` in the dataframe `mycsv`, but only among those who were treated with Drug A:
+We can also subset directly within functions. Suppose we want to calculate the mean of the variable `age_dx_yrs` in the dataframe `mycsv`, but only among those who were treated with optimal systemic therapy:
 
 ```{r}
-mean(mycsv$age[mycsv$trt == "Drug A"], na.rm = TRUE)
+mean(mycsv$age_dx_yrs[mycsv$optimal_systemic_therapy == 1], na.rm = TRUE)
 ```
 
 This avoids creating additional datasets that may not be needed again.
-
-
-
-## Descriptive statistics
-
-Next, we'll review descriptive statistics in R. There are many ways to generate this type of descriptive statistics in R. I will demonstrate one way and if you end up using R a lot you will find what works well for you and the type of data you use.
-
-We will be using some functions from the {janitor} package, so make sure you have that installed. 
-
-```{r eval = FALSE}
-install.packages("janitor")
-```
-
-```{r message = FALSE, warning = FALSE}
-library(janitor)
-```
-
-We can also create very nice tables by also using the {gt} package.
-
-```{r eval = FALSE}
-install.packages("gt")
-```
-
-```{r message = FALSE, warning = FALSE}
-library(gt)
-```
-
-### Introduction to the pipe operator
-
-First, we need to learn about the pipe operator, which we will use to string multiple functions together seamlessly.
-
-For example, if we want to take the log transformation of the `marker` variable and then get the mean, we could nest the two functions as follows:
-
-```{r}
-mean(log(mycsv$marker), na.rm = TRUE)
-```
-
-Or we can connect them with the pipe operator:
-
-```{r}
-mycsv$marker |> 
-  log() |> 
-  mean(na.rm = TRUE)
-```
-
-The **left hand side** is passed as the **first argument** to the function on the **right hand side**.
-
-You can use the native pipe operator through the keyboard shortcut ctrl + shift + m.
-
-This creates code that is very readable and concise, and easy to comment out various parts if needed.
-
-We'll be using this throughout the R sessions in this course.
-
-### One-way frequency table
-
-Make sure your variable of interest is in its own column in your dataframe, then use the `tabyl()` function from {janitor}:
-
-```{r}
-mycsv |> 
-  tabyl(trt) |> 
-  adorn_pct_formatting()
-```
-
-And we get a frequency table for the trt variable, with the percentages formatted using the `adorn_pct_formatting()` function.
-
-
-### Two-way contingency table
-
-Let's create a table with trt on the rows and response on the columns. The most basic table is created as:
-
-```{r}
-mycsv |> 
-  tabyl(trt, response)
-```
-
-Then we can use the {gt} package and it's associated features to customize our two-way contingency table. See the [{gt} package website](https://gt.rstudio.com/) for details.
-
-Let's label the row variable and column variable, and add a title:
-
-```{r}
-mycsv |> 
-  tabyl(trt, response) |> 
-  gt(
-    rowname_col = "trt" 
-  ) |> 
-  tab_spanner(          
-    columns = 2:4,
-    label = "Response?"
-  ) |> 
-  tab_stubhead(         
-    label = "Treatment" 
-  ) |> 
-  tab_header(           
-    title = "Response according to treatment group"
-  )
-```
-
-Alternatively, we could display percentages in our table:
-
-```{r}
-mycsv |> 
-  tabyl(trt, response) |> 
-  adorn_percentages(denominator = "all") |> 
-  gt() |> 
-  fmt_percent(
-    columns = -1,
-    decimals = 1
-  ) |> 
-  tab_spanner(          
-    columns = 2:4,
-    label = "Response?"
-  ) |> 
-  tab_stubhead(         
-    label = "Treatment" 
-  ) |> 
-  tab_header(           
-    title = "Response according to treatment group"
-  )
-```
-
-### Summary statistics
-
-We will use the `summarize()` function from the {dplyr} package to compute summary statistics.
-
-```{r eval = FALSE}
-install.packages("dplyr")
-```
-
-```{r message = FALSE, warning = FALSE}
-library(dplyr)
-```
-
-Let's compute the mean and standard deviation of age and marker:
-
-```{r}
-mycsv |> 
-  summarize(
-    avg_age = mean(age, na.rm = TRUE),
-    sd_age = sd(age, na.rm = TRUE),
-    avg_marker = mean(marker, na.rm = TRUE),
-    sd_marker = sd(marker, na.rm = TRUE)
-  )
-```
-
-### Summary statistics by group
-
-And we can easily extend this code to generate summary statistics by group by using the `group_by()` function from the {dplyr} package.
-
-Let's get the same summary table for age and marker, but by trt:
-
-```{r}
-mycsv |> 
-  group_by(trt) |> 
-  summarize(
-    avg_age = mean(age, na.rm = TRUE),
-    sd_age = sd(age, na.rm = TRUE),
-    avg_marker = mean(marker, na.rm = TRUE),
-    sd_marker = sd(marker, na.rm = TRUE)
-  )
-```
-
-
-
-
-
-
 
 
