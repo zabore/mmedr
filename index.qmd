@@ -91,6 +91,7 @@ This website hosts R teaching materials for the Cleveland Clinic Molecular Medic
     - Two-way contingency table
     - Summary statistics
     - Summary statistics by group
+    - Creating publication-ready tables
     
 ### Session 2
     

@@ -239,22 +239,14 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#r-basics" id="toc-r-basics" class="nav-link" data-scroll-target="#r-basics">R basics</a>
   <ul class="collapse">
-  <li><a href="#about-r" id="toc-about-r" class="nav-link" data-scroll-target="#about-r">About R</a></li>
-  <li><a href="#installing-r" id="toc-installing-r" class="nav-link" data-scroll-target="#installing-r">Installing R</a></li>
-  <li><a href="#about-rstudio" id="toc-about-rstudio" class="nav-link" data-scroll-target="#about-rstudio">About RStudio</a></li>
-  <li><a href="#installing-rstudio" id="toc-installing-rstudio" class="nav-link" data-scroll-target="#installing-rstudio">Installing RStudio</a></li>
   <li><a href="#posit-workbench" id="toc-posit-workbench" class="nav-link" data-scroll-target="#posit-workbench">Posit Workbench</a></li>
-  <li><a href="#using-rstudio" id="toc-using-rstudio" class="nav-link" data-scroll-target="#using-rstudio">Using RStudio</a></li>
   <li><a href="#using-the-text-editor-in-rstudio" id="toc-using-the-text-editor-in-rstudio" class="nav-link" data-scroll-target="#using-the-text-editor-in-rstudio">Using the text editor in RStudio</a></li>
-  <li><a href="#interactive-rstudio-demo" id="toc-interactive-rstudio-demo" class="nav-link" data-scroll-target="#interactive-rstudio-demo">Interactive RStudio demo</a></li>
   <li><a href="#sending-code-to-the-console" id="toc-sending-code-to-the-console" class="nav-link" data-scroll-target="#sending-code-to-the-console">Sending code to the console</a></li>
-  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting help</a></li>
-  <li><a href="#view-the-output" id="toc-view-the-output" class="nav-link" data-scroll-target="#view-the-output">View the output</a></li>
-  <li><a href="#interactive-rstudio-demo-results" id="toc-interactive-rstudio-demo-results" class="nav-link" data-scroll-target="#interactive-rstudio-demo-results">Interactive RStudio demo results</a></li>
   <li><a href="#installing-r-packages" id="toc-installing-r-packages" class="nav-link" data-scroll-target="#installing-r-packages">Installing R packages</a></li>
   <li><a href="#dataset-for-use-in-this-class" id="toc-dataset-for-use-in-this-class" class="nav-link" data-scroll-target="#dataset-for-use-in-this-class">Dataset for use in this class</a></li>
   <li><a href="#loading-data" id="toc-loading-data" class="nav-link" data-scroll-target="#loading-data">Loading data</a></li>
   <li><a href="#basic-programming" id="toc-basic-programming" class="nav-link" data-scroll-target="#basic-programming">Basic programming</a></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting help</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -268,50 +260,30 @@ window.Quarto = {
 
 <section id="refresher-of-the-tools-course-material" class="level1">
 <h1>Refresher of the Tools course material</h1>
-<p>In this session, we will review the basics of R and generating descriptive statistics in R, which were introduced in the Tools course. Then we will learn about data visualization, including creating scatterplots, bar charts, histograms, line charts, and boxplots. We’ll discuss plot customization, faceting, and saving plots. Both univariate and bivariable plotting will be covered.</p>
+<p>In this section, we will review the basics of R that were introduced in the Tools course.</p>
 <section id="r-basics" class="level2">
 <h2 class="anchored" data-anchor-id="r-basics">R basics</h2>
-<p>First, we’ll review the basics of R and R programming.</p>
-<section id="about-r" class="level3">
-<h3 class="anchored" data-anchor-id="about-r">About R</h3>
-<p align="left">
-<img src="img/Rlogo.png" width="25%">
-</p>
-<ul>
-<li>R is a free, open-source software environment for statistical computing and graphics</li>
-<li>Many of the functions you may wish to use will be contributed by other users as packages and available through repositories such as CRAN, GitHub, or Bioconductor, among others</li>
-<li>It is your responsibility to vet the quality and accuracy of any user-contributed packages</li>
-<li>The functions available with the initial installation of R, known as base R, can be considered trustworthy</li>
-</ul>
-</section>
-<section id="installing-r" class="level3">
-<h3 class="anchored" data-anchor-id="installing-r">Installing R</h3>
-<ol type="1">
-<li>Go to the website for <a href="https://cran.r-project.org/">The Comprehensive R Archive Network</a>.</li>
-<li>The top of the web page provides three links for downloading R. Follow the link that describes your operating system: Windows, Mac, or Linux.</li>
-</ol>
-</section>
-<section id="about-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="about-rstudio">About RStudio</h3>
-<p align="left">
-<img src="img/RStudio-Logo-Flat.png" width="45%">
-</p>
-<ul>
-<li>RStudio is an Integrated Development Environment (IDE).</li>
-<li>It runs R and allows users to develop and edit programs and offers higher quality graphics and a more user-friendly interface.</li>
-<li><strong><em>Note that RStudio is not a standalone program, you must have a separate installation of R</em></strong></li>
-</ul>
-</section>
-<section id="installing-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="installing-rstudio">Installing RStudio</h3>
-<ol type="1">
-<li>Go to the website for <a href="https://posit.co/products/open-source/rstudio/">RStudio</a></li>
-<li>Select “Download RStudio Desktop” under “Open Source Edition”</li>
-<li>Click the button for “Download RStudio”</li>
-<li>Scroll down and select the appropriate version for your operating system</li>
-<li>An installer will download and provide simple instructions to follow</li>
-</ol>
-</section>
+<!-- First, we'll review the basics of R and R programming. -->
+<!-- ### About R -->
+<!-- <p align="left"><img src="img/Rlogo.png" width=25%></p> -->
+<!-- - R is a free, open-source software environment for statistical computing and graphics -->
+<!-- - Many of the functions you may wish to use will be contributed by other users as packages and available through repositories such as CRAN, GitHub, or Bioconductor, among others  -->
+<!-- - It is your responsibility to vet the quality and accuracy of any user-contributed packages -->
+<!-- - The functions available with the initial installation of R, known as base R, can be considered trustworthy -->
+<!-- ### Installing R -->
+<!-- 1. Go to the website for [The Comprehensive R Archive Network](https://cran.r-project.org/).  -->
+<!-- 2. The top of the web page provides three links for downloading R. Follow the link that describes your operating system: Windows, Mac, or Linux. -->
+<!-- ### About RStudio -->
+<!-- <p align="left"><img src="img/RStudio-Logo-Flat.png" width=45%></p> -->
+<!-- - RStudio is an Integrated Development Environment (IDE). -->
+<!-- - It runs R and allows users to develop and edit programs and offers higher quality graphics and a more user-friendly interface. -->
+<!-- - ***Note that RStudio is not a standalone program, you must have a separate installation of R*** -->
+<!-- ### Installing RStudio -->
+<!-- 1. Go to the website for [RStudio](https://posit.co/products/open-source/rstudio/) -->
+<!-- 2. Select "Download RStudio Desktop" under "Open Source Edition" -->
+<!-- 3. Click the button for "Download RStudio" -->
+<!-- 4. Scroll down and select the appropriate version for your operating system -->
+<!-- 5. An installer will download and provide simple instructions to follow -->
 <section id="posit-workbench" class="level3">
 <h3 class="anchored" data-anchor-id="posit-workbench">Posit Workbench</h3>
 <p align="left">
@@ -319,57 +291,45 @@ window.Quarto = {
 </p>
 <ul>
 <li>We will primarily use Posit Workbench on the servers, where the R version and many R packages are updated regularly</li>
-<li>See the wiki for details: <a href="http://jjnb-wiki-v-00.bio.ri.ccf.org/index.php/Running_R">http://jjnb-wiki-v-00.bio.ri.ccf.org/index.php/Running_R</a></li>
-<li>Login in using your Linux credentials at one of the links, for example lri-r07: <a href="https://lri-r07.lerner.ccf.org/auth-sign-in">https://lri-r07.lerner.ccf.org/auth-sign-in</a></li>
+<li>See the LRI computing page for deatails: <a href="http://computing.lerner.ccf.org/qhs/running-r/#running">http://computing.lerner.ccf.org/qhs/running-r/#running</a></li>
+<li>Login in using your Linux credentials at one of the links, for example lri-r01: <a href="https://lri-r01.lerner.ccf.org/auth-sign-in">https://lri-r01.lerner.ccf.org/auth-sign-in</a></li>
 </ul>
-</section>
-<section id="using-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="using-rstudio">Using RStudio</h3>
-<p>When you first open RStudio you will see a number of panes:</p>
-<p align="center">
-<img src="img/rstudio-panes-screenshot.png" width="100%">
-</p>
-<p>The layout of the panes can be customized by going to Tools &gt; Global Options &gt; Pane Layout.</p>
-<p>Panes:</p>
-<ol type="1">
-<li><p>Text editor - this is where you will type your code, and you will save this file to a project folder for reproducibility</p></li>
-<li><p>Console - this is where the code will be executed</p></li>
-<li><p>Other panes will contain a variety of tabs. Some to note include:</p>
-<ul>
-<li>Environment: where you can see objects and data files that are available in your current session</li>
-<li>Files: here you should be able to access all folders and files on your home drive</li>
-<li>Plots: this is where plots will disply</li>
-<li>Help: this is where you will get help files for R functions</li>
-<li>Viewer: this is where you would preview any html output like a gt table or Quarto document</li>
-</ul></li>
-</ol>
+<!-- ### Using RStudio -->
+<!-- When you first open RStudio you will see a number of panes: -->
+<!-- <p align="center"><img src="img/rstudio-panes-screenshot.png" width=100%></p> -->
+<!-- The layout of the panes can be customized by going to Tools > Global Options > Pane Layout. -->
+<!-- Panes: -->
+<!-- 1. Text editor - this is where you will type your code, and you will save this file to a project folder for reproducibility -->
+<!-- 2. Console - this is where the code will be executed -->
+<!-- 3. Other panes will contain a variety of tabs. Some to note include: -->
+<!--     - Environment: where you can see objects and data files that are available in your current session -->
+<!--     - Files: here you should be able to access all folders and files on your home drive -->
+<!--     - Plots: this is where plots will disply -->
+<!--     - Help: this is where you will get help files for R functions -->
+<!--     - Viewer: this is where you would preview any html output like a gt table or Quarto document -->
 </section>
 <section id="using-the-text-editor-in-rstudio" class="level3">
 <h3 class="anchored" data-anchor-id="using-the-text-editor-in-rstudio">Using the text editor in RStudio</h3>
-<p>Always use a text editor to type code so that it can be saved for reproducibility purposes.</p>
+<p>Remember to always use a text editor to type code so that it can be saved for reproducibility purposes.</p>
 <p>How to open a text editor window:</p>
 <ol type="1">
 <li>To open a new text editor window go to: File &gt; New File &gt; R script</li>
 <li>To save the file go to: File &gt; Save</li>
 </ol>
-</section>
-<section id="interactive-rstudio-demo" class="level3">
-<h3 class="anchored" data-anchor-id="interactive-rstudio-demo">Interactive RStudio demo</h3>
-<p>Navigate to <a href="https://lri-r07.lerner.ccf.org/auth-sign-in">https://lri-r07.lerner.ccf.org/auth-sign-in</a>, log in, and run some example code.</p>
-<p>Demonstrate how to:</p>
-<ul>
-<li>Create a new R script</li>
-<li>Add some code to it</li>
-<li>Run the code</li>
-<li>View help files</li>
-<li>Save the R script</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>?rnorm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<!-- ### Interactive RStudio demo -->
+<!-- Navigate to [https://lri-r01.lerner.ccf.org/auth-sign-in](https://lri-r01.lerner.ccf.org/auth-sign-in), log in, and run some example code. -->
+<!-- Demonstrate how to: -->
+<!-- - Create a new R script -->
+<!-- - Add some code to it -->
+<!-- - Run the code -->
+<!-- - View help files -->
+<!-- - Save the R script -->
+<!-- ```{r eval = FALSE} -->
+<!-- x <- c(1, 2, 3, 4) -->
+<!-- mean(x) -->
+<!-- hist(rnorm(100)) -->
+<!-- ?rnorm -->
+<!-- ``` -->
 </section>
 <section id="sending-code-to-the-console" class="level3">
 <h3 class="anchored" data-anchor-id="sending-code-to-the-console">Sending code to the console</h3>
@@ -379,25 +339,11 @@ window.Quarto = {
 <li>Place your cursor next to the line you want to run and hit the “Run” button</li>
 <li>Highlight all three lines of code and use one of the previous options</li>
 </ol>
-</section>
-<section id="getting-help" class="level3">
-<h3 class="anchored" data-anchor-id="getting-help">Getting help</h3>
-<p>Get help by typing <code>?fnname</code> where <code>fnname</code> is the name of the function of interest.</p>
-<ul>
-<li>e.g.&nbsp;to see the help file for the mean function, type <code>?mean</code> in the console</li>
-<li><code>??fnname</code> can be used if you aren’t sure of the exact function name - it will return any keyword matches</li>
-</ul>
-</section>
-<section id="view-the-output" class="level3">
-<h3 class="anchored" data-anchor-id="view-the-output">View the output</h3>
-<p>After we have run all three lines of code, we see the results of our mean computation in the Console pane.</p>
-<p>And we see the resulting histogram in the Plots pane.</p>
-</section>
-<section id="interactive-rstudio-demo-results" class="level3">
-<h3 class="anchored" data-anchor-id="interactive-rstudio-demo-results">Interactive RStudio demo results</h3>
-<p align="center">
-<img src="img/insteractive-rstudio-demo-results.png" width="100%">
-</p>
+<!-- ### View the output -->
+<!-- After we have run all three lines of code, we see the results of our mean computation in the Console pane.  -->
+<!-- And we see the resulting histogram in the Plots pane. -->
+<!-- ### Interactive RStudio demo results -->
+<!-- <p align="center"><img src="img/insteractive-rstudio-demo-results.png" width=100%></p> -->
 </section>
 <section id="installing-r-packages" class="level3">
 <h3 class="anchored" data-anchor-id="installing-r-packages">Installing R packages</h3>
@@ -405,29 +351,29 @@ window.Quarto = {
 <p>Packages that are on CRAN can be installed using the <code>install.packages()</code> function.</p>
 <p>For example, we can install the {survival} package from CRAN using:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"survival"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"survival"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>GitHub is a common repository for packages that are in development.</p>
 <p>To install packages from GitHub, first install the {remotes} package from CRAN:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, install the GitHub package of interest using <code>install_github("username/repository")</code>. For example, to install the <code>emo</code> repository from the GitHub username <code>hadley</code>, use:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(remotes)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">"hadley/emo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(remotes)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">"hadley/emo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Or, avoid a call to the <code>library()</code> function by using the syntax <code>library::function()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"hadley/emo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"hadley/emo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Bioconductor is a repository for open source code related to biological data. To install packages from Bioconductor, first install the {BiocManager} package from CRAN:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then install, for example, the {GenomicFeatures} package using the <code>install</code> function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"GenomicFeatures"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"GenomicFeatures"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Installation is the first step. Only needs to <strong>be done once</strong>.</p>
 <p>Loading is the next step. Must be done <strong>every time you open a new R session</strong> in which you need to use the package.</p>
@@ -436,14 +382,14 @@ window.Quarto = {
 <li>A call to <code>library()</code> loads the package for your entire R session.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(formula, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(formula, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Using <code>::</code> accesses the package only for a single function.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>survival<span class="sc">::</span><span class="fu">survfit</span>(formula, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>survival<span class="sc">::</span><span class="fu">survfit</span>(formula, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="dataset-for-use-in-this-class" class="level3">
@@ -457,7 +403,7 @@ window.Quarto = {
 <img src="img/github-save-data.png" width="90%">
 </p>
 <ol start="3" type="1">
-<li>Navigate to the “mmedr” folder we created earlier on your home directory, and save the file there as “breastcancer.xlsx”.</li>
+<li>Navigate to the “mmedr” folder on your home directory - or create a folder called “mmedr” on your home directory if you don’t already have one - and save the file there as “breastcancer.xlsx”.</li>
 </ol>
 </section>
 <section id="loading-data" class="level3">
@@ -478,15 +424,15 @@ window.Quarto = {
 </ul>
 <p>First, install the {readxl} package from CRAN, then load the newly installed package:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Then use the <code>read_excel()</code> function with the appropriate filepath to read in the data and create an object called “mydf”:</p>
+<p>Then use the <code>read_excel()</code> function with the appropriate filepath to read in the breast cancer data from the mmedr folder on your home directory, and create an object called “mydf”:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mydf <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/folder/filename.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mydf <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/mmedr/breastcancer.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that R treats the \ as a special character so you either need to use / or <span class="math inline">\(\backslash \backslash\)</span> in file paths.</p>
-<p>Also note that on the Linux server (i.e.&nbsp;on Rstudio Pro via Posit Workbench), the path starts at /home/username, so filepaths relative to your directory can start “~/” followed by the folder where the file is located.</p>
+<p>Also note that on the Linux server (i.e.&nbsp;on Rstudio Pro via Posit Workbench), the path starts at /home/username, so filepaths relative to your directory can start “~/” followed by the folder where the file is located, as shown above.</p>
 <p>Alternatively, we can convert the file from .xlsx format to .csv format first, and then read it in.</p>
 <p>Advantages: removes some of the possible formatting pitfalls associated with Excel files, and you don’t need any special packages to read this format.</p>
 <ol type="1">
@@ -495,7 +441,7 @@ window.Quarto = {
 <li>Use the <code>read.csv()</code> function with the appropriate file path to read in the data and create an object called “mycsv”</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"~/folder/filename.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"~/mmedr/breastcancer.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>Note that this is the approach I always use myself and will form the basis of all of my examples</em></p>
 <p>Many other file formats exist, and here is a non-comprehensive list of functions for loading some of them:</p>
@@ -506,12 +452,6 @@ window.Quarto = {
 <li><code>read.delim()</code> is a special case with fixed defaults for tab-delimited files</li>
 <li><code>read.delim2()</code> is a special case with fixed defaults for tab-delimited files that were created in a country where commas are used in place of decimal places</li>
 </ul>
-<p>Recall that we can clean up the names of the variables in our dataset using the <code>clean_names()</code> function from the {janitor} package:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mycsv <span class="ot">&lt;-</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  mycsv <span class="sc">|&gt;</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="basic-programming" class="level3">
 <h3 class="anchored" data-anchor-id="basic-programming">Basic programming</h3>
@@ -521,41 +461,41 @@ window.Quarto = {
 <li>Keyboard shortcut “Alt” + “-” will insert the assignment operator</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">55</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">55</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 55</code></pre>
 </div>
 </div>
 <p>Functions are pre-packaged scripts that automate more complicated procedures. They are executed by typing the name of the function followed by round brackets. Inside the round brackets we can provide one or more parameters, or arguments:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">144</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">144</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 12</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">123.225</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">123.225</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 123</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(y, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(y, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 123.2</code></pre>
 </div>
 </div>
 <p>Use <code>c()</code> to create a vector of values or <code>seq()</code> to create a sequence of values:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">10</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">by =</span> <span class="dv">10</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">from =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">10</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">by =</span> <span class="dv">10</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">from =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Note</strong>: when we supply the arguments to a function in the order in which they are listed in the documentation, we do not need to name them. If we name them, we can supply them in any order. The above three assignments to b yield the same results.</p>
 <p>Here are all of the possible arguments to the <code>seq()</code> function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> ((to <span class="sc">-</span> from)<span class="sc">/</span>(length.out <span class="sc">-</span> <span class="dv">1</span>)),</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> <span class="cn">NULL</span>, <span class="at">along.with =</span> <span class="cn">NULL</span>, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> ((to <span class="sc">-</span> from)<span class="sc">/</span>(length.out <span class="sc">-</span> <span class="dv">1</span>)),</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> <span class="cn">NULL</span>, <span class="at">along.with =</span> <span class="cn">NULL</span>, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>R is case sensitive:</p>
 <ul>
@@ -564,20 +504,51 @@ window.Quarto = {
 <ul>
 <li>Depending on how you read your data in, R may or may not automatically reformat variable names</li>
 <li>If you end up with a variable called, e.g.&nbsp;“Patient Age” you would need to reference it in backticks: <code>`Patient Age`</code></li>
-<li>One option is to use the <code>clean_names()</code> function from the {janitor} package to convert all variable names to snake case (or alternatives):</li>
 </ul></li>
 </ul>
+<p>Also note that reading in a .xlsx or .csv files will lead to different variables names for the same underlying data</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"janitor"</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>janitor<span class="sc">::</span><span class="fu">clean_names</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mydf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Time"                     "Event"                   
+ [3] "RT"                       "Age dx (yrs)"            
+ [5] "Tumor size (cm)"          "Grade"                   
+ [7] "N LN pos 3 vs 1or2"       "Nodal ratio"             
+ [9] "LVI"                      "ER or PR pos"            
+[11] "HER2 pos"                 "Quadrant: inner vs upper"
+[13] "Optimal systemic therapy"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mycsv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Time"                     "Event"                   
+ [3] "RT"                       "Age dx (yrs)"            
+ [5] "Tumor size (cm)"          "Grade"                   
+ [7] "N LN pos 3 vs 1or2"       "Nodal ratio"             
+ [9] "LVI"                      "ER or PR pos"            
+[11] "HER2 pos"                 "Quadrant: inner vs upper"
+[13] "Optimal systemic therapy"</code></pre>
+</div>
+</div>
+<p>Recall that we can clean up the names of the variables in our dataset using the <code>clean_names()</code> function from the {janitor} package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"janitor"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>mydf <span class="ot">&lt;-</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  mydf <span class="sc">|&gt;</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>mycsv <span class="ot">&lt;-</span> </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  mycsv <span class="sc">|&gt;</span> </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>==</code> operator tests equality between two values:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
@@ -594,7 +565,7 @@ window.Quarto = {
 <p>To access specific variables, use the <code>$</code> operator in the form <code>dataframe$varname</code>, where <code>dataframe</code> is the name of the object to which we assigned our data set, and <code>varname</code> is the name of the variable of interest</p>
 <p>For example, to calculate the mean of the variable <code>age_dx_years</code> in the dataframe <code>mycsv</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mycsv<span class="sc">$</span>age_dx_yrs, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mycsv<span class="sc">$</span>age_dx_yrs, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 57.2952</code></pre>
 </div>
@@ -602,7 +573,7 @@ window.Quarto = {
 <p><em>Note that we need to add the argument <code>na.rm = TRUE</code> to remove missing values from the calculation of the mean, otherwise NA will be returned if missing values are present</em></p>
 <p>Alternatively, use double brackets in the form <code>dataframe[["varname"]]</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mycsv[[<span class="st">"age_dx_yrs"</span>]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mycsv[[<span class="st">"age_dx_yrs"</span>]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 57.2952</code></pre>
 </div>
@@ -612,13 +583,13 @@ window.Quarto = {
 <p>For dataframe <code>df</code>, let <code>i</code> index the row and <code>j</code> index the column.</p>
 <p>Then we can access any single cell in the dataframe using the syntax:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df[i, j]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df[i, j]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can use this concept to create subsets of our data as well.</p>
 <p>We can create a subset of our data based on the values in a row, for example limiting to patients who were treated with optimal systemic therapy:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>optimal_systemic_therapy <span class="sc">==</span> <span class="dv">1</span>, ]</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>optimal_systemic_therapy <span class="sc">==</span> <span class="dv">1</span>, ]</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2660</code></pre>
 </div>
@@ -627,8 +598,8 @@ window.Quarto = {
 <p>The <code>&amp;</code> operator signifies “and”.</p>
 <p>So for example we could subset based on patients who were treated with optimal systemic therapy AND are over 45 years old:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>optimal_systemic_therapy <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> mycsv<span class="sc">$</span>age_dx_yrs <span class="sc">&gt;</span> <span class="dv">45</span>, ]</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>optimal_systemic_therapy <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> mycsv<span class="sc">$</span>age_dx_yrs <span class="sc">&gt;</span> <span class="dv">45</span>, ]</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2166</code></pre>
 </div>
@@ -637,8 +608,8 @@ window.Quarto = {
 <p>The <code>|</code> operator signifies “or”.</p>
 <p>So for example we could subset based on patients who were treated with optimal systemic therapy OR are over 45 years old:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>optimal_systemic_therapy <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> mycsv<span class="sc">$</span>age_dx_yrs <span class="sc">&gt;</span> <span class="dv">45</span>, ]</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>optimal_systemic_therapy <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> mycsv<span class="sc">$</span>age_dx_yrs <span class="sc">&gt;</span> <span class="dv">45</span>, ]</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2944</code></pre>
 </div>
@@ -646,20 +617,31 @@ window.Quarto = {
 <p>And we see that our new datasubset has 2944 rows.</p>
 <p>We can also create a subset of our data based on columns, for example limiting to optimal_systemic_therapy:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[ , <span class="fu">c</span>(<span class="st">"optimal_systemic_therapy"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[ , <span class="fu">c</span>(<span class="st">"optimal_systemic_therapy"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Or we can simultaneously subset based on rows and columns, for example limiting to the optimal_systemic_therapy column among patients with age greater than 45:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>age_dx_yrs <span class="sc">&gt;</span> <span class="dv">45</span>, <span class="fu">c</span>(<span class="st">"optimal_systemic_therapy"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> mycsv[mycsv<span class="sc">$</span>age_dx_yrs <span class="sc">&gt;</span> <span class="dv">45</span>, <span class="fu">c</span>(<span class="st">"optimal_systemic_therapy"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also subset directly within functions. Suppose we want to calculate the mean of the variable <code>age_dx_yrs</code> in the dataframe <code>mycsv</code>, but only among those who were treated with optimal systemic therapy:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mycsv<span class="sc">$</span>age_dx_yrs[mycsv<span class="sc">$</span>optimal_systemic_therapy <span class="sc">==</span> <span class="dv">1</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mycsv<span class="sc">$</span>age_dx_yrs[mycsv<span class="sc">$</span>optimal_systemic_therapy <span class="sc">==</span> <span class="dv">1</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 57.31611</code></pre>
 </div>
 </div>
 <p>This avoids creating additional datasets that may not be needed again.</p>
+</section>
+<section id="getting-help" class="level3">
+<h3 class="anchored" data-anchor-id="getting-help">Getting help</h3>
+<p>Get help by typing <code>?fnname</code> where <code>fnname</code> is the name of the function of interest.</p>
+<ul>
+<li>e.g.&nbsp;to see the help file for the mean function, type <code>?mean</code> in the console</li>
+<li><code>??fnname</code> can be used if you aren’t sure of the exact function name - it will return any keyword matches</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>?mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>

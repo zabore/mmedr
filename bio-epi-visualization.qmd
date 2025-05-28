@@ -4,7 +4,7 @@ title: ""
 
 # Visualization
 
-In this session, we will review the basics of R and generating descriptive statistics in R, which were introduced in the Tools course. Then we will learn about data visualization, including creating scatterplots, bar charts, histograms, line charts, and boxplots. We'll discuss plot customization, faceting, and saving plots. Both univariate and bivariable plotting will be covered.
+In this section, we will learn about data visualization, including creating scatterplots, bar charts, histograms, line charts, and boxplots. We'll discuss plot customization, faceting, and saving plots. Both univariate and bivariable plotting will be covered.
 
 Plotting features are available in base R, but a very popular package for plotting in R is the {ggplot2} package, which will be the focus in this course. 
 
@@ -120,7 +120,7 @@ We find that the distribution is aproximately normal.
 Boxplots are another common way of examining continuous variables. The continuous variable is on the y-axis, and there is no variable on the x-axis:
 
 ```{r eval = FALSE}
-ggplot(data = mycsv, aes(y = marker))
+ggplot(data = mycsv, aes(y = tumor_size_cm))
 ```
 
 And the boxplot is created by adding a layer with `geom_boxplot()` using the `+` operator:
@@ -132,7 +132,7 @@ ggplot(data = mycsv, aes(y = tumor_size_cm)) +
 
 The top and bottom of the box are the 25th and 75th quantiles, the center line is the median, and the whiskers extend to 1.5xIQR.
 
-We may also want to make a boxplot according to a categorical variables. Say we are interested in the distribution of marker according to disease grade. We can add an argument to the x-axis of the first layer aesthetics to get separate boxes by grade:
+We may also want to make a boxplot according to a categorical variables. Say we are interested in the distribution of tumor size according to disease grade. We can add an argument to the x-axis of the first layer aesthetics to get separate boxes by grade:
 
 ```{r warning = FALSE}
 ggplot(data = mycsv, aes(y = tumor_size_cm, x = grade)) + 
@@ -162,7 +162,7 @@ ggplot(data = mycsv, aes(y = tumor_size_cm, x = grade)) +
   labs(
     x = "Disease grade",
     y = "Tumor size (cm)",
-    title = "Boxplot of marker level by disease grade"
+    title = "Boxplot of tumor size by disease grade"
   )
 ```
 
@@ -174,7 +174,7 @@ ggplot(data = mycsv, aes(y = tumor_size_cm, x = grade)) +
   labs(
     x = "Disease grade",
     y = "Tumor size (cm)",
-    title = "Boxplot of marker level by disease grade"
+    title = "Boxplot of tumor size by disease grade"
   ) + 
   ylim(c(0, 6))
 ```
@@ -187,7 +187,7 @@ ggplot(data = mycsv, aes(y = tumor_size_cm, x = grade)) +
   labs(
     x = "Disease grade",
     y = "Tumor size (cm)",
-    title = "Boxplot of marker level by disease grade"
+    title = "Boxplot of tumor size by disease grade"
   ) + 
   ylim(c(0, 6)) + 
   theme_bw()
@@ -201,7 +201,7 @@ ggplot(data = mycsv, aes(y = tumor_size_cm, x = grade, fill = grade)) +
   labs(
     x = "Disease grade",
     y = "Tumor size (cm)",
-    title = "Boxplot of marker level by disease grade"
+    title = "Boxplot of tumor size by disease grade"
   ) + 
   ylim(c(0, 6)) + 
   theme_bw()
@@ -246,7 +246,7 @@ p <- ggplot(data = mycsv, aes(y = tumor_size_cv)) +
   geom_boxplot() + 
   facet_grid(cols = vars(grade))
     
-ggsave(filename = "~/folder/filename.png", plot = p)
+ggsave(filename = "~/mmedr/demo_plot.png", plot = p)
 ```
 
 *Adjust the width and height using the `width` and/or `height` arguments to the `ggsave()` function, or save as different formats by using an alternate extension like .jpg, .tiff, .eps, etc*
