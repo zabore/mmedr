@@ -27,9 +27,7 @@ website:
           - text: Tools - Basic programming
             href: tools-basic-programming.qmd
           - text: Tools - Manipulate dataframes
-            href: tools-manipulate-dataframes.qmd
-          # - text: Tools - Descriptive statistics
-          #   href: tools-descriptive-statistics.qmd
+            href: tools-manipulate-dataframes.qmd\
           - text: Tools - Put it all together
             href: tools-review-practice.qmd
           - text: Biostatistics and Epidemiology - Refresher
@@ -38,12 +36,12 @@ website:
             href: bio-epi-visualization.qmd
           - text: Biostatistics and Epidemiology - Descriptive statistics
             href: bio-epi-descriptive-statistics.qmd
-          - text: Biostatistics and Epidemiology - Multiple testing
-            href: bio-epi-multiple-testing.qmd
           - text: Biostatistics and Epidemiology - Advanced programming
             href: bio-epi-advanced.qmd
           - text: Biostatistics and Epidemiology - Statistical tests
             href: bio-epi-statistical-tests.qmd
+          - text: Biostatistics and Epidemiology - Multiple testing
+            href: bio-epi-multiple-testing.qmd
 
 format:
   html:

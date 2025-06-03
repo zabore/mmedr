@@ -95,8 +95,6 @@ This website hosts R teaching materials for the Cleveland Clinic Molecular Medic
     
 ### Session 2
     
-- [Adjustment for multiple comparisons](bio-epi-multiple-testing.qmd)
-
 - [Advanced programming](bio-epi-advanced.qmd)
 
     - Writing custom functions
@@ -111,4 +109,6 @@ This website hosts R teaching materials for the Cleveland Clinic Molecular Medic
     - ANOVA
     - Wilcoxon signed rank test 
     - Paired t-test
+    
+- [Adjustment for multiple comparisons](bio-epi-multiple-testing.qmd)
 

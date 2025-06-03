@@ -157,7 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Tools - Basic programming</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./tools-manipulate-dataframes.html">
+    <a class="dropdown-item" href="./tools-manipulate-dataframes.qmd\">
  <span class="dropdown-text">Tools - Manipulate dataframes</span></a>
   </li>  
         <li>
@@ -177,16 +177,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Biostatistics and Epidemiology - Descriptive statistics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bio-epi-multiple-testing.html">
- <span class="dropdown-text">Biostatistics and Epidemiology - Multiple testing</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./bio-epi-advanced.html">
  <span class="dropdown-text">Biostatistics and Epidemiology - Advanced programming</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./bio-epi-statistical-tests.html">
  <span class="dropdown-text">Biostatistics and Epidemiology - Statistical tests</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bio-epi-multiple-testing.html">
+ <span class="dropdown-text">Biostatistics and Epidemiology - Multiple testing</span></a>
   </li>  
     </ul>
   </li>
@@ -223,7 +223,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="statistical-tests" class="level1">
 <h1>Statistical tests</h1>
-<p>In this session, we will introduce methods to adjust p-values to account for multiple testing, learn advanced programming techniques including for loops and writing custom functions, and cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.</p>
+<p>In this section, we will cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.</p>
+<p>You will need to load the breast cancer data for use in this section. Clean the names using the <code>clean_names()</code> function from the {janitor} package, and save it as object <code>mydf</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mydf <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"~/mmedr/breastcancer.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="two-categorical-variables" class="level2">
 <h2 class="anchored" data-anchor-id="two-categorical-variables">Two categorical variables</h2>
 <p>There are two main tests for associations between <strong>two categorical variables</strong>: the <strong>chi-squared</strong> test and <strong>Fisher’s exact</strong> test.</p>
@@ -232,40 +237,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>chisq.test()</code></li>
 <li><code>fisher.test()</code></li>
 </ul>
-<p>Conduct a chi-squared test of the null hypothesis that there is no association between treatment and response versus the alternative hypothesis that there is an association between treatment and response.</p>
+<p>Conduct a chi-squared test of the null hypothesis that there is no association between grade and radiation therapy versus the alternative hypothesis that there is an association between grade and radiation therapy.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="at">x =</span> trial<span class="sc">$</span>trt, <span class="at">y =</span> trial<span class="sc">$</span>response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="at">x =</span> mydf<span class="sc">$</span>grade, <span class="at">y =</span> mydf<span class="sc">$</span>rt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-    Pearson's Chi-squared test with Yates' continuity correction
+    Pearson's Chi-squared test
 
-data:  trial$trt and trial$response
-X-squared = 0.22329, df = 1, p-value = 0.6365</code></pre>
+data:  mydf$grade and mydf$rt
+X-squared = 34.948, df = 2, p-value = 2.577e-08</code></pre>
 </div>
 </div>
-<p>The chi-squared test statistic is 0.22329 with associated p-value 0.6365.</p>
-<p>Do not reject the null hypothesis since the p-value is greater than the traditional threshold for significance of 0.05.</p>
+<p>The chi-squared test statistic is 34.948 with associated p-value 2.5765086^{-8}.</p>
+<p>Reject the null hypothesis since the p-value is less than the traditional threshold for significance of 0.05.</p>
+<p><em>Note, we could report this p-value as p&lt;0.001, or to journal requirements</em></p>
 <p>Conduct a Fisher’s exact test (an alternative to the chi-squared test when any <strong>expected cell count is &lt;5</strong>):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(<span class="at">x =</span> trial<span class="sc">$</span>trt, <span class="at">y =</span> trial<span class="sc">$</span>response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(<span class="at">x =</span> mydf<span class="sc">$</span>grade, <span class="at">y =</span> mydf<span class="sc">$</span>rt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Fisher's Exact Test for Count Data
 
-data:  trial$trt and trial$response
-p-value = 0.5403
-alternative hypothesis: true odds ratio is not equal to 1
-95 percent confidence interval:
- 0.6326222 2.3394994
-sample estimates:
-odds ratio 
-  1.213605 </code></pre>
+data:  mydf$grade and mydf$rt
+p-value = 2.734e-08
+alternative hypothesis: two.sided</code></pre>
 </div>
 </div>
-<p>The p-value is 0.5403.</p>
-<p>Do not reject the null hypothesis of no association between treatment and response since the p-value is greater than the traditional threshold for significance of 0.05.</p>
+<p>The p-value is 2.7343786^{-8}.</p>
+<p>Reject the null hypothesis since the p-value is less than the traditional threshold for significance of 0.05.</p>
 </section>
 <section id="one-continuous-one-categorical" class="level2">
 <h2 class="anchored" data-anchor-id="one-continuous-one-categorical">One continuous, one categorical</h2>
@@ -276,60 +275,60 @@ odds ratio
 <li><code>t.test()</code></li>
 </ul>
 <p><em>Note that the Kruskal-Wallis test is also known as the <strong>Wilcoxon rank-sum</strong> test in the special case of a 2-level categorical variable.</em></p>
-<p>“Non-parametric” means that there is no parametric distribution assumption made on the continuous variable - i.e.&nbsp;the continuous variable does not need to be normally distributed.</p>
-<p>Conduct a Kruskal-Wallis test to test the <strong>null hypothesis of no association between marker status and response</strong> versus the alternative hypothesis that there is an association between marker status and response.</p>
+<p>“Non-parametric” means that there is no parametric distribution assumption made on the continuous variable - i.e.&nbsp;the continuous variable is not assumed to be normally distributed.</p>
+<p>Conduct a Kruskal-Wallis test to test the <strong>null hypothesis of no association between age and radiation therapy</strong> versus the alternative hypothesis that there is an association between age and radiation therapy.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(marker <span class="sc">~</span> response, <span class="at">data =</span> trial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(age_dx_yrs <span class="sc">~</span> rt, <span class="at">data =</span> mydf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Kruskal-Wallis rank sum test
 
-data:  marker by response
-Kruskal-Wallis chi-squared = 2.727, df = 1, p-value = 0.09866</code></pre>
+data:  age_dx_yrs by rt
+Kruskal-Wallis chi-squared = 104.18, df = 1, p-value &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>Since “response” is a 2-level categorical variable, the Wilcoxon rank-sum test (without continuity correction) produces the <strong>same result</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(marker <span class="sc">~</span> response, <span class="at">correct =</span> <span class="cn">FALSE</span>, <span class="at">data =</span> trial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(age_dx_yrs <span class="sc">~</span> rt, <span class="at">correct =</span> <span class="cn">FALSE</span>, <span class="at">data =</span> mydf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Wilcoxon rank sum test
 
-data:  marker by response
-W = 3043, p-value = 0.09866
+data:  age_dx_yrs by rt
+W = 1326112, p-value &lt; 2.2e-16
 alternative hypothesis: true location shift is not equal to 0</code></pre>
 </div>
 </div>
-<p>With a p-value of 0.099, <strong>do not reject</strong> the null hypothesis at the 0.05 significance level.</p>
-<p>“Parametric” means that the test assumes a parametric distirbution - in the case of the t-test, it relies on the assumption that the continuous variable is normally distributed.</p>
+<p>With a p-value of 1.8469697^{-24}, <strong>reject</strong> the null hypothesis at the 0.05 significance level.</p>
+<p>“Parametric” means that the test assumes a parametric distribution - in the case of the t-test, it relies on the assumption that the continuous variable is normally distributed.</p>
 <p>If appropriate given the distribution of the continuous variable, conduct a t-test:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(marker <span class="sc">~</span> response, <span class="at">data =</span> trial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(age_dx_yrs <span class="sc">~</span> rt, <span class="at">data =</span> mydf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
 
-data:  marker by response
-t = -1.5851, df = 96.232, p-value = 0.1162
+data:  age_dx_yrs by rt
+t = 10.667, df = 2608.5, p-value &lt; 2.2e-16
 alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 95 percent confidence interval:
- -0.51378857  0.05753795
+ 4.409767 6.396293
 sample estimates:
 mean in group 0 mean in group 1 
-      0.8425238       1.0706491 </code></pre>
+       60.48659        55.08356 </code></pre>
 </div>
 </div>
-<p>The p-value differs but the conclusion is the same: do not reject the null hypothesis that there is no association between marker and response.</p>
-<p>However, in this example the data are <strong>right-skewed</strong> so a t-test is <strong>not appropriate</strong>.</p>
+<p>The conclusion is the same: reject the null hypothesis that there is no association between marker and response.</p>
+<p>And we can visually confirm that age is approximately normally distributed, so that this test is appropriate:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> trial, <span class="fu">aes</span>(<span class="at">x =</span> marker)) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mydf, <span class="fu">aes</span>(<span class="at">x =</span> age_dx_yrs)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="bio-epi-statistical-tests_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="bio-epi-statistical-tests_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -339,25 +338,64 @@ mean in group 0 mean in group 1
 <li>For the preceding two tests we used the <code>formula</code> option to supply the information for the test</li>
 <li>A formula in R looks like <code>LHS ~ RHS</code> where the left-hand side (“LHS”) is typically an outcome variable or dependent variable and the right-hand side (“RHS”) is the independent variable.</li>
 <li>For multivariable regression, you can specify formulas in the format <code>Y ~ X1 + X2 + X3...</code> when there is more than one independent variable.</li>
-<li>You must also supply the name of the dataset to the <code>data =</code> argument so that R knows where to look to find the specified variables.</li>
+<li>Using the formula option, you must also supply the name of the dataset to the <code>data =</code> argument so that R knows where to look to find the specified variables.</li>
 <li>See the help files for alternative ways to supply the information for each test</li>
 </ul>
 <p>What if our categorical variables has more than 2 levels, but we want to do a parametric test? Then we will use ANOVA. ANOVA tests the null hypothesis of no association between marker and grade, which has more than two levels so a t-test is not appropriate, and relies on the assumption that the continuous variable is normally distributed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lm_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(marker <span class="sc">~</span> grade, <span class="at">data =</span> trial)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lm_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(age_dx_yrs <span class="sc">~</span> grade, <span class="at">data =</span> mydf)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
-Response: marker
-           Df  Sum Sq Mean Sq F value  Pr(&gt;F)  
-grade       2   5.385 2.69264  3.7529 0.02523 *
-Residuals 187 134.168 0.71748                  
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+Response: age_dx_yrs
+            Df Sum Sq Mean Sq F value Pr(&gt;F)
+grade        2    760  380.16  1.9823 0.1379
+Residuals 2997 574764  191.78               </code></pre>
 </div>
 </div>
-<p>And here we would reject the null hypothesis of no association between marker and grade, at the 0.05 level.</p>
+<p>And here we would not reject the null hypothesis of no association between age and grade, at the 0.05 level, since the resulting p-value is 0.1379383, which is &gt;0.05.</p>
+<p><em>Note that sometimes it can be hard to figure out how to extract the p-value from test results.</em> Here are two tips.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Assign your model results to an object, and examine in one of two ways.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(age_dx_yrs <span class="sc">~</span> rt, <span class="at">data =</span> mydf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>First, use <code>str()</code> to look at the structure:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(temp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 10
+ $ statistic  : Named num 10.7
+  ..- attr(*, "names")= chr "t"
+ $ parameter  : Named num 2608
+  ..- attr(*, "names")= chr "df"
+ $ p.value    : num 4.98e-26
+ $ conf.int   : num [1:2] 4.41 6.4
+  ..- attr(*, "conf.level")= num 0.95
+ $ estimate   : Named num [1:2] 60.5 55.1
+  ..- attr(*, "names")= chr [1:2] "mean in group 0" "mean in group 1"
+ $ null.value : Named num 0
+  ..- attr(*, "names")= chr "difference in means between group 0 and group 1"
+ $ stderr     : num 0.507
+ $ alternative: chr "two.sided"
+ $ method     : chr "Welch Two Sample t-test"
+ $ data.name  : chr "age_dx_yrs by rt"
+ - attr(*, "class")= chr "htest"</code></pre>
+</div>
+</div>
+<p>Alternatively, open the object by clicking on it in the Environment tab. Then hover over the item you want to return, and you can get the code to extract it.</p>
+</div>
+</div>
 </section>
 <section id="paired-data" class="level2">
 <h2 class="anchored" data-anchor-id="paired-data">Paired data</h2>
@@ -369,12 +407,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </ul>
 <p>We will use the example data from the help page found by running <code>?wilcox.test</code>. These are measurements of a continuous depression scale on 9 patients taken at the first (x) and second (y) visits after inititiation of a certain therapy. We want to test the null hypothesis that there is no difference in depression scale values between these two times.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.83</span>,  <span class="fl">0.50</span>,  <span class="fl">1.62</span>,  <span class="fl">2.48</span>, <span class="fl">1.68</span>, <span class="fl">1.88</span>, <span class="fl">1.55</span>, <span class="fl">3.06</span>, <span class="fl">1.30</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.878</span>, <span class="fl">0.647</span>, <span class="fl">0.598</span>, <span class="fl">2.05</span>, <span class="fl">1.06</span>, <span class="fl">1.29</span>, <span class="fl">1.06</span>, <span class="fl">3.14</span>, <span class="fl">1.29</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.83</span>,  <span class="fl">0.50</span>,  <span class="fl">1.62</span>,  <span class="fl">2.48</span>, <span class="fl">1.68</span>, <span class="fl">1.88</span>, <span class="fl">1.55</span>, <span class="fl">3.06</span>, <span class="fl">1.30</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.878</span>, <span class="fl">0.647</span>, <span class="fl">0.598</span>, <span class="fl">2.05</span>, <span class="fl">1.06</span>, <span class="fl">1.29</span>, <span class="fl">1.06</span>, <span class="fl">3.14</span>, <span class="fl">1.29</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The Wilcoxon signed-rank test is a non-parametric test for the association between paired continuous data. <em>Note that this is the same function we used for the Wilcoxon rank-sum test previously, with non-paired data, only now we add the <code>paired = TRUE</code> argument</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(x, y, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(x, y, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Wilcoxon signed rank exact test
@@ -385,9 +423,9 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 </div>
 </div>
 <p>We reject the null hypothesis at the 0.05 level.</p>
-<p>For demonstration purposes we also try the paired t-test, which requires data to be normally distributed, to test the null hypothesis that there is no difference in depression scale values between these two times. Again, <em>note that this is the same function we used for the standard t-test previously, only now we have added the <code>paired = TRUE</code> argument</em>.</p>
+<p>For demonstration purposes we also try the paired t-test, which requires data to be normally distributed, to test the null hypothesis that there is no difference in depression scale values between these two times. <em>Again, note that this is the same function we used for the standard t-test previously, only now we have added the <code>paired = TRUE</code> argument</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, y, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, y, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Paired t-test

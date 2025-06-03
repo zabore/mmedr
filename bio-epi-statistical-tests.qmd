@@ -4,7 +4,19 @@ title: ""
 
 # Statistical tests
 
-In this session, we will introduce methods to adjust p-values to account for multiple testing, learn advanced programming techniques including for loops and writing custom functions, and cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.
+In this section, we will cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.
+
+You will need to load the breast cancer data for use in this section. Clean the names using the `clean_names()` function from the {janitor} package, and save it as object `mydf`.
+
+```{r echo = FALSE, message = FALSE}
+mydf <- readr::read_csv(here::here("data", "breastcancer.csv")) |> 
+  janitor::clean_names()
+```
+
+```{r eval = FALSE, message = FALSE, }
+mydf <- readr::read_csv("~/mmedr/breastcancer.csv") |> 
+  janitor::clean_names()
+```
 
 ## Two categorical variables
 
@@ -15,27 +27,27 @@ Conduct these tests in R using the following functions:
 - `chisq.test()` 
 - `fisher.test()`
 
-Conduct a chi-squared test of the null hypothesis that there is no association between treatment and response versus the alternative hypothesis that there is an association between treatment and response.
+Conduct a chi-squared test of the null hypothesis that there is no association between grade and radiation therapy versus the alternative hypothesis that there is an association between grade and radiation therapy.
 
 ```{r}
-library(gtsummary)
-
-chisq.test(x = trial$trt, y = trial$response)
+chisq.test(x = mydf$grade, y = mydf$rt)
 ```
 
-The chi-squared test statistic is `r round(chisq.test(trial$trt, trial$response)$statistic, 5)` with associated p-value `r round(chisq.test(trial$trt, trial$response)$p.value, 4)`. 
+The chi-squared test statistic is `r round(chisq.test(mydf$grade, y = mydf$rt)$statistic, 3)` with associated p-value `r chisq.test(mydf$grade, y = mydf$rt)$p.value`. 
 
-Do not reject the null hypothesis since the p-value is greater than the traditional threshold for significance of 0.05. 
+Reject the null hypothesis since the p-value is less than the traditional threshold for significance of 0.05.
+
+*Note, we could report this p-value as p<0.001, or to journal requirements*
 
 Conduct a Fisher's exact test (an alternative to the chi-squared test when any **expected cell count is <5**):
 
 ```{r}
-fisher.test(x = trial$trt, y = trial$response)
+fisher.test(x = mydf$grade, y = mydf$rt)
 ```
 
-The p-value is `r round(fisher.test(trial$trt, trial$response)$p.value, 4)`.
+The p-value is `r fisher.test(mydf$grade, mydf$rt)$p.value`.
 
-Do not reject the null hypothesis of no association between treatment and response since the p-value is greater than the traditional threshold for significance of 0.05.  
+Reject the null hypothesis since the p-value is less than the traditional threshold for significance of 0.05.
 
 ## One continuous, one categorical
 
@@ -48,38 +60,38 @@ Conduct these tests in R using the following functions:
 
 *Note that the Kruskal-Wallis test is also known as the **Wilcoxon rank-sum** test in the special case of a 2-level categorical variable.*
 
-"Non-parametric" means that there is no parametric distribution assumption made on the continuous variable - i.e. the continuous variable does not need to be normally distributed.
+"Non-parametric" means that there is no parametric distribution assumption made on the continuous variable - i.e. the continuous variable is not assumed to be normally distributed.
 
-Conduct a Kruskal-Wallis test to test the **null hypothesis of no association between marker status and response** versus the alternative hypothesis that there is an association between marker status and response.
+Conduct a Kruskal-Wallis test to test the **null hypothesis of no association between age and radiation therapy** versus the alternative hypothesis that there is an association between age and radiation therapy.
 
 ```{r}
-kruskal.test(marker ~ response, data = trial)
+kruskal.test(age_dx_yrs ~ rt, data = mydf)
 ```
 
 Since "response" is a 2-level categorical variable, the Wilcoxon rank-sum test (without continuity correction) produces the **same result**:
 
 ```{r}
-wilcox.test(marker ~ response, correct = FALSE, data = trial)
+wilcox.test(age_dx_yrs ~ rt, correct = FALSE, data = mydf)
 ```
 
-With a p-value of `r round(wilcox.test(marker ~ response, correct = FALSE, data = trial)$p.value, 3)`, **do not reject** the null hypothesis at the 0.05 significance level.
+With a p-value of `r wilcox.test(age_dx_yrs ~ rt, correct = FALSE, data = mydf)$p.value`, **reject** the null hypothesis at the 0.05 significance level.
 
-"Parametric" means that the test assumes a parametric distirbution - in the case of the t-test, it relies on the assumption that the continuous variable is normally distributed.
+"Parametric" means that the test assumes a parametric distribution - in the case of the t-test, it relies on the assumption that the continuous variable is normally distributed.
 
 If appropriate given the distribution of the continuous variable, conduct a t-test:
 
 ```{r}
-t.test(marker ~ response, data = trial)
+t.test(age_dx_yrs ~ rt, data = mydf)
 ```
 
-The p-value differs but the conclusion is the same: do not reject the null hypothesis that there is no association between marker and response.
+The conclusion is the same: reject the null hypothesis that there is no association between marker and response.
 
-However, in this example the data are **right-skewed** so a t-test is **not appropriate**.
+And we can visually confirm that age is approximately normally distributed, so that this test is appropriate:
 
 ```{r warning = FALSE}
 library(ggplot2)
 
-ggplot(data = trial, aes(x = marker)) +
+ggplot(data = mydf, aes(x = age_dx_yrs)) +
   geom_histogram(bins = 10)
 ```
 
@@ -88,17 +100,35 @@ ggplot(data = trial, aes(x = marker)) +
 - For the preceding two tests we used the `formula` option to supply the information for the test
 - A formula in R looks like `LHS ~ RHS` where the left-hand side ("LHS") is typically an outcome variable or dependent variable and the right-hand side ("RHS") is the independent variable.
 - For multivariable regression, you can specify formulas in the format `Y ~ X1 + X2 + X3...` when there is more than one independent variable.
-- You must also supply the name of the dataset to the `data = ` argument so that R knows where to look to find the specified variables.
+- Using the formula option, you must also supply the name of the dataset to the `data = ` argument so that R knows where to look to find the specified variables.
 - See the help files for alternative ways to supply the information for each test
 
 What if our categorical variables has more than 2 levels, but we want to do a parametric test? Then we will use ANOVA. ANOVA tests the null hypothesis of no association between marker and grade, which has more than two levels so a t-test is not appropriate, and relies on the assumption that the continuous variable is normally distributed.
 
 ```{r}
-lm_mod <- lm(marker ~ grade, data = trial)
+lm_mod <- lm(age_dx_yrs ~ grade, data = mydf)
 anova(lm_mod)
 ```
 
-And here we would reject the null hypothesis of no association between marker and grade, at the 0.05 level.
+And here we would not reject the null hypothesis of no association between age and grade, at the 0.05 level, since the resulting p-value is `r anova(lm_mod)$"Pr(>F)"[1]`, which is >0.05.
+
+*Note that sometimes it can be hard to figure out how to extract the p-value from test results.* Here are two tips.
+
+::: {.callout-tip}
+Assign your model results to an object, and examine in one of two ways.
+
+```{r}
+temp <- t.test(age_dx_yrs ~ rt, data = mydf)
+```
+
+First, use `str()` to look at the structure:
+
+```{r}
+str(temp)
+```
+
+Alternatively, open the object by clicking on it in the Environment tab. Then hover over the item you want to return, and you can get the code to extract it.
+:::
 
 ## Paired data
 
@@ -123,7 +153,7 @@ wilcox.test(x, y, paired = TRUE)
 
 We reject the null hypothesis at the 0.05 level.
 
-For demonstration purposes we also try the paired t-test, which requires data to be normally distributed, to test the null hypothesis that there is no difference in depression scale values between these two times. Again, *note that this is the same function we used for the standard t-test previously, only now we have added the `paired = TRUE` argument*.
+For demonstration purposes we also try the paired t-test, which requires data to be normally distributed, to test the null hypothesis that there is no difference in depression scale values between these two times. *Again, note that this is the same function we used for the standard t-test previously, only now we have added the `paired = TRUE` argument*.
 
 ```{r}
 t.test(x, y, paired = TRUE)

@@ -157,7 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Tools - Basic programming</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./tools-manipulate-dataframes.html">
+    <a class="dropdown-item" href="./tools-manipulate-dataframes.qmd\">
  <span class="dropdown-text">Tools - Manipulate dataframes</span></a>
   </li>  
         <li>
@@ -177,16 +177,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Biostatistics and Epidemiology - Descriptive statistics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bio-epi-multiple-testing.html">
- <span class="dropdown-text">Biostatistics and Epidemiology - Multiple testing</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./bio-epi-advanced.html">
  <span class="dropdown-text">Biostatistics and Epidemiology - Advanced programming</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./bio-epi-statistical-tests.html">
  <span class="dropdown-text">Biostatistics and Epidemiology - Statistical tests</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bio-epi-multiple-testing.html">
+ <span class="dropdown-text">Biostatistics and Epidemiology - Multiple testing</span></a>
   </li>  
     </ul>
   </li>
@@ -222,7 +222,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="advanced-programming" class="level1">
 <h1>Advanced programming</h1>
-<p>In this session, we will introduce methods to adjust p-values to account for multiple testing, learn advanced programming techniques including for loops and writing custom functions, and cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.</p>
+<p>In this section, we will introduce some advanced programming techniques including for loops and writing custom functions.</p>
+<p>You will need to load the breast cancer data for use in this section. Clean the names using the <code>clean_names()</code> function from the {janitor} package, and save it as object <code>mydf</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mydf <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"~/mmedr/breastcancer.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="custom-functions" class="level2">
 <h2 class="anchored" data-anchor-id="custom-functions">Custom functions</h2>
 <p>We have previously discussed the role of functions in R, and have seen examples of built-in R functions, such as <code>mean()</code> and <code>p.adjust()</code>.</p>
@@ -230,44 +235,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>User-defined functions are created using the <code>function()</code> function.</p>
 <p>Basic usage is:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span>(arguments) expression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span>(arguments) expression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Where <code>arguments</code> are arguments you supply to the function and <code>expression</code> is the expression you want to evaluate.</p>
 <p>For more complicated procedures, you can wrap multiple expressions in curly brackets, and can also specify what value to return using the <code>return()</code> function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span>(arguments) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  expression1</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  expression2</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(value)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span>(arguments) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  expression1</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  expression2</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(value)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For example, I always want to show NA values when I look at a contingency table, which means I have to type in the <code>useNA = "ifany"</code> arguement every time I use the <code>table()</code> function, since the default in that function is to exclude missing values.</p>
 <p>To streamline things, I can create a custom function that includes this option:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tabna <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">'ifany'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tabna <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">'ifany'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now instead of typing:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(trial<span class="sc">$</span>response, <span class="at">useNA =</span> <span class="st">'ifany'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mydf<span class="sc">$</span>rt, <span class="at">useNA =</span> <span class="st">'ifany'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-   0    1 &lt;NA&gt; 
- 132   61    7 </code></pre>
+   0    1 
+1228 1772 </code></pre>
 </div>
 </div>
 <p>I can type:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabna</span>(trial<span class="sc">$</span>response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabna</span>(mydf<span class="sc">$</span>rt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x
-   0    1 &lt;NA&gt; 
- 132   61    7 </code></pre>
+   0    1 
+1228 1772 </code></pre>
 </div>
 </div>
-<p>This gets particularly useful for long or complex procedures, but is also really useful for short procedures that will be repeated many times - I often use this function 10+ times in a day.</p>
-<p>Try writing a custom function based on the <code>mean()</code> function but including the option to remove NAs from the calculation.</p>
+<p>This gets particularly useful for long or complex procedures, but is also really useful for short procedures that will be repeated many times.</p>
+<p>Try writing a custom function based on the <code>mean()</code> function but including the option to remove NAs from the calculation, and test it on the variable <code>tumor_size_cm</code> in <code>mydf</code>. Name your function <code>mean_no_na</code> as we will use it later.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Practice problem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Try writing a custom function based on the <code>mean()</code> function but including the option to remove NAs from the calculation, and test it on the variable <code>tumor_size_cm</code> in <code>mydf</code>. Name your function <code>mean_no_na</code> as we will use it later.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mean_no_na <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean_no_na</span>(mydf<span class="sc">$</span>tumor_size_cm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.389084</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="loops" class="level2">
 <h2 class="anchored" data-anchor-id="loops">Loops</h2>
@@ -281,9 +320,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We will focus on the for loop today.</p>
 <p>Here is a basic example using the <code>print()</code> function to repeatedly print a value:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1
 [1] 2
@@ -300,36 +339,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The value of <code>i</code> is printed to the console</li>
 </ol>
 <p>And so on until we reach the last value of <code>i</code>, and the process is complete.</p>
-<p>Say you have a biomarker in your dataset but you know the machine that generated the data has a lower limit of detection of 0.2. You could choose to impute half the detection limit for any values that fall below 0.2 as follows:</p>
+<p>Say you have a continuous variable in your dataset that contains missing values, and you want to do mean-value imputation. For mean-value imputation, you simply impute the mean of the non-missing distribution for any missing values. Let’s try to write a for loop to do this with the variable <code>tumor_size_cm</code> in <code>mydf</code>.</p>
+<p>First, create a new variable to store the results so that we don’t overwrite the original variable.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>trial<span class="sc">$</span>marker_corrected <span class="ot">&lt;-</span> trial<span class="sc">$</span>marker</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(trial)) {</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(trial<span class="sc">$</span>marker[i])) {</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    trial<span class="sc">$</span>marker_corrected[i] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (trial<span class="sc">$</span>marker[i] <span class="sc">&lt;</span> <span class="fl">0.2</span>) {</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    trial<span class="sc">$</span>marker_corrected[i] <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mydf<span class="sc">$</span>tumor_size_imputed <span class="ot">&lt;-</span> mydf<span class="sc">$</span>tumor_size_cm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>And we can see that our new variable has the value 0.1 for all cases where <code>marker</code> was &lt;0.2:</p>
+<p>Now we can use our newly created <code>mean_no_na()</code> function to do mean imputation for any missing values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>trial[trial<span class="sc">$</span>marker <span class="sc">&lt;</span> <span class="fl">0.2</span>, <span class="fu">c</span>(<span class="st">"marker"</span>, <span class="st">"marker_corrected"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mydf)) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(mydf<span class="sc">$</span>tumor_size_cm[i])) {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    mydf<span class="sc">$</span>tumor_size_imputed[i] <span class="ot">&lt;-</span> <span class="fu">mean_no_na</span>(mydf<span class="sc">$</span>tumor_size_cm)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    mydf<span class="sc">$</span>tumor_size_imputed[i] <span class="ot">&lt;-</span> mydf<span class="sc">$</span>tumor_size_cm[i]</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And we can see that our new variable contains no missing values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mydf<span class="sc">$</span>tumor_size_imputed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 54 × 2
-   marker marker_corrected
-    &lt;dbl&gt;            &lt;dbl&gt;
- 1  0.16               0.1
- 2  0.144              0.1
- 3  0.06               0.1
- 4  0.128              0.1
- 5  0.157              0.1
- 6  0.066              0.1
- 7  0.096              0.1
- 8  0.105              0.1
- 9  0.043              0.1
-10  0.105              0.1
-# ℹ 44 more rows</code></pre>
+<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+0.001745 1.722053 2.389083 2.389083 3.018589 5.696087 </code></pre>
+</div>
+</div>
+<p>And the value for every originally missing value is the same, the mean of non-missing values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mydf<span class="sc">$</span>tumor_size_imputed[<span class="fu">is.na</span>(mydf<span class="sc">$</span>tumor_size_cm)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  2.389   2.389   2.389   2.389   2.389   2.389 </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Practice problem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Try writing a for loop that creates a new variable that reassigns any tumors in grade I that are &gt;2cm to grade II, and reassigns any tumors in grade II that are &gt;5cm to grade III.</p>
+<p><em>Note that you will need to consider how to handle missing values of tumor size</em></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mydf<span class="sc">$</span>grade_new <span class="ot">&lt;-</span> mydf<span class="sc">$</span>grade</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mydf)) {</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(mydf<span class="sc">$</span>tumor_size_cm[i])) {</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    mydf<span class="sc">$</span>grade_new[i] <span class="ot">&lt;-</span> mydf<span class="sc">$</span>grade[i]</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  }<span class="cf">else</span> <span class="cf">if</span>(mydf<span class="sc">$</span>grade[i] <span class="sc">==</span> <span class="st">"I"</span> <span class="sc">&amp;</span> mydf<span class="sc">$</span>tumor_size_cm[i] <span class="sc">&gt;</span> <span class="dv">2</span>) {</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    mydf<span class="sc">$</span>grade_new[i] <span class="ot">&lt;-</span> <span class="st">"II"</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(mydf<span class="sc">$</span>grade[i] <span class="sc">==</span> <span class="st">"II"</span> <span class="sc">&amp;</span> mydf<span class="sc">$</span>tumor_size_cm[i] <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    mydf<span class="sc">$</span>grade_new[i] <span class="ot">&lt;-</span> <span class="st">"III"</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mydf<span class="sc">$</span>grade, mydf<span class="sc">$</span>grade_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     
+         I   II  III
+  I    143  219    0
+  II     0 1303    7
+  III    0    0 1328</code></pre>
+</div>
+</div>
+<p>We see that we reassigned 219 patients from grade I to grade II, and 7 pagients from grade II to grade III.</p>
+</div>
 </div>
 </div>
 

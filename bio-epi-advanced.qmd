@@ -4,7 +4,19 @@ title: ""
 
 # Advanced programming
 
-In this session, we will introduce methods to adjust p-values to account for multiple testing, learn advanced programming techniques including for loops and writing custom functions, and cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.
+In this section, we will introduce some advanced programming techniques including for loops and writing custom functions.
+
+You will need to load the breast cancer data for use in this section. Clean the names using the `clean_names()` function from the {janitor} package, and save it as object `mydf`.
+
+```{r echo = FALSE, message = FALSE}
+mydf <- readr::read_csv(here::here("data", "breastcancer.csv")) |> 
+  janitor::clean_names()
+```
+
+```{r eval = FALSE, message = FALSE, }
+mydf <- readr::read_csv("~/mmedr/breastcancer.csv") |> 
+  janitor::clean_names()
+```
 
 ## Custom functions
 
@@ -43,20 +55,34 @@ tabna <- function(x) table(x, useNA = 'ifany')
 Now instead of typing:
 
 ```{r}
-library(gtsummary)
-
-table(trial$response, useNA = 'ifany')
+table(mydf$rt, useNA = 'ifany')
 ```
 
 I can type:
 
 ```{r}
-tabna(trial$response)
+tabna(mydf$rt)
 ```
 
-This gets particularly useful for long or complex procedures, but is also really useful for short procedures that will be repeated many times - I often use this function 10+ times in a day.
+This gets particularly useful for long or complex procedures, but is also really useful for short procedures that will be repeated many times.
 
-Try writing a custom function based on the `mean()` function but including the option to remove NAs from the calculation.
+Try writing a custom function based on the `mean()` function but including the option to remove NAs from the calculation, and test it on the variable `tumor_size_cm` in `mydf`. Name your function `mean_no_na` as we will use it later.
+
+::: {.callout-note icon=false}
+## Practice problem
+
+Try writing a custom function based on the `mean()` function but including the option to remove NAs from the calculation, and test it on the variable `tumor_size_cm` in `mydf`. Name your function `mean_no_na` as we will use it later.
+:::
+
+::: {.callout-warning icon=false collapse="true"}
+## Solution
+
+```{r}
+mean_no_na <- function(x) mean(x, na.rm = TRUE)
+
+mean_no_na(mydf$tumor_size_cm)
+```
+:::
 
 
 ## Loops
@@ -88,24 +114,67 @@ Here are the steps of the execution:
 
 And so on until we reach the last value of `i`, and the process is complete.
 
-Say you have a biomarker in your dataset but you know the machine that generated the data has a lower limit of detection of 0.2. You could choose to impute half the detection limit for any values that fall below 0.2 as follows:
+Say you have a continuous variable in your dataset that contains missing values, and you want to do mean-value imputation. For mean-value imputation, you simply impute the mean of the non-missing distribution for any missing values. Let's try to write a for loop to do this with the variable `tumor_size_cm` in `mydf`.
+
+First, create a new variable to store the results so that we don't overwrite the original variable.
 
 ```{r}
-trial$marker_corrected <- trial$marker
+mydf$tumor_size_imputed <- mydf$tumor_size_cm
+```
 
-for(i in 1:nrow(trial)) {
-  if (is.na(trial$marker[i])) {
-    trial$marker_corrected[i] <- NA
-  } else if (trial$marker[i] < 0.2) {
-    trial$marker_corrected[i] <- 0.1
+Now we can use our newly created `mean_no_na()` function to do mean imputation for any missing values.
+
+```{r}
+for(i in 1:nrow(mydf)) {
+  if (is.na(mydf$tumor_size_cm[i])) {
+    mydf$tumor_size_imputed[i] <- mean_no_na(mydf$tumor_size_cm)
+  } else {
+    mydf$tumor_size_imputed[i] <- mydf$tumor_size_cm[i]
+  }
+  }
+```
+
+And we can see that our new variable contains no missing values.
+
+```{r}
+summary(mydf$tumor_size_imputed)
+```
+
+And the value for every originally missing value is the same, the mean of non-missing values:
+
+```{r}
+summary(mydf$tumor_size_imputed[is.na(mydf$tumor_size_cm)])
+```
+
+::: {.callout-note icon=false}
+## Practice problem
+
+Try writing a for loop that creates a new variable that reassigns any tumors in grade I that are >2cm to grade II, and reassigns any tumors in grade II that are >5cm to grade III.
+
+*Note that you will need to consider how to handle missing values of tumor size*
+:::
+
+::: {.callout-warning icon=false collapse="true"}
+## Solution
+
+```{r}
+mydf$grade_new <- mydf$grade
+
+for(i in 1:nrow(mydf)) {
+  if(is.na(mydf$tumor_size_cm[i])) {
+    mydf$grade_new[i] <- mydf$grade[i]
+  }else if(mydf$grade[i] == "I" & mydf$tumor_size_cm[i] > 2) {
+    mydf$grade_new[i] <- "II"
+  } else if(mydf$grade[i] == "II" & mydf$tumor_size_cm[i] > 5) {
+    mydf$grade_new[i] <- "III"
   }
 }
+
+table(mydf$grade, mydf$grade_new)
 ```
 
-And we can see that our new variable has the value 0.1 for all cases where `marker` was <0.2:
+We see that we reassigned 219 patients from grade I to grade II, and 7 pagients from grade II to grade III.
+:::
 
-```{r}
-trial[trial$marker < 0.2, c("marker", "marker_corrected")]
-```
 
 

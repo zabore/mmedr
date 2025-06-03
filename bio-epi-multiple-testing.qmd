@@ -4,7 +4,7 @@ title: ""
 
 # Adjustment for multiple comparisons
 
-In this session, we will introduce methods to adjust p-values to account for multiple testing, learn advanced programming techniques including for loops and writing custom functions, and cover basic statistical tests to conduct hypothesis testing for different combinations of continuous, categorical, and paired data.
+In this section, we will introduce methods to adjust p-values to account for multiple testing.
 
 The problem is referred to as multiple comparisons, multiple testing, or multiplicity, but they all mean the same thing.
 
@@ -12,7 +12,7 @@ What do we mean by multiple comparisons, and what is the issue?
 
 When multiple statistical tests are conducted simultaneously, type I errors become more likely. Therefore, our standard type I error rate of 0.05 that is used to determine whether p-values are significant or not is no longer correct, because the **type I error has been inflated due to the multiple testing**.
 
-Multiple comparisons affects both p-values and confidence intervals.
+Multiple comparisons affect both p-values and confidence intervals.
 
 Prior to significance testing we need to identify a **more strict p-value threshold** or, alternatively,  **directly adjust our p-values**.
 
