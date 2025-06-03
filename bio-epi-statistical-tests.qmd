@@ -95,6 +95,8 @@ ggplot(data = mydf, aes(x = age_dx_yrs)) +
   geom_histogram(bins = 10)
 ```
 
+
+::: {.callout-tip}
 **Tips:**
 
 - For the preceding two tests we used the `formula` option to supply the information for the test
@@ -102,6 +104,8 @@ ggplot(data = mydf, aes(x = age_dx_yrs)) +
 - For multivariable regression, you can specify formulas in the format `Y ~ X1 + X2 + X3...` when there is more than one independent variable.
 - Using the formula option, you must also supply the name of the dataset to the `data = ` argument so that R knows where to look to find the specified variables.
 - See the help files for alternative ways to supply the information for each test
+:::
+
 
 What if our categorical variables has more than 2 levels, but we want to do a parametric test? Then we will use ANOVA. ANOVA tests the null hypothesis of no association between marker and grade, which has more than two levels so a t-test is not appropriate, and relies on the assumption that the continuous variable is normally distributed.
 
@@ -112,16 +116,17 @@ anova(lm_mod)
 
 And here we would not reject the null hypothesis of no association between age and grade, at the 0.05 level, since the resulting p-value is `r anova(lm_mod)$"Pr(>F)"[1]`, which is >0.05.
 
-*Note that sometimes it can be hard to figure out how to extract the p-value from test results.* Here are two tips.
 
 ::: {.callout-tip}
-Assign your model results to an object, and examine in one of two ways.
+*Note that sometimes it can be hard to figure out how to extract the p-value from test results.* Here are two tips.
+
+First, assign your model results to an object, and examine in one of two ways.
 
 ```{r}
 temp <- t.test(age_dx_yrs ~ rt, data = mydf)
 ```
 
-First, use `str()` to look at the structure:
+Then use `str()` to look at the structure:
 
 ```{r}
 str(temp)
@@ -129,6 +134,7 @@ str(temp)
 
 Alternatively, open the object by clicking on it in the Environment tab. Then hover over the item you want to return, and you can get the code to extract it.
 :::
+
 
 ## Paired data
 
@@ -138,7 +144,7 @@ Next we consider the setting where we have paired data. Paired data are any data
 - Measurements on two eyes within subject
 - Sibling or spousal pairs
 
-We will use the example data from the help page found by running `?wilcox.test`. These are measurements of a continuous depression scale on 9 patients taken at the first (x) and second (y) visits after inititiation of a certain therapy. We want to test the null hypothesis that there is no difference in depression scale values between these two times.
+We will use the example data from the help page found by running `?wilcox.test`. These are measurements of a continuous depression scale on 9 patients taken at the first (x) and second (y) visits after initiation of a certain therapy. We want to test the null hypothesis that there is no difference in depression scale values between these two times.
 
 ```{r}
 x <- c(1.83,  0.50,  1.62,  2.48, 1.68, 1.88, 1.55, 3.06, 1.30)

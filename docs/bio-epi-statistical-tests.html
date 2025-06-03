@@ -333,6 +333,16 @@ mean in group 0 mean in group 1
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Tips:</strong></p>
 <ul>
 <li>For the preceding two tests we used the <code>formula</code> option to supply the information for the test</li>
@@ -341,6 +351,8 @@ mean in group 0 mean in group 1
 <li>Using the formula option, you must also supply the name of the dataset to the <code>data =</code> argument so that R knows where to look to find the specified variables.</li>
 <li>See the help files for alternative ways to supply the information for each test</li>
 </ul>
+</div>
+</div>
 <p>What if our categorical variables has more than 2 levels, but we want to do a parametric test? Then we will use ANOVA. ANOVA tests the null hypothesis of no association between marker and grade, which has more than two levels so a t-test is not appropriate, and relies on the assumption that the continuous variable is normally distributed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lm_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(age_dx_yrs <span class="sc">~</span> grade, <span class="at">data =</span> mydf)</span>
@@ -355,7 +367,6 @@ Residuals 2997 574764  191.78               </code></pre>
 </div>
 </div>
 <p>And here we would not reject the null hypothesis of no association between age and grade, at the 0.05 level, since the resulting p-value is 0.1379383, which is &gt;0.05.</p>
-<p><em>Note that sometimes it can be hard to figure out how to extract the p-value from test results.</em> Here are two tips.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -366,11 +377,12 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Assign your model results to an object, and examine in one of two ways.</p>
+<p><em>Note that sometimes it can be hard to figure out how to extract the p-value from test results.</em> Here are two tips.</p>
+<p>First, assign your model results to an object, and examine in one of two ways.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">t.test</span>(age_dx_yrs <span class="sc">~</span> rt, <span class="at">data =</span> mydf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>First, use <code>str()</code> to look at the structure:</p>
+<p>Then use <code>str()</code> to look at the structure:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(temp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -405,7 +417,7 @@ Tip
 <li>Measurements on two eyes within subject</li>
 <li>Sibling or spousal pairs</li>
 </ul>
-<p>We will use the example data from the help page found by running <code>?wilcox.test</code>. These are measurements of a continuous depression scale on 9 patients taken at the first (x) and second (y) visits after inititiation of a certain therapy. We want to test the null hypothesis that there is no difference in depression scale values between these two times.</p>
+<p>We will use the example data from the help page found by running <code>?wilcox.test</code>. These are measurements of a continuous depression scale on 9 patients taken at the first (x) and second (y) visits after initiation of a certain therapy. We want to test the null hypothesis that there is no difference in depression scale values between these two times.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.83</span>,  <span class="fl">0.50</span>,  <span class="fl">1.62</span>,  <span class="fl">2.48</span>, <span class="fl">1.68</span>, <span class="fl">1.88</span>, <span class="fl">1.55</span>, <span class="fl">3.06</span>, <span class="fl">1.30</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.878</span>, <span class="fl">0.647</span>, <span class="fl">0.598</span>, <span class="fl">2.05</span>, <span class="fl">1.06</span>, <span class="fl">1.29</span>, <span class="fl">1.06</span>, <span class="fl">3.14</span>, <span class="fl">1.29</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
