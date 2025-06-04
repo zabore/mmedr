@@ -230,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="custom-functions" class="level2">
 <h2 class="anchored" data-anchor-id="custom-functions">Custom functions</h2>
-<p>We have previously discussed the role of functions in R, and have seen examples of built-in R functions, such as <code>mean()</code> and <code>p.adjust()</code>.</p>
+<p>We have previously discussed the role of functions in R, and have seen examples of built-in R functions, such as <code>mean()</code> and <code>table()</code>.</p>
 <p>But sometimes we’ll want to do something that isn’t included in a built-in R function, or that simplifies use of existing functions.</p>
 <p>User-defined functions are created using the <code>function()</code> function.</p>
 <p>Basic usage is:</p>
@@ -251,26 +251,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tabna <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">table</span>(x, <span class="at">useNA =</span> <span class="st">'ifany'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now instead of typing:</p>
+<p>Now, if we want to get a frequency table of ER/PR+ status that shows how many missing values there are, instead of typing:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mydf<span class="sc">$</span>rt, <span class="at">useNA =</span> <span class="st">'ifany'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mydf<span class="sc">$</span>er_or_pr_pos, <span class="at">useNA =</span> <span class="st">'ifany'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-   0    1 
-1228 1772 </code></pre>
+   0    1 &lt;NA&gt; 
+ 376 2537   87 </code></pre>
 </div>
 </div>
 <p>I can type:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabna</span>(mydf<span class="sc">$</span>rt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabna</span>(mydf<span class="sc">$</span>er_or_pr_pos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x
-   0    1 
-1228 1772 </code></pre>
+   0    1 &lt;NA&gt; 
+ 376 2537   87 </code></pre>
 </div>
 </div>
 <p>This gets particularly useful for long or complex procedures, but is also really useful for short procedures that will be repeated many times.</p>
-<p>Try writing a custom function based on the <code>mean()</code> function but including the option to remove NAs from the calculation, and test it on the variable <code>tumor_size_cm</code> in <code>mydf</code>. Name your function <code>mean_no_na</code> as we will use it later.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -418,7 +417,7 @@ Solution
   III    0    0 1328</code></pre>
 </div>
 </div>
-<p>We see that we reassigned 219 patients from grade I to grade II, and 7 pagients from grade II to grade III.</p>
+<p>We see that we reassigned 219 patients from grade I to grade II, and 7 patients from grade II to grade III.</p>
 </div>
 </div>
 </div>

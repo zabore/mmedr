@@ -20,7 +20,7 @@ mydf <- readr::read_csv("~/mmedr/breastcancer.csv") |>
 
 ## Custom functions
 
-We have previously discussed the role of functions in R, and have seen examples of built-in R functions, such as `mean()` and `p.adjust()`.
+We have previously discussed the role of functions in R, and have seen examples of built-in R functions, such as `mean()` and `table()`.
 
 But sometimes we'll want to do something that isn't included in a built-in R function, or that simplifies use of existing functions.
 
@@ -52,21 +52,19 @@ To streamline things, I can create a custom function that includes this option:
 tabna <- function(x) table(x, useNA = 'ifany')
 ```
 
-Now instead of typing:
+Now, if we want to get a frequency table of ER/PR+ status that shows how many missing values there are, instead of typing:
 
 ```{r}
-table(mydf$rt, useNA = 'ifany')
+table(mydf$er_or_pr_pos, useNA = 'ifany')
 ```
 
 I can type:
 
 ```{r}
-tabna(mydf$rt)
+tabna(mydf$er_or_pr_pos)
 ```
 
 This gets particularly useful for long or complex procedures, but is also really useful for short procedures that will be repeated many times.
-
-Try writing a custom function based on the `mean()` function but including the option to remove NAs from the calculation, and test it on the variable `tumor_size_cm` in `mydf`. Name your function `mean_no_na` as we will use it later.
 
 ::: {.callout-note icon=false}
 ## Practice problem
@@ -173,7 +171,7 @@ for(i in 1:nrow(mydf)) {
 table(mydf$grade, mydf$grade_new)
 ```
 
-We see that we reassigned 219 patients from grade I to grade II, and 7 pagients from grade II to grade III.
+We see that we reassigned 219 patients from grade I to grade II, and 7 patients from grade II to grade III.
 :::
 
 

@@ -209,6 +209,8 @@ mydf |>
   ungroup()
 ```
 
+## Summarize multiple variables
+
 You can summarize multiple variables using a single function by name:
 
 ```{r}
@@ -247,6 +249,16 @@ To specify the string appended to the variable names in the results, make a name
 
 ```{r}
 mydf |> 
+  summarise_at(
+    c("age_dx_yrs", "tumor_size_cm"), list(mean = mean, sd = sd), na.rm = TRUE
+    )
+```
+
+And you can also do this by group, by adding in a `group_by()` statement:
+
+```{r}
+mydf |> 
+  group_by(rt) |> 
   summarise_at(
     c("age_dx_yrs", "tumor_size_cm"), list(mean = mean, sd = sd), na.rm = TRUE
     )

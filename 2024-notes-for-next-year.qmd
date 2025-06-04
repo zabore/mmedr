@@ -14,3 +14,11 @@ Here are my notes on changes to make for next year:
 - note that the sesison on manipulating dataframes took <1 hour so could potentially add to it a bit - got done about 15 mins early
 - session 3 exercise 1 comes too soon - haven't introduced case_when() yet - the two exercises here are too similar
 
+
+# Notes from 2025 Bio/Epi, for next year:
+
+- I made all of the little changes needed as I went
+- The second session was quite short, just a little more than an hour
+- Cover the session 2 material more slowly, maybe with more reminders and refreshers
+- Consider adding Quarto back to session 2 since there is extra time
+
